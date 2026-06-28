@@ -1,0 +1,17 @@
+locale: uk
+order: 2
+slug: homecore-5
+name: MAXIBUD HomeCore 5
+category: Домашня модульна система
+summary: Концептуальний стаціонарний формат для будинків, малих офісів і резервування основних систем.
+conceptNotice: Характеристики HomeCore 5 є ілюстративними й не описують сертифіковане комерційне обладнання.
+highlights:
+  - label: Місткість модуля
+    value: 5,12 кВт·год
+  - label: Масштабування
+    value: до 20,48 кВт·год
+  - label: Потужність системи
+    value: 5 кВт
+seo:
+  title: MAXIBUD HomeCore 5 — концептуальна домашня система
+  description: Ілюстративний опис концептуальної модульної системи MAXIBUD HomeCore 5.

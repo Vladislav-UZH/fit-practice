@@ -1,113 +1,121 @@
 # MAXIBUD ENERGY Practice Project
 
-Educational repository for a bilingual Nuxt 4 product showcase website for the fictional **MAXIBUD ENERGY** product line.
+Bilingual Nuxt 4 product-showcase foundation for the fictional **MAXIBUD ENERGY** concept portfolio.
 
-The project is currently in the repository-instruction and Codex-skill foundation phase. The Nuxt application layer has not yet been initialized.
+The repository currently contains a working application shell, localized routes, typed product content, Nitro read APIs, automated checks, and CI. The final marketing sections, original product renders, comparison experience, and contact flow remain separate milestones.
+
+> MAXIBUD ENERGY is a conceptual product line created for an educational software demonstration. Product specifications are illustrative and do not represent certified commercial hardware.
 
 ## Start Here
 
-Read these files in order:
+Read these files before changing the project:
 
 1. [`AGENTS.md`](AGENTS.md)
 2. [`PROJECT_CONTEXT.md`](PROJECT_CONTEXT.md)
 3. [`CURRENT_STATE.md`](CURRENT_STATE.md)
 4. [`CHAT_HANDOFF.md`](CHAT_HANDOFF.md)
 
-`PROJECT_CONTEXT.md` contains stable decisions. `CURRENT_STATE.md` contains progress, blockers, validation, and the next milestone.
+Use the relevant repository skills under `.agents/skills/`:
 
-## Product Scope
+- `maxibud-energy-site` for product truth, content, routes, and localization;
+- `maxibud-landing-design` for visual composition and design review;
+- `nuxt4-production` for framework engineering;
+- `maxibud-release-check` only as the explicit release gate.
 
-The website will present three fictional concept products:
+## Runtime
 
-- MAXIBUD PowerBox 2400
-- MAXIBUD HomeCore 5
-- MAXIBUD SiteHub 10
+- Node.js `24.11.1`
+- pnpm `11.9.0`
 
-MAXIBUD ENERGY is a conceptual product line created for an educational software demonstration. Product specifications are illustrative and do not represent certified commercial hardware.
+The exact versions are declared in `.node-version`, `package.json`, and `pnpm-workspace.yaml`.
 
-## Codex Instruction Composition
+## Setup
+
+```bash
+pnpm install --frozen-lockfile
+cp .env.example .env
+pnpm dev
+```
+
+The default development URL is `http://localhost:3000`.
+
+## Environment
+
+```dotenv
+NUXT_PUBLIC_SITE_URL=http://localhost:3000
+```
+
+`NUXT_PUBLIC_SITE_URL` is used for canonical URLs and localized SEO metadata.
+
+## Commands
+
+```bash
+pnpm dev          # development server
+pnpm lint         # ESLint
+pnpm typecheck    # Nuxt and Vue type checking
+pnpm test         # unit and Nuxt-runtime tests
+pnpm test:e2e     # Playwright tests; Chromium must be installed
+pnpm build        # production Nitro server build
+pnpm preview      # preview the production build
+pnpm validate     # lint, typecheck, tests, and build
+```
+
+Install the Playwright browser once on a local machine:
+
+```bash
+pnpm exec playwright install chromium
+```
+
+## Application Structure
 
 ```text
-.
-├── AGENTS.md
-├── PROJECT_CONTEXT.md
-├── CURRENT_STATE.md
-├── CHAT_HANDOFF.md
-└── .agents/
-    └── skills/
-        ├── maxibud-energy-site/
-        ├── maxibud-release-check/
-        └── nuxt4-production/
+app/
+├── assets/css/        global theme and design tokens
+├── components/        shared interface and product components
+├── composables/       reusable Nuxt application logic
+├── layouts/           global application shell
+└── pages/             localized public routes
+content/
+└── products/          Ukrainian and English product records
+server/api/products/   Nitro product read endpoints
+shared/schemas/        shared Zod schemas and derived types
+i18n/locales/          interface translations
+modules/               narrow local Nuxt compatibility modules
+tests/                 unit, Nuxt-runtime, and Playwright tests
 ```
 
-### `AGENTS.md`
+## Implemented Routes
 
-Permanent repository rules covering working method, technical direction, product-truth boundaries, localization, accessibility, security, testing, Git safety, and completion reporting.
-
-### `maxibud-energy-site`
-
-Project-specific source of truth for product strategy, audiences, information architecture, page requirements, visual system, product content, localized copy, and disclosures.
-
-### `nuxt4-production`
-
-Reusable Nuxt engineering guidance for architecture, SSR, hydration, routing, data fetching, Nitro, Content, i18n, UI, testing, security, performance, and deployment.
-
-### `maxibud-release-check`
-
-Explicit final quality gate for product consistency, required routes, localization, accessibility, SEO, lint, type checking, tests, and production build.
-
-## New Chat Handoff
-
-Use the ready-to-paste prompt in `CHAT_HANDOFF.md`. The new conversation must reconstruct context from the repository before changing code.
-
-## Recommended Initial Codex Invocation
+Ukrainian is the unprefixed default locale. English uses `/en`.
 
 ```text
-Use $maxibud-energy-site and $nuxt4-production.
-
-Read AGENTS.md, PROJECT_CONTEXT.md, CURRENT_STATE.md, README.md, and the
-relevant skill files. Inspect the repository and implement the next
-milestone recorded in CURRENT_STATE.md.
-
-Use installed package versions as the source of truth. Work
-incrementally, run every applicable validation command, and update
-CURRENT_STATE.md with exact results.
+/
+/products
+/products/powerbox-2400
+/products/homecore-5
+/products/sitehub-10
+/products/compare
+/technology
+/about
+/contact
+/legal
 ```
 
-## Static Release Audit
+Equivalent English routes are available below `/en`.
 
-Before the Nuxt application exists, the audit correctly reports missing application files as blockers.
+## Architecture Decisions
 
-```bash
-node .agents/skills/maxibud-release-check/scripts/audit.mjs .
-```
+- SSR remains enabled.
+- Nuxt Content owns typed product records.
+- Pages read product content through Nitro APIs instead of shipping the Content database query client to every route.
+- Nuxt UI provides accessible primitives; project components provide the brand presentation.
+- Locale-aware route utilities are used instead of manually concatenating `/en`.
+- Node's built-in SQLite connector is used for Nuxt Content.
+- The internal public Content SQL dump is not prerendered because the application does not use browser-side Content queries.
+- Build-time dependency scripts are allowlisted in `pnpm-workspace.yaml`.
 
-After package scripts exist:
+## Validation
 
-```bash
-node .agents/skills/maxibud-release-check/scripts/audit.mjs . \
-  --run-project-checks
-```
+GitHub Actions runs installation, lint, type checking, unit/Nuxt tests, production build, Chromium installation, and Playwright tests for pull requests and pushes to `main`.
 
-Machine-readable output:
-
-```bash
-node .agents/skills/maxibud-release-check/scripts/audit.mjs . \
-  --run-project-checks \
-  --json
-```
-
-## Context Maintenance
-
-Update:
-
-- `PROJECT_CONTEXT.md` when stable decisions change;
-- `CURRENT_STATE.md` after material milestones;
-- `CHAT_HANDOFF.md` only when the loading workflow changes;
-- `AGENTS.md` only for permanent repository rules.
-
-Do not duplicate transient progress across every file. Future models are already capable of confusion without additional assistance.
-
-## Current Status
-
-See [`CURRENT_STATE.md`](CURRENT_STATE.md) for the authoritative progress snapshot.
+See [`CURRENT_STATE.md`](CURRENT_STATE.md) for the exact latest local validation results and known limitations.

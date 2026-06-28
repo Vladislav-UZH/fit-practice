@@ -1,0 +1,108 @@
+{
+  "brand": {
+    "homeLabel": "MAXIBUD ENERGY — home"
+  },
+  "nav": {
+    "products": "Products",
+    "compare": "Compare",
+    "technology": "Technology",
+    "about": "About",
+    "contact": "Contact",
+    "legal": "Legal",
+    "menu": "Menu"
+  },
+  "actions": {
+    "viewProducts": "View products",
+    "viewProduct": "View product",
+    "compare": "Compare systems",
+    "consultation": "Request consultation"
+  },
+  "a11y": {
+    "skipToContent": "Skip to main content",
+    "primaryNavigation": "Primary navigation",
+    "switchLanguage": "Switch language to {language}",
+    "mobileNavigation": "Mobile navigation"
+  },
+  "disclosure": {
+    "full": "MAXIBUD ENERGY is a conceptual product line created for an educational software demonstration. Product specifications are illustrative and do not represent certified commercial hardware.",
+    "shortTitle": "Concept product"
+  },
+  "footer": {
+    "description": "A bilingual educational website presenting a conceptual backup-power product line.",
+    "products": "Products",
+    "company": "Information"
+  },
+  "states": {
+    "productsUnavailableTitle": "Products are not available yet",
+    "productsUnavailableDescription": "Check the Nuxt Content configuration and localized product records."
+  },
+  "pages": {
+    "home": {
+      "eyebrow": "Concept power-system portfolio",
+      "title": "Independent power for home, work, and construction",
+      "description": "Three product formats for mobile work, home backup, and professional site use.",
+      "visualLabel": "Visual-system foundation",
+      "visualText": "Original product renders will be added during the next design milestone.",
+      "proof": {
+        "formats": "Three use-focused formats",
+        "platform": "Shared LiFePO4 concept",
+        "mobile": "Mobile and stationary options",
+        "languages": "Ukrainian and English"
+      },
+      "productsEyebrow": "Product portfolio",
+      "productsTitle": "One portfolio, three working contexts",
+      "seoTitle": "MAXIBUD ENERGY — concept backup-power systems",
+      "seoDescription": "Educational presentation of three MAXIBUD ENERGY concept systems for home, mobile work, and construction."
+    },
+    "products": {
+      "eyebrow": "Products",
+      "title": "Three formats for different use cases",
+      "description": "Review portable, home, and professional concepts with illustrative specifications.",
+      "seoTitle": "MAXIBUD ENERGY products",
+      "seoDescription": "Overview of the PowerBox 2400, HomeCore 5, and SiteHub 10 concept products."
+    },
+    "product": {
+      "visualPlaceholder": "Reserved for an original product render."
+    },
+    "compare": {
+      "eyebrow": "Comparison",
+      "title": "Compare formats by intended context",
+      "description": "The comparison matrix will be implemented after the component system and full product content are approved.",
+      "seoTitle": "Compare MAXIBUD ENERGY products",
+      "seoDescription": "Comparison of MAXIBUD ENERGY concept formats by capacity, output, mobility, and intended use."
+    },
+    "technology": {
+      "eyebrow": "Technology",
+      "title": "A shared conceptual platform",
+      "description": "This page will explain shared portfolio concepts without installation, repair, or real engineering instructions.",
+      "seoTitle": "MAXIBUD ENERGY technology concept",
+      "seoDescription": "Overview of the shared conceptual platform behind MAXIBUD ENERGY products."
+    },
+    "about": {
+      "eyebrow": "About",
+      "title": "An educational product-website demonstration",
+      "description": "The project demonstrates Nuxt 4, SSR, localization, content collections, accessibility, and automated testing.",
+      "seoTitle": "About the MAXIBUD ENERGY project",
+      "seoDescription": "Information about the MAXIBUD ENERGY educational software project."
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Demonstration consultation request",
+      "description": "The form will be delivered as a complete flow with server validation and truthful data-processing messages.",
+      "seoTitle": "Contact MAXIBUD ENERGY",
+      "seoDescription": "Demonstration inquiry page for MAXIBUD ENERGY concept products."
+    },
+    "legal": {
+      "eyebrow": "Legal",
+      "title": "Educational-project and concept-product status",
+      "description": "The products, specifications, and materials on this site are illustrative and are not a commercial offer.",
+      "seoTitle": "MAXIBUD ENERGY legal information",
+      "seoDescription": "Disclosure of the conceptual and educational status of the MAXIBUD ENERGY website."
+    }
+  },
+  "error": {
+    "title": "Page not found",
+    "description": "The requested page does not exist or has not been implemented yet.",
+    "backHome": "Return home"
+  }
+}
