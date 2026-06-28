@@ -1,0 +1,7 @@
+interface:
+  display_name: "MAXIBUD Release Check"
+  short_description: "Audit the MAXIBUD ENERGY site before submission or release"
+  default_prompt: "Perform a comprehensive release audit of the MAXIBUD ENERGY repository. Apply repository instructions and project skills, run static audits and available quality commands, fix only safe defects when authorized, and produce a factual release decision with exact evidence."
+
+policy:
+  allow_implicit_invocation: false

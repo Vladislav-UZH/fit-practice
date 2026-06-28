@@ -1,0 +1,52 @@
+[
+  {
+    "path": "SKILL.md",
+    "bytes": 12564,
+    "lines": 456
+  },
+  {
+    "path": "agents/openai.yaml",
+    "bytes": 434,
+    "lines": 8
+  },
+  {
+    "path": "assets/page-brief-template.md",
+    "bytes": 931,
+    "lines": 79
+  },
+  {
+    "path": "assets/product-record-template.md",
+    "bytes": 2956,
+    "lines": 92
+  },
+  {
+    "path": "references/content-model.md",
+    "bytes": 7565,
+    "lines": 375
+  },
+  {
+    "path": "references/copy-and-localization.md",
+    "bytes": 16516,
+    "lines": 573
+  },
+  {
+    "path": "references/design-system.md",
+    "bytes": 8540,
+    "lines": 415
+  },
+  {
+    "path": "references/fictional-product-data.md",
+    "bytes": 12752,
+    "lines": 331
+  },
+  {
+    "path": "references/information-architecture.md",
+    "bytes": 9282,
+    "lines": 511
+  },
+  {
+    "path": "references/product-brief.md",
+    "bytes": 7594,
+    "lines": 314
+  }
+]

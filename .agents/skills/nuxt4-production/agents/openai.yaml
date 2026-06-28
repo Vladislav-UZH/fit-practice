@@ -1,0 +1,7 @@
+interface:
+  display_name: "Nuxt 4 Production"
+  short_description: "Build and review production-grade Nuxt 4 applications"
+  default_prompt: "Inspect the repository, use the installed Nuxt and module versions as the source of truth, implement the requested change completely, run applicable checks, and report exact results."
+
+policy:
+  allow_implicit_invocation: true

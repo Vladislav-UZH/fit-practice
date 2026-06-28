@@ -1,0 +1,52 @@
+[
+  {
+    "path": "SKILL.md",
+    "bytes": 12935,
+    "lines": 550
+  },
+  {
+    "path": "agents/openai.yaml",
+    "bytes": 468,
+    "lines": 8
+  },
+  {
+    "path": "references/acceptance-checklist.md",
+    "bytes": 8570,
+    "lines": 326
+  },
+  {
+    "path": "references/accessibility-checklist.md",
+    "bytes": 4929,
+    "lines": 234
+  },
+  {
+    "path": "references/content-integrity-checklist.md",
+    "bytes": 5798,
+    "lines": 251
+  },
+  {
+    "path": "references/seo-checklist.md",
+    "bytes": 5039,
+    "lines": 274
+  },
+  {
+    "path": "scripts/audit.mjs",
+    "bytes": 6138,
+    "lines": 254
+  },
+  {
+    "path": "scripts/check-content.mjs",
+    "bytes": 8494,
+    "lines": 291
+  },
+  {
+    "path": "scripts/check-i18n.mjs",
+    "bytes": 4514,
+    "lines": 194
+  },
+  {
+    "path": "scripts/check-routes.mjs",
+    "bytes": 4512,
+    "lines": 190
+  }
+]
