@@ -1,0 +1,7 @@
+interface:
+  display_name: "MAXIBUD Landing Design"
+  short_description: "Design and review the MAXIBUD product landing experience"
+  default_prompt: "Reconstruct the repository state, apply the MAXIBUD product and Nuxt production skills, produce a first design direction, critique it, revise it, map the corrected design to verified Nuxt UI primitives, and validate it with the design review checklist."
+
+policy:
+  allow_implicit_invocation: true
