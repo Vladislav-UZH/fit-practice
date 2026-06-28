@@ -33,10 +33,11 @@ Before editing:
 
 1. Inspect the repository structure.
 2. Read every applicable `AGENTS.md` and `AGENTS.override.md`.
-3. Inspect `package.json`, the lockfile, `nuxt.config.ts`, `content.config.ts`, TypeScript configuration, lint configuration, and test configuration when present.
-4. Inspect the files directly related to the requested change.
-5. Identify existing patterns before creating new abstractions.
-6. Check the working tree and preserve unrelated user changes.
+3. Read `PROJECT_CONTEXT.md` and `CURRENT_STATE.md` when they exist.
+4. Inspect `package.json`, the lockfile, `nuxt.config.ts`, `content.config.ts`, TypeScript configuration, lint configuration, and test configuration when present.
+5. Inspect the files directly related to the requested change.
+6. Identify existing patterns before creating new abstractions.
+7. Check the working tree and preserve unrelated user changes.
 
 During implementation:
 
@@ -453,5 +454,7 @@ End implementation tasks with a factual report containing:
 - skipped checks;
 - demo-only behavior;
 - intentionally excluded non-goals.
+
+When a milestone materially changes repository status, update `CURRENT_STATE.md` in the same change. Do not turn `AGENTS.md` into a progress log.
 
 Do not claim production readiness when required validation has not passed.
