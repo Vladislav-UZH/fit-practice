@@ -1,0 +1,17 @@
+locale: en
+order: 2
+slug: homecore-5
+name: MAXIBUD HomeCore 5
+category: Modular home system
+summary: A concept stationary format for homes, small offices, and essential-system backup.
+conceptNotice: HomeCore 5 specifications are illustrative and do not describe certified commercial hardware.
+highlights:
+  - label: Module capacity
+    value: 5.12 kWh
+  - label: Expansion
+    value: up to 20.48 kWh
+  - label: System output
+    value: 5 kW
+seo:
+  title: MAXIBUD HomeCore 5 — modular home concept system
+  description: Illustrative overview of the MAXIBUD HomeCore 5 modular concept system.

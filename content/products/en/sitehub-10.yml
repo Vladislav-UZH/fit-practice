@@ -1,0 +1,17 @@
+locale: en
+order: 3
+slug: sitehub-10
+name: MAXIBUD SiteHub 10
+category: Professional mobile system
+summary: A rugged concept format for construction sites, temporary facilities, and mobile workshops.
+conceptNotice: SiteHub 10 specifications are illustrative and do not describe certified commercial hardware.
+highlights:
+  - label: Capacity
+    value: 10.24 kWh
+  - label: Rated output
+    value: 6 kW
+  - label: Weight
+    value: 118 kg
+seo:
+  title: MAXIBUD SiteHub 10 — professional concept system
+  description: Illustrative overview of the MAXIBUD SiteHub 10 mobile professional concept system.

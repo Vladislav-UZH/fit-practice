@@ -4,158 +4,156 @@
 
 - Last reviewed: 2026-06-28
 - Repository: `Vladislav-UZH/fit-practice`
-- Reviewed branch: `main`
-- Current phase: instruction and Codex-skill foundation
-- Application readiness: not initialized
+- Reviewed branch: `feat/nuxt-foundation`
+- Current phase: Nuxt application foundation
+- Application readiness: initialized and buildable
 - Release readiness: `NOT READY`
 
 This file records current progress and must be updated after material milestones.
 
 ## Completed
 
-### Repository instructions
+### Repository and skill foundation
 
-- Root `AGENTS.md` created.
-- Permanent engineering, truth, localization, accessibility, security, testing, and Git rules defined.
+- Root repository instructions and durable project context exist.
+- Project, landing-design, Nuxt engineering, and release-check skills exist under `.agents/skills/`.
 
-### Project skill
+### Runtime and package management
 
-Created `.agents/skills/maxibud-energy-site/` with the project skill, product brief, information architecture, design system, content model, fictional product data, localized copy, templates, and interface metadata.
+- Added Node.js `24.11.1` runtime declaration.
+- Added pnpm `11.9.0` package-manager declaration and lockfile.
+- Added strict engine enforcement and an allowlist for required dependency build scripts.
+- Added `.env.example` with the public site URL.
 
-### Nuxt engineering skill
+### Nuxt application foundation
 
-Created `.agents/skills/nuxt4-production/` with reusable Nuxt architecture, rendering, data, server, UI, i18n, testing, security, deployment, diagnostics, and inspection guidance.
+- Initialized Nuxt 4 with Vue 3, TypeScript, SSR, and Nitro.
+- Added Nuxt UI, Nuxt Content, Nuxt Image, Nuxt i18n, Zod, ESLint, Vitest, Nuxt Test Utils, and Playwright.
+- Added the application shell, skip link, global header, global footer, error page, and centralized theme tokens.
+- Added Ukrainian as the default locale and English with the `/en` prefix.
+- Added all required route files.
+- Added localized SEO metadata and canonical URL generation.
 
-### Release-check skill
+### Content and server layer
 
-Created `.agents/skills/maxibud-release-check/` with an explicit-only release skill, acceptance checklists, static checkers, and an audit orchestrator.
+- Added a typed Nuxt Content product collection.
+- Added Ukrainian and English records for PowerBox 2400, HomeCore 5, and SiteHub 10.
+- Added shared Zod schemas for locales, product slugs, highlights, and product records.
+- Added Nitro endpoints for product lists and product detail records.
+- Added intentional validation errors and a 404 response for unknown product slugs.
+- Configured Nuxt Content to use Node's built-in SQLite connector.
+- Disabled unnecessary prerendering of the internal Content SQL dump while preserving SSR and server-side Content queries.
 
-## Included by This Context Update Patch
+### Quality and automation
 
-The patch:
+- Added ESLint configuration.
+- Added unit and Nuxt-runtime tests.
+- Added Playwright route and product-flow tests.
+- Added GitHub Actions validation and E2E jobs.
+- Added VS Code extension and workspace settings.
 
-1. adds `README.md`;
-2. adds `PROJECT_CONTEXT.md`;
-3. adds `CURRENT_STATE.md`;
-4. adds `CHAT_HANDOFF.md`;
-5. updates `AGENTS.md` to require reading context files;
-6. improves `check-content.mjs`;
-7. removes packaging-only `INVENTORY.json` files.
+## Validation Results
 
-After applying the patch, this section describes the merged repository state.
+Executed with Node.js `24.11.1` and pnpm `11.9.0`.
 
-## Current Application State
-
-The Nuxt application layer has not been initialized on the reviewed `main` branch.
-
-Expected missing items include:
-
-- `package.json`;
-- package-manager lockfile;
-- `nuxt.config.ts`;
-- `content.config.ts`;
-- `app/`;
-- `content/`;
-- `i18n/`;
-- `server/`;
-- tests;
-- CI;
-- deployment configuration.
-
-This absence is expected at the current phase but prevents any release-ready status.
-
-## Known Constraints
-
-### GitHub connector write access
-
-The connected GitHub integration could read the repository but returned `403 Resource not accessible by integration` for branch creation and file updates.
-
-Repository updates were therefore prepared as Git patches instead of being pushed directly.
-
-### Release audit before application initialization
-
-The release audit correctly reports application files as missing blockers until the Nuxt project exists.
-
-## Validated Audit Fix
-
-The revised content checker was validated with:
-
-```bash
-node --check .agents/skills/maxibud-release-check/scripts/check-content.mjs
-```
-
-A fixture containing three products, both locales, legal text using `not certified`, and document entries with `available: false` returned:
+### Passed
 
 ```text
+pnpm install --frozen-lockfile
 PASS
-0 findings
 ```
 
-The revised scanner:
+```text
+pnpm lint
+PASS
+```
 
-- limits scanning to application and user-facing sources;
-- excludes `.agents/`, tests, build output, and dependencies;
-- ignores supported negated claims;
-- checks documents only when marked `available: true`;
-- accepts approved Ukrainian and English numeric formats.
+```text
+pnpm typecheck
+PASS
+```
+
+```text
+pnpm test
+PASS: 2 test files, 3 tests
+```
+
+```text
+pnpm build
+PASS: Nuxt client, SSR server, and Nitro node-server output completed
+```
+
+Manual runtime checks passed for:
+
+- `/`;
+- `/en`;
+- `/products`;
+- `/en/products`;
+- `/api/products?locale=uk`;
+- `/api/products?locale=en`;
+- `/api/products/powerbox-2400?locale=uk`;
+- intentional 404 handling for an unknown product slug.
+
+### GitHub Actions
+
+The pull-request CI completed successfully on Ubuntu 24.04:
+
+- frozen dependency installation — passed;
+- lint — passed;
+- type checking — passed;
+- unit and Nuxt-runtime tests — passed;
+- production build — passed;
+- Chromium installation — passed;
+- Playwright E2E tests — passed.
+
+The local execution environment could not download Chromium because `cdn.playwright.dev` was not resolvable, but the repository CI executed the complete E2E suite successfully.
+
+## Known Warnings
+
+- Nuxt Content and MDC report unresolved Vite `optimizeDeps.include` entries during development with pnpm's isolated dependency layout. Development routes and production build still complete successfully. This is treated as an upstream tooling warning, not suppressed through broad dependency hoisting.
+- Rollup reports third-party sourcemap and `PURE` annotation warnings from Nuxt and VueUse during production build.
+- Nuxt Image includes `sharp` binaries for `linux-x64`; deployment must use a compatible target architecture or rebuild dependencies for the destination.
+
+## Current Application Scope
+
+The foundation intentionally includes only enough interface to verify architecture, localization, content, SSR, and navigation.
+
+Still incomplete:
+
+- final homepage section composition;
+- original product renders and responsive image assets;
+- full product-detail content and specification groups;
+- full comparison matrix;
+- complete technology, about, legal, and contact content;
+- contact form, server validation, honeypot, rate limiting, and truthful demo submission state;
+- final mobile and accessibility review;
+- deployment configuration.
 
 ## Immediate Next Milestone
 
-Initialize the Nuxt 4 application foundation.
+Implement the first full visual slice:
 
-Required initial deliverables:
-
-1. `package.json`;
-2. `pnpm-lock.yaml`;
-3. Node engine declaration;
-4. `nuxt.config.ts`;
-5. `app/app.vue`;
-6. default layout;
-7. Nuxt UI setup;
-8. Nuxt Content setup;
-9. Ukrainian and English i18n setup;
-10. lint, type-check, unit-test, E2E, and build scripts;
-11. `.env.example`;
-12. updated README setup instructions.
-
-## Recommended Next Codex Instruction
-
-```text
-Use $maxibud-energy-site and $nuxt4-production.
-
-Read AGENTS.md, PROJECT_CONTEXT.md, CURRENT_STATE.md, and the relevant
-skill files. Inspect the current repository state.
-
-Initialize the Nuxt 4 application foundation with pnpm, TypeScript, SSR,
-Nuxt UI, Nuxt Content, Nuxt Image, Nuxt i18n, Zod, ESLint, Vitest, Nuxt
-test utilities, and Playwright.
-
-Do not implement all marketing pages yet. Complete and validate the
-foundation, application shell, localization skeleton, content collection
-schema, test configuration, and build pipeline.
-
-Run every applicable check and update CURRENT_STATE.md with exact results.
-```
+1. finalize design tokens and typography loading strategy;
+2. implement the production global header and mobile navigation;
+3. implement the homepage hero and product-family visual stage;
+4. implement the factual portfolio strip;
+5. refine reusable product-card and specification-highlight components;
+6. add original or project-owned product placeholder assets with explicit dimensions;
+7. validate Ukrainian and English layouts at mobile and desktop widths;
+8. run the design-review checklist.
 
 ## Exit Criteria for the Next Milestone
 
-The foundation milestone is complete only when:
-
-- clean installation from lockfile works;
-- development server starts;
-- lint passes;
-- type check passes;
-- initial tests pass;
-- production build passes;
-- Ukrainian and English routes render;
-- Nuxt Content schema loads;
-- no known hydration error exists;
-- `CURRENT_STATE.md` is updated with exact command results.
+- homepage hero and portfolio section match the approved landing-design skill;
+- header and mobile navigation pass keyboard checks;
+- Ukrainian and English layouts remain stable at 320 px and desktop widths;
+- product visuals have explicit dimensions and meaningful alternatives;
+- no fabricated commercial proof is introduced;
+- lint, typecheck, tests, E2E, and build pass;
+- `CURRENT_STATE.md` records exact results.
 
 ## Current Release Decision
 
 `NOT READY`
 
-Reason: no application package, build, routes, localized product content, tests, or deployment output yet.
-
-This is a project-phase status, not a failure of the skill composition.
+Reason: the technical foundation is initialized, but final product presentation, content, contact flow, visual assets, full accessibility review, and deployment configuration remain incomplete.

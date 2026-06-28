@@ -1,0 +1,17 @@
+locale: en
+order: 1
+slug: powerbox-2400
+name: MAXIBUD PowerBox 2400
+category: Portable system
+summary: A concept portable format for mobile work, temporary sites, and short-duration backup use.
+conceptNotice: PowerBox 2400 specifications are illustrative and do not describe certified commercial hardware.
+highlights:
+  - label: Capacity
+    value: 2.4 kWh
+  - label: Rated output
+    value: 2.4 kW
+  - label: Weight
+    value: 28 kg
+seo:
+  title: MAXIBUD PowerBox 2400 — portable concept system
+  description: Illustrative overview of the MAXIBUD PowerBox 2400 portable concept system.

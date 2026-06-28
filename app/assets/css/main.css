@@ -1,0 +1,62 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme static {
+  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+
+  --color-brand-50: #f8ffe7;
+  --color-brand-100: #efffc4;
+  --color-brand-200: #e1ff8a;
+  --color-brand-300: #d4ff49;
+  --color-brand-400: #c8f43d;
+  --color-brand-500: #acd51f;
+  --color-brand-600: #87aa12;
+  --color-brand-700: #677f12;
+  --color-brand-800: #536416;
+  --color-brand-900: #465319;
+  --color-brand-950: #242e08;
+}
+
+:root {
+  --ui-container: 88rem;
+  --ui-radius: 0.5rem;
+}
+
+html {
+  background: #f3f2ed;
+  color: #111412;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 20rem;
+  min-height: 100vh;
+  background: #f3f2ed;
+  font-family: var(--font-sans);
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-brand-300);
+  color: #111412;
+}
+
+:focus-visible {
+  outline: 3px solid #6f8b10;
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
