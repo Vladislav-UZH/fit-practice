@@ -1,0 +1,672 @@
+diff --git a/.agents/skills/maxibud-energy-site/INVENTORY.json b/.agents/skills/maxibud-energy-site/INVENTORY.json
+deleted file mode 100644
+index 12566be..0000000
+--- a/.agents/skills/maxibud-energy-site/INVENTORY.json
++++ /dev/null
+@@ -1,52 +0,0 @@
+-[
+-  {
+-    "path": "SKILL.md",
+-    "bytes": 12564,
+-    "lines": 456
+-  },
+-  {
+-    "path": "agents/openai.yaml",
+-    "bytes": 434,
+-    "lines": 8
+-  },
+-  {
+-    "path": "assets/page-brief-template.md",
+-    "bytes": 931,
+-    "lines": 79
+-  },
+-  {
+-    "path": "assets/product-record-template.md",
+-    "bytes": 2956,
+-    "lines": 92
+-  },
+-  {
+-    "path": "references/content-model.md",
+-    "bytes": 7565,
+-    "lines": 375
+-  },
+-  {
+-    "path": "references/copy-and-localization.md",
+-    "bytes": 16516,
+-    "lines": 573
+-  },
+-  {
+-    "path": "references/design-system.md",
+-    "bytes": 8540,
+-    "lines": 415
+-  },
+-  {
+-    "path": "references/fictional-product-data.md",
+-    "bytes": 12752,
+-    "lines": 331
+-  },
+-  {
+-    "path": "references/information-architecture.md",
+-    "bytes": 9282,
+-    "lines": 511
+-  },
+-  {
+-    "path": "references/product-brief.md",
+-    "bytes": 7594,
+-    "lines": 314
+-  }
+-]
+\ No newline at end of file
+diff --git a/.agents/skills/maxibud-release-check/INVENTORY.json b/.agents/skills/maxibud-release-check/INVENTORY.json
+deleted file mode 100644
+index 4bd29c0..0000000
+--- a/.agents/skills/maxibud-release-check/INVENTORY.json
++++ /dev/null
+@@ -1,52 +0,0 @@
+-[
+-  {
+-    "path": "SKILL.md",
+-    "bytes": 12935,
+-    "lines": 550
+-  },
+-  {
+-    "path": "agents/openai.yaml",
+-    "bytes": 468,
+-    "lines": 8
+-  },
+-  {
+-    "path": "references/acceptance-checklist.md",
+-    "bytes": 8570,
+-    "lines": 326
+-  },
+-  {
+-    "path": "references/accessibility-checklist.md",
+-    "bytes": 4929,
+-    "lines": 234
+-  },
+-  {
+-    "path": "references/content-integrity-checklist.md",
+-    "bytes": 5798,
+-    "lines": 251
+-  },
+-  {
+-    "path": "references/seo-checklist.md",
+-    "bytes": 5039,
+-    "lines": 274
+-  },
+-  {
+-    "path": "scripts/audit.mjs",
+-    "bytes": 6138,
+-    "lines": 254
+-  },
+-  {
+-    "path": "scripts/check-content.mjs",
+-    "bytes": 8494,
+-    "lines": 291
+-  },
+-  {
+-    "path": "scripts/check-i18n.mjs",
+-    "bytes": 4514,
+-    "lines": 194
+-  },
+-  {
+-    "path": "scripts/check-routes.mjs",
+-    "bytes": 4512,
+-    "lines": 190
+-  }
+-]
+\ No newline at end of file
+diff --git a/.agents/skills/maxibud-release-check/scripts/check-content.mjs b/.agents/skills/maxibud-release-check/scripts/check-content.mjs
+index fe921ea..f9fd74a 100755
+--- a/.agents/skills/maxibud-release-check/scripts/check-content.mjs
++++ b/.agents/skills/maxibud-release-check/scripts/check-content.mjs
+@@ -1,6 +1,6 @@
+ #!/usr/bin/env node
+ 
+-import { access, readFile, readdir, stat } from 'node:fs/promises'
++import { access, readFile, readdir } from 'node:fs/promises'
+ import path from 'node:path'
+ import process from 'node:process'
+ 
+@@ -9,47 +9,95 @@ const rootArg = args.find(arg => !arg.startsWith('--')) ?? '.'
+ const root = path.resolve(rootArg)
+ const jsonOutput = args.includes('--json')
+ 
++const locales = ['uk', 'en']
++
+ const requiredProducts = [
+   {
+     slug: 'powerbox-2400',
+-    approved: ['2.4 kWh', '2,400 W', '4,800 W', '28 kg']
++    approvedGroups: [
++      ['2.4 kWh', '2,4 kWh', '2.4 кВт·год', '2,4 кВт·год'],
++      ['2,400 W', '2400 W', '2.4 kW', '2,4 kW', '2,4 кВт'],
++      ['4,800 W', '4800 W', '4.8 kW', '4,8 kW', '4,8 кВт'],
++      ['28 kg', '28 кг']
++    ]
+   },
+   {
+     slug: 'homecore-5',
+-    approved: ['5.12 kWh', '20.48 kWh', '5 kW', '54 kg']
++    approvedGroups: [
++      ['5.12 kWh', '5,12 kWh', '5.12 кВт·год', '5,12 кВт·год'],
++      ['20.48 kWh', '20,48 kWh', '20.48 кВт·год', '20,48 кВт·год'],
++      ['5 kW', '5 кВт'],
++      ['54 kg', '54 кг']
++    ]
+   },
+   {
+     slug: 'sitehub-10',
+-    approved: ['10.24 kWh', '6,000 W', '12,000 W', '118 kg']
++    approvedGroups: [
++      ['10.24 kWh', '10,24 kWh', '10.24 кВт·год', '10,24 кВт·год'],
++      ['6,000 W', '6000 W', '6 kW', '6 кВт'],
++      ['12,000 W', '12000 W', '12 kW', '12 кВт'],
++      ['118 kg', '118 кг']
++    ]
+   }
+ ]
+ 
+-const locales = ['uk', 'en']
+-
+ const forbiddenPatterns = [
+-  { pattern: /\bbuy now\b/i, label: 'buy now' },
+-  { pattern: /\border now\b/i, label: 'order now' },
+-  { pattern: /\bin stock\b/i, label: 'in stock' },
+-  { pattern: /\bmarket leader\b/i, label: 'market leader' },
+-  { pattern: /\btrusted by\b/i, label: 'trusted by' },
+-  { pattern: /\bmilitary grade\b/i, label: 'military grade' },
+-  { pattern: /\bCE certified\b/i, label: 'CE certified' },
+-  { pattern: /\bUL certified\b/i, label: 'UL certified' },
+-  { pattern: /\bкупити\b/i, label: 'купити' },
+-  { pattern: /\bзамовити\b/i, label: 'замовити' },
+-  { pattern: /\bв наявності\b/i, label: 'в наявності' },
+-  { pattern: /\bлідер ринку\b/i, label: 'лідер ринку' },
+-  { pattern: /\bвійськового класу\b/i, label: 'військового класу' }
++  { pattern: /\bbuy now\b/gi, label: 'buy now' },
++  { pattern: /\border now\b/gi, label: 'order now' },
++  { pattern: /\bin stock\b/gi, label: 'in stock' },
++  { pattern: /\bmarket leader\b/gi, label: 'market leader' },
++  { pattern: /\btrusted by\b/gi, label: 'trusted by' },
++  { pattern: /\bmilitary grade\b/gi, label: 'military grade' },
++  { pattern: /\bCE certified\b/gi, label: 'CE certified' },
++  { pattern: /\bUL certified\b/gi, label: 'UL certified' },
++  { pattern: /\bкупити\b/giu, label: 'купити' },
++  { pattern: /\bзамовити\b/giu, label: 'замовити' },
++  { pattern: /\bв наявності\b/giu, label: 'в наявності' },
++  { pattern: /\bлідер ринку\b/giu, label: 'лідер ринку' },
++  { pattern: /\bвійськового класу\b/giu, label: 'військового класу' }
+ ]
+ 
+ const placeholderPatterns = [
+-  { pattern: /lorem ipsum/i, label: 'lorem ipsum' },
+-  { pattern: /\bTBD\b/, label: 'TBD' },
+-  { pattern: /\bTODO\b/, label: 'TODO' },
+-  { pattern: /\bFIXME\b/, label: 'FIXME' },
+-  { pattern: /placeholder image/i, label: 'placeholder image' }
++  { pattern: /lorem ipsum/gi, label: 'lorem ipsum' },
++  { pattern: /\bTBD\b/g, label: 'TBD' },
++  { pattern: /\bTODO\b/g, label: 'TODO' },
++  { pattern: /\bFIXME\b/g, label: 'FIXME' },
++  { pattern: /placeholder image/gi, label: 'placeholder image' }
+ ]
+ 
++const auditableExtensions = new Set([
++  '.md',
++  '.vue',
++  '.ts',
++  '.js',
++  '.json',
++  '.yaml',
++  '.yml',
++  '.html'
++])
++
++const scanTargets = [
++  'app',
++  'content',
++  'i18n',
++  'locales',
++  'public',
++  'server',
++  'shared',
++  'README.md'
++]
++
++const ignoredDirectoryNames = new Set([
++  'node_modules',
++  '.nuxt',
++  '.output',
++  '.git',
++  'tests',
++  'test',
++  '__tests__',
++  'coverage'
++])
++
+ async function exists(target) {
+   try {
+     await access(target)
+@@ -59,44 +107,144 @@ async function exists(target) {
+   }
+ }
+ 
+-async function walk(directory, output = []) {
+-  if (!(await exists(directory))) {
++async function walk(target, output = []) {
++  if (!(await exists(target))) {
+     return output
+   }
+ 
+-  const entries = await readdir(directory, { withFileTypes: true })
++  const entries = await readdir(target, { withFileTypes: true })
+ 
+   for (const entry of entries) {
+-    if (['node_modules', '.nuxt', '.output', '.git'].includes(entry.name)) {
++    if (entry.isDirectory() && ignoredDirectoryNames.has(entry.name)) {
+       continue
+     }
+ 
+-    const target = path.join(directory, entry.name)
++    const absolute = path.join(target, entry.name)
+ 
+     if (entry.isDirectory()) {
+-      await walk(target, output)
++      await walk(absolute, output)
+     } else if (entry.isFile()) {
+-      output.push(target)
++      output.push(absolute)
+     }
+   }
+ 
+   return output
+ }
+ 
++async function collectAuditableFiles() {
++  const files = []
++
++  for (const relativeTarget of scanTargets) {
++    const absoluteTarget = path.join(root, relativeTarget)
++
++    if (!(await exists(absoluteTarget))) {
++      continue
++    }
++
++    const isFile = path.extname(relativeTarget) !== ''
++
++    if (isFile) {
++      if (auditableExtensions.has(path.extname(absoluteTarget))) {
++        files.push(absoluteTarget)
++      }
++      continue
++    }
++
++    const nestedFiles = await walk(absoluteTarget)
++    for (const file of nestedFiles) {
++      if (auditableExtensions.has(path.extname(file))) {
++        files.push(file)
++      }
++    }
++  }
++
++  return [...new Set(files)]
++}
++
+ function relative(target) {
+   return path.relative(root, target).split(path.sep).join('/')
+ }
+ 
+-function excerpt(text, index, length = 100) {
+-  const start = Math.max(0, index - 40)
+-  const end = Math.min(text.length, index + length)
++function excerpt(text, index, radius = 120) {
++  const start = Math.max(0, index - radius)
++  const end = Math.min(text.length, index + radius)
+   return text.slice(start, end).replace(/\s+/g, ' ').trim()
+ }
+ 
++function lineAt(text, index) {
++  const start = text.lastIndexOf('\n', index - 1) + 1
++  const endIndex = text.indexOf('\n', index)
++  const end = endIndex === -1 ? text.length : endIndex
++  return text.slice(start, end).trim()
++}
++
++function isLikelyCommentLine(line) {
++  return /^(?:\/\/|\/\*|\*|<!--|#(?!\s+\w))/u.test(line)
++}
++
++function isNegatedContext(context) {
++  const normalized = context.toLowerCase()
++
++  const englishNegation = [
++    /\bnot\b.{0,80}\b(certified|available|in stock|a commercial offer|for sale|trusted by|market leader)\b/i,
++    /\bdo not\b.{0,80}\b(buy now|order now|claim|state|imply|use)\b/i,
++    /\bwithout\b.{0,60}\b(certification|evidence|availability)\b/i,
++    /\bno\b.{0,40}\b(certification|warranty|availability|reviews|customers|partners)\b/i
++  ]
++
++  const ukrainianNegation = [
++    /\bне\b.{0,80}\b(сертифікован|доступн|в наявності|комерційн|гарантован|партнер)\w*/iu,
++    /\bне слід\b.{0,80}\b(писати|заявляти|використовувати)\b/iu,
++    /\bбез\b.{0,60}\b(сертифікац|доказ|підтверджен)\w*/iu,
++    /\bнемає\b.{0,60}\b(сертифікат|гаранті|відгук|клієнт|партнер)\w*/iu
++  ]
++
++  return [...englishNegation, ...ukrainianNegation].some(pattern => pattern.test(normalized))
++}
++
++function findAllMatches(pattern, text) {
++  pattern.lastIndex = 0
++  return [...text.matchAll(pattern)]
++}
++
++function hasAnyApprovedVariant(text, variants) {
++  return variants.some(value => text.includes(value))
++}
++
++function isAvailableDocumentReference(text, matchIndex) {
++  const blockStart = Math.max(
++    text.lastIndexOf('\n  - ', matchIndex),
++    text.lastIndexOf('\n- ', matchIndex),
++    text.lastIndexOf('\n{', matchIndex),
++    0
++  )
++
++  const nextListItem = text.indexOf('\n  - ', matchIndex + 1)
++  const nextRootListItem = text.indexOf('\n- ', matchIndex + 1)
++  const nextObject = text.indexOf('\n}', matchIndex + 1)
++
++  const positiveEnds = [nextListItem, nextRootListItem, nextObject]
++    .filter(value => value !== -1)
++
++  const blockEnd = positiveEnds.length > 0
++    ? Math.min(...positiveEnds)
++    : Math.min(text.length, matchIndex + 600)
++
++  const block = text.slice(blockStart, blockEnd)
++
++  if (/available\s*:\s*false/i.test(block)) {
++    return false
++  }
++
++  return /available\s*:\s*true/i.test(block)
++}
++
+ const result = {
+   check: 'content-integrity',
+   root,
+   status: 'PASS',
++  scanTargets,
++  scannedFiles: [],
+   productFiles: {},
+   findings: []
+ }
+@@ -114,13 +262,14 @@ for (const locale of locales) {
+       path.join(contentRoot, locale, `${product.slug}.json`)
+     ]
+ 
+-    let found = null
+-    for (const candidate of candidates) {
+-      if (await exists(candidate)) {
+-        found = candidate
+-        break
++    const found = await (async () => {
++      for (const candidate of candidates) {
++        if (await exists(candidate)) {
++          return candidate
++        }
+       }
+-    }
++      return null
++    })()
+ 
+     result.productFiles[locale][product.slug] = found ? relative(found) : null
+ 
+@@ -149,7 +298,7 @@ for (const locale of locales) {
+ 
+     const hasConceptMarker = /conceptProduct\s*:\s*true/i.test(text)
+       || /concept product/i.test(text)
+-      || /концептуальн/i.test(text)
++      || /концептуальн/iu.test(text)
+ 
+     if (!hasConceptMarker) {
+       result.findings.push({
+@@ -160,100 +309,140 @@ for (const locale of locales) {
+       })
+     }
+ 
+-    for (const approvedValue of product.approved) {
+-      if (!text.includes(approvedValue)) {
++    for (const variants of product.approvedGroups) {
++      if (!hasAnyApprovedVariant(text, variants)) {
+         result.findings.push({
+           severity: 'MEDIUM',
+           code: 'APPROVED_VALUE_NOT_DETECTED',
+           file: relative(found),
+           slug: product.slug,
+-          value: approvedValue,
+-          message: `Approved value "${approvedValue}" was not detected. Manual review required for localized formatting.`
++          acceptedVariants: variants,
++          message: `No approved formatting variant was detected for: ${variants.join(' | ')}.`
+         })
+       }
+     }
+   }
+ }
+ 
+-const auditableExtensions = new Set([
+-  '.md', '.vue', '.ts', '.js', '.json', '.yaml', '.yml', '.html'
+-])
+-
+-const filesToScan = (await walk(root)).filter(file => auditableExtensions.has(path.extname(file)))
++const filesToScan = await collectAuditableFiles()
++result.scannedFiles = filesToScan.map(relative)
+ 
+ for (const file of filesToScan) {
+   const text = await readFile(file, 'utf8')
+   const fileName = relative(file)
+ 
+   for (const entry of forbiddenPatterns) {
+-    const match = entry.pattern.exec(text)
+-    if (match) {
++    for (const match of findAllMatches(entry.pattern, text)) {
++      const line = lineAt(text, match.index)
++
++      if (isLikelyCommentLine(line)) {
++        continue
++      }
++
+       const context = excerpt(text, match.index)
+-      const isNegated = /\bnot\b.{0,30}(certified|available|in stock|a commercial offer)/i.test(context)
+-        || /не.{0,30}(сертифікован|в наявності|комерційною пропозицією)/i.test(context)
++
++      if (isNegatedContext(context)) {
++        continue
++      }
+ 
+       result.findings.push({
+-        severity: isNegated ? 'LOW' : 'HIGH',
+-        code: isNegated ? 'FORBIDDEN_TERM_IN_NEGATED_CONTEXT' : 'POTENTIAL_UNSUPPORTED_CLAIM',
++        severity: 'HIGH',
++        code: 'POTENTIAL_UNSUPPORTED_CLAIM',
+         file: fileName,
+         term: entry.label,
+         excerpt: context,
+-        message: `Review use of "${entry.label}".`
++        message: `Review user-facing use of "${entry.label}".`
+       })
+     }
+   }
+ 
+   for (const entry of placeholderPatterns) {
+-    const match = entry.pattern.exec(text)
+-    if (match) {
++    for (const match of findAllMatches(entry.pattern, text)) {
++      const line = lineAt(text, match.index)
++
++      if (isLikelyCommentLine(line)) {
++        continue
++      }
++
+       result.findings.push({
+         severity: 'MEDIUM',
+         code: 'PLACEHOLDER_DETECTED',
+         file: fileName,
+         term: entry.label,
+         excerpt: excerpt(text, match.index),
+-        message: `Placeholder marker "${entry.label}" was detected.`
++        message: `Placeholder marker "${entry.label}" was detected in auditable project content.`
+       })
+     }
+   }
+ 
+-  const documentMatches = [...text.matchAll(/(?:url|href)\s*[:=]\s*["']?(\/documents\/[^"' \n]+)/g)]
++  const documentMatches = [
++    ...text.matchAll(/(?:url|href)\s*[:=]\s*["']?(\/documents\/[^"' \n]+)/g)
++  ]
++
+   for (const match of documentMatches) {
++    if (!isAvailableDocumentReference(text, match.index)) {
++      continue
++    }
++
+     const url = match[1].replace(/[),\]}]+$/, '')
+     const absolute = path.join(root, 'public', url.replace(/^\//, ''))
+ 
+     if (!(await exists(absolute))) {
+       result.findings.push({
+         severity: 'HIGH',
+-        code: 'MISSING_DOCUMENT_TARGET',
++        code: 'MISSING_AVAILABLE_DOCUMENT_TARGET',
+         file: fileName,
+         url,
+-        message: `Referenced document does not exist at public${url}.`
++        message: `Document is marked available but does not exist at public${url}.`
+       })
+     }
+   }
+ }
+ 
+-const disclosureTargets = [
+-  'app/components/layout/AppFooter.vue',
+-  'app/components/AppFooter.vue',
+-  'app/pages/legal.vue',
+-  'pages/legal.vue'
++const disclosureGroups = [
++  {
++    label: 'footer',
++    severity: 'BLOCKER',
++    candidates: [
++      'app/components/layout/AppFooter.vue',
++      'app/components/AppFooter.vue',
++      'app/components/layout/TheFooter.vue',
++      'app/components/TheFooter.vue'
++    ]
++  },
++  {
++    label: 'legal page',
++    severity: 'BLOCKER',
++    candidates: [
++      'app/pages/legal.vue',
++      'pages/legal.vue'
++    ]
++  }
+ ]
+ 
+-for (const target of disclosureTargets) {
+-  const absolute = path.join(root, target)
+-  if (!(await exists(absolute))) {
++for (const group of disclosureGroups) {
++  let existingTarget = null
++
++  for (const candidate of group.candidates) {
++    const absolute = path.join(root, candidate)
++    if (await exists(absolute)) {
++      existingTarget = candidate
++      break
++    }
++  }
++
++  if (!existingTarget) {
+     continue
+   }
+ 
+-  const text = await readFile(absolute, 'utf8')
+-  if (!/concept|концептуальн/i.test(text)) {
++  const text = await readFile(path.join(root, existingTarget), 'utf8')
++
++  if (!/concept|концептуальн/iu.test(text)) {
+     result.findings.push({
+-      severity: 'BLOCKER',
++      severity: group.severity,
+       code: 'DISCLOSURE_NOT_DETECTED',
+-      file: target,
+-      message: 'Required concept disclosure was not detected.'
++      file: existingTarget,
++      message: `Required concept disclosure was not detected in the ${group.label}.`
+     })
+   }
+ }
+@@ -269,6 +458,7 @@ if (jsonOutput) {
+ } else {
+   console.log(`content check: ${result.status}`)
+   console.log(`root: ${root}`)
++  console.log(`scanned files: ${result.scannedFiles.length}`)
+ 
+   for (const locale of locales) {
+     for (const product of requiredProducts) {
+diff --git a/.agents/skills/nuxt4-production/INVENTORY.json b/.agents/skills/nuxt4-production/INVENTORY.json
+deleted file mode 100644
+index aa51d97..0000000
+--- a/.agents/skills/nuxt4-production/INVENTORY.json
++++ /dev/null
+@@ -1,47 +0,0 @@
+-[
+-  {
+-    "path": "SKILL.md",
+-    "bytes": 10466,
+-    "lines": 327
+-  },
+-  {
+-    "path": "agents/openai.yaml",
+-    "bytes": 370,
+-    "lines": 8
+-  },
+-  {
+-    "path": "references/architecture-and-rendering.md",
+-    "bytes": 6485,
+-    "lines": 291
+-  },
+-  {
+-    "path": "references/data-content-and-server.md",
+-    "bytes": 7374,
+-    "lines": 313
+-  },
+-  {
+-    "path": "references/deployment-and-diagnostics.md",
+-    "bytes": 5475,
+-    "lines": 263
+-  },
+-  {
+-    "path": "references/official-sources.md",
+-    "bytes": 3795,
+-    "lines": 128
+-  },
+-  {
+-    "path": "references/testing-quality-security.md",
+-    "bytes": 6240,
+-    "lines": 302
+-  },
+-  {
+-    "path": "references/ui-i18n-seo-accessibility.md",
+-    "bytes": 7115,
+-    "lines": 287
+-  },
+-  {
+-    "path": "scripts/inspect-nuxt-project.mjs",
+-    "bytes": 4724,
+-    "lines": 205
+-  }
+-]
+\ No newline at end of file
