@@ -94,14 +94,19 @@ Manual runtime checks passed for:
 - `/api/products/powerbox-2400?locale=uk`;
 - intentional 404 handling for an unknown product slug.
 
-### Blocked in the current execution environment
+### GitHub Actions
 
-```text
-pnpm test:e2e
-BLOCKED BEFORE TEST EXECUTION
-```
+The pull-request CI completed successfully on Ubuntu 24.04:
 
-Reason: Playwright Chromium was not installed. The attempted browser installation failed because `cdn.playwright.dev` could not be resolved from the execution environment. The GitHub Actions workflow installs Chromium before running E2E tests.
+- frozen dependency installation — passed;
+- lint — passed;
+- type checking — passed;
+- unit and Nuxt-runtime tests — passed;
+- production build — passed;
+- Chromium installation — passed;
+- Playwright E2E tests — passed.
+
+The local execution environment could not download Chromium because `cdn.playwright.dev` was not resolvable, but the repository CI executed the complete E2E suite successfully.
 
 ## Known Warnings
 
@@ -122,8 +127,7 @@ Still incomplete:
 - complete technology, about, legal, and contact content;
 - contact form, server validation, honeypot, rate limiting, and truthful demo submission state;
 - final mobile and accessibility review;
-- deployment configuration;
-- successful E2E execution in an environment with Chromium.
+- deployment configuration.
 
 ## Immediate Next Milestone
 
@@ -152,4 +156,4 @@ Implement the first full visual slice:
 
 `NOT READY`
 
-Reason: the technical foundation is initialized, but final product presentation, content, contact flow, visual assets, full accessibility review, deployment configuration, and successful E2E execution remain incomplete.
+Reason: the technical foundation is initialized, but final product presentation, content, contact flow, visual assets, full accessibility review, and deployment configuration remain incomplete.
