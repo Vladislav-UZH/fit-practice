@@ -12,6 +12,17 @@ highlights:
     value: 2.4 kW
   - label: Weight
     value: 28 kg
+lineup:
+  context: Mobile work and short-duration backup
+  distinction: The most compact format in the portfolio
+  reasons:
+    - The compact enclosure is intended for movement between working areas.
+    - Matching 2.4 capacity and output figures make initial comparison straightforward.
+  comparison:
+    capacity: 2.4 kWh
+    output: 2.4 kW
+    format: Portable · 28 kg
+  visualDescription: Stylized concept diagram of the portable PowerBox 2400 with a top handle and front control panel.
 seo:
   title: MAXIBUD PowerBox 2400 — portable concept system
   description: Illustrative overview of the MAXIBUD PowerBox 2400 portable concept system.

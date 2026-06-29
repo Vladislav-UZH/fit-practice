@@ -91,25 +91,28 @@ usePageSeo(
 
     <PortfolioProofStrip :items="proofItems" />
 
-    <section class="py-16 sm:py-24">
+    <section class="py-16 sm:py-24 lg:py-28">
       <UContainer>
-        <div class="max-w-2xl">
-          <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-[#637b13]">
-            {{ $t('pages.home.productsEyebrow') }}
+        <div class="grid gap-6 lg:grid-cols-12 lg:items-end">
+          <div class="lg:col-span-7">
+            <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-[#637b13]">
+              {{ $t('pages.home.productsEyebrow') }}
+            </p>
+            <h2 class="mt-4 text-3xl font-semibold tracking-[-0.035em] sm:text-5xl lg:text-6xl">
+              {{ $t('pages.home.productsTitle') }}
+            </h2>
+          </div>
+          <p class="max-w-xl text-base leading-7 text-black/60 lg:col-span-5 lg:justify-self-end">
+            {{ $t('pages.home.productsDescription') }}
           </p>
-          <h2 class="mt-4 text-3xl font-semibold tracking-tight sm:text-5xl">
-            {{ $t('pages.home.productsTitle') }}
-          </h2>
         </div>
 
-        <div v-if="products?.length" class="mt-12 grid gap-8 lg:grid-cols-3">
-          <ProductCard
-            v-for="product in products"
+        <div v-if="products?.length" data-testid="product-lineup" class="mt-12 sm:mt-16">
+          <ProductLineupChapter
+            v-for="(product, index) in products"
             :key="product.id"
-            :name="product.name"
-            :category="product.category"
-            :summary="product.summary"
-            :highlights="product.highlights"
+            :product="product"
+            :index="index"
             :to="localePath({ name: 'products-slug', params: { slug: product.slug } })"
           />
         </div>

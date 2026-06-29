@@ -14,6 +14,18 @@ export const productHighlightSchema = z.object({
   qualifier: z.string().optional()
 })
 
+export const productLineupSchema = z.object({
+  context: z.string().min(1),
+  distinction: z.string().min(1),
+  reasons: z.array(z.string().min(1)).length(2),
+  comparison: z.object({
+    capacity: z.string().min(1),
+    output: z.string().min(1),
+    format: z.string().min(1)
+  }),
+  visualDescription: z.string().min(1)
+})
+
 export const productContentSchema = z.object({
   locale: localeSchema,
   order: z.number().int().min(1).max(3),
@@ -23,6 +35,7 @@ export const productContentSchema = z.object({
   summary: z.string().min(1),
   conceptNotice: z.string().min(1),
   highlights: z.array(productHighlightSchema).min(3).max(5),
+  lineup: productLineupSchema,
   seo: z.object({
     title: z.string().min(1),
     description: z.string().min(1)
@@ -31,4 +44,5 @@ export const productContentSchema = z.object({
 
 export type ProductSlug = z.infer<typeof productSlugSchema>
 export type ProductHighlight = z.infer<typeof productHighlightSchema>
+export type ProductLineup = z.infer<typeof productLineupSchema>
 export type ProductContent = z.infer<typeof productContentSchema>
