@@ -18,9 +18,12 @@
 | Вихідний код рисунка 1.1 | `figures/figure-1-1-context.mmd` | Mermaid-джерело готове |
 | Рисунок 1.2 | `figures/figure-1-2-architecture.svg` | відрендерований SVG готовий |
 | Вихідний код рисунка 1.2 | `figures/figure-1-2-architecture.mmd` | Mermaid-джерело готове |
-| Рисунок 2.1 | `figures/figure-2-1-data-flow.mmd` | Mermaid-джерело готове, SVG треба відрендерити |
-| Рисунок 2.2 | `figures/figure-2-2-interface-flow.mmd` | Mermaid-джерело готове, SVG треба відрендерити |
-| Рисунок 2.3 | `figures/figure-2-3-ci-pipeline.mmd` | Mermaid-джерело готове, SVG треба відрендерити |
+| Рисунок 2.1 | `figures/figure-2-1-data-flow.svg` | відрендерований SVG готовий |
+| Вихідний код рисунка 2.1 | `figures/figure-2-1-data-flow.mmd` | Mermaid-джерело готове |
+| Рисунок 2.2 | `figures/figure-2-2-interface-flow.svg` | відрендерований SVG готовий |
+| Вихідний код рисунка 2.2 | `figures/figure-2-2-interface-flow.mmd` | Mermaid-джерело готове |
+| Рисунок 2.3 | `figures/figure-2-3-ci-pipeline.svg` | відрендерований SVG готовий |
+| Вихідний код рисунка 2.3 | `figures/figure-2-3-ci-pipeline.mmd` | Mermaid-джерело готове |
 
 ## Робочий порядок
 
@@ -61,7 +64,6 @@
 
 ## Наступні дії
 
-- відрендерити рисунки 2.1-2.3 у SVG;
 - після завершення PR фінального аудиту оновити змінні результати в розділі 2;
 - сформувати загальні висновки;
 - перевірити остаточний список джерел;
