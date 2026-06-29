@@ -44,7 +44,11 @@ Required behavior:
 - Home moves to the first tab;
 - End moves to the last tab;
 - keyboard selection moves focus to the newly selected tab;
-- switching contexts must not create a visible panel-height jump.
+- switching contexts must not create a visible panel-height jump;
+- SSR-rendered tab controls remain disabled until Vue mounts;
+- the tablist exposes a busy state until interaction is ready.
+
+The hydration guard is required because visible SSR controls can otherwise accept input before event handlers exist.
 
 The default context is home and small office.
 
@@ -101,13 +105,16 @@ Relative portfolio wording such as compact, stationary, transportable, or highes
 - respect reduced-motion settings;
 - preserve visible keyboard focus.
 
+The automated desktop check measures all three panel states at 1280 px. The maximum height spread must remain below 16 px, which is less than one text line and avoids a material layout jump.
+
 ## Acceptance Checks
 
 - context mapping matches this reference;
 - recommendation reasons come from product records;
 - desktop keyboard navigation supports Arrow keys, Home, and End;
 - active tab and panel ARIA attributes remain synchronized;
-- panel height remains stable across context changes;
+- controls do not accept input before hydration;
+- panel height spread remains below the documented threshold;
 - mobile exposes all three contexts without interaction;
 - Ukrainian and English versions remain semantically equivalent;
 - 320 px has no horizontal overflow;
