@@ -33,6 +33,31 @@ async function fillEnglishForm(page: Page) {
   await form.getByLabel('I agree to the described data handling').check()
 }
 
+async function mobileLayoutDiagnostics(page: Page) {
+  return page.evaluate(() => {
+    const clientWidth = document.documentElement.clientWidth
+    const scrollWidth = document.documentElement.scrollWidth
+    const offenders = Array.from(document.querySelectorAll<HTMLElement>('body *'))
+      .map((element) => {
+        const rect = element.getBoundingClientRect()
+        return {
+          tag: element.tagName.toLowerCase(),
+          className: typeof element.className === 'string' ? element.className : '',
+          testId: element.dataset.testid ?? '',
+          text: (element.textContent ?? '').trim().replace(/\s+/g, ' ').slice(0, 80),
+          left: Math.round(rect.left * 10) / 10,
+          right: Math.round(rect.right * 10) / 10,
+          width: Math.round(rect.width * 10) / 10
+        }
+      })
+      .filter(item => item.width > 0 && (item.left < -1 || item.right > clientWidth + 1))
+      .sort((a, b) => b.right - a.right)
+      .slice(0, 12)
+
+    return { clientWidth, scrollWidth, offenders }
+  })
+}
+
 test('renders and submits the Ukrainian contact route with product preselection', async ({ page }) => {
   await page.goto('/contact?product=homecore-5')
 
@@ -146,17 +171,18 @@ test('returns structured API errors for invalid, honeypot, and rate-limited requ
   }))
 })
 
-test('keeps the contact flow usable without horizontal overflow at 320 by 800', async ({ page }) => {
+test('keeps the hydrated contact flow usable without horizontal overflow at 320 by 800', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto('/contact?product=powerbox-2400')
 
-  await expect(page.getByTestId('contact-form').getByLabel('Продукт')).toHaveValue('powerbox-2400')
-  await expect(page.getByTestId('contact-form').getByRole('button', { name: 'Надіслати запит' })).toBeVisible()
-  await expect(page.getByTestId('contact-form')).toBeVisible()
+  const form = page.getByTestId('contact-form')
+  await expect(form.getByLabel('Продукт')).toHaveValue('powerbox-2400')
+  await expect(form.getByRole('button', { name: 'Надіслати запит' })).toBeEnabled()
+  await expect(page.getByRole('button', { name: 'Відкрити меню' })).toBeEnabled()
 
-  const hasHorizontalOverflow = await page.evaluate(() =>
-    document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
-  )
-
-  expect(hasHorizontalOverflow).toBe(false)
+  const diagnostics = await mobileLayoutDiagnostics(page)
+  expect(
+    diagnostics.scrollWidth,
+    `Overflow offenders: ${JSON.stringify(diagnostics.offenders, null, 2)}`
+  ).toBeLessThanOrEqual(diagnostics.clientWidth + 1)
 })
