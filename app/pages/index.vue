@@ -7,6 +7,40 @@ const { data: products } = await useFetch('/api/products', {
   watch: [locale]
 })
 
+const stageProducts = computed(() => [
+  {
+    name: t('pages.home.stageProducts.powerbox.name'),
+    context: t('pages.home.stageProducts.powerbox.context')
+  },
+  {
+    name: t('pages.home.stageProducts.homecore.name'),
+    context: t('pages.home.stageProducts.homecore.context')
+  },
+  {
+    name: t('pages.home.stageProducts.sitehub.name'),
+    context: t('pages.home.stageProducts.sitehub.context')
+  }
+])
+
+const proofItems = computed(() => [
+  {
+    label: t('pages.home.proof.formats.label'),
+    value: t('pages.home.proof.formats.value')
+  },
+  {
+    label: t('pages.home.proof.mobility.label'),
+    value: t('pages.home.proof.mobility.value')
+  },
+  {
+    label: t('pages.home.proof.platform.label'),
+    value: t('pages.home.proof.platform.value')
+  },
+  {
+    label: t('pages.home.proof.languages.label'),
+    value: t('pages.home.proof.languages.value')
+  }
+])
+
 usePageSeo(
   computed(() => t('pages.home.seoTitle')),
   computed(() => t('pages.home.seoDescription'))
@@ -15,14 +49,20 @@ usePageSeo(
 
 <template>
   <div>
-    <section class="py-16 sm:py-24 lg:py-32">
+    <section class="overflow-hidden pb-16 pt-10 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
       <UContainer>
-        <div class="grid items-end gap-12 lg:grid-cols-12">
-          <div class="lg:col-span-6">
-            <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-[#637b13]">
-              {{ $t('pages.home.eyebrow') }}
-            </p>
-            <h1 class="mt-5 text-5xl font-semibold leading-[0.96] tracking-[-0.055em] sm:text-7xl">
+        <div class="grid items-center gap-12 lg:grid-cols-12 lg:gap-10">
+          <div class="lg:col-span-5">
+            <div class="flex flex-wrap items-center gap-3">
+              <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-[#637b13]">
+                {{ $t('pages.home.eyebrow') }}
+              </p>
+              <span class="rounded-full border border-black/10 bg-white/55 px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-black/55">
+                {{ $t('pages.home.conceptLabel') }}
+              </span>
+            </div>
+
+            <h1 class="mt-6 max-w-4xl text-[clamp(3rem,6vw,5.75rem)] font-semibold leading-[0.94] tracking-[-0.058em]">
               {{ $t('pages.home.title') }}
             </h1>
             <p class="mt-7 max-w-2xl text-lg leading-8 text-black/65">
@@ -38,36 +78,18 @@ usePageSeo(
             </div>
           </div>
 
-          <div class="lg:col-span-6">
-            <div class="aspect-[4/3] border border-black/10 bg-[#171b19] p-6 text-white sm:p-10">
-              <div class="flex h-full flex-col justify-between">
-                <div class="flex items-center justify-between text-xs uppercase tracking-[0.14em] text-white/55">
-                  <span>{{ $t('pages.home.visualLabel') }}</span>
-                  <span>01 / 03</span>
-                </div>
-                <div>
-                  <div class="h-2 w-24 bg-[#c8f43d]" />
-                  <p class="mt-5 max-w-md text-2xl font-semibold leading-tight sm:text-3xl">
-                    {{ $t('pages.home.visualText') }}
-                  </p>
-                </div>
-              </div>
-            </div>
+          <div class="lg:col-span-7">
+            <ProductFamilyStage
+              :aria-label="$t('a11y.productFamilyVisual')"
+              :caption="$t('pages.home.stageCaption')"
+              :products="stageProducts"
+            />
           </div>
         </div>
       </UContainer>
     </section>
 
-    <section class="border-y border-black/10 bg-white/55 py-6">
-      <UContainer>
-        <ul class="grid gap-4 text-sm font-medium sm:grid-cols-2 lg:grid-cols-4">
-          <li>{{ $t('pages.home.proof.formats') }}</li>
-          <li>{{ $t('pages.home.proof.platform') }}</li>
-          <li>{{ $t('pages.home.proof.mobile') }}</li>
-          <li>{{ $t('pages.home.proof.languages') }}</li>
-        </ul>
-      </UContainer>
-    </section>
+    <PortfolioProofStrip :items="proofItems" />
 
     <section class="py-16 sm:py-24">
       <UContainer>

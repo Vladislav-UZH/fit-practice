@@ -2,8 +2,8 @@
 @import "@nuxt/ui";
 
 @theme static {
-  --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
 
   --color-brand-50: #f8ffe7;
   --color-brand-100: #efffc4;
@@ -21,30 +21,45 @@
 :root {
   --ui-container: 88rem;
   --ui-radius: 0.5rem;
+  --me-background: #f3f2ed;
+  --me-surface: #ffffff;
+  --me-graphite: #171b19;
+  --me-text: #111412;
+  --me-muted: #5d655f;
+  --me-border: #cfd4ce;
+  --me-accent: #c8f43d;
 }
 
 html {
-  background: #f3f2ed;
-  color: #111412;
+  background: var(--me-background);
+  color: var(--me-text);
   scroll-behavior: smooth;
 }
 
 body {
   min-width: 20rem;
   min-height: 100vh;
-  background: #f3f2ed;
+  background: var(--me-background);
   font-family: var(--font-sans);
   text-rendering: optimizeLegibility;
 }
 
 ::selection {
   background: var(--color-brand-300);
-  color: #111412;
+  color: var(--me-text);
 }
 
 :focus-visible {
   outline: 3px solid #6f8b10;
   outline-offset: 3px;
+}
+
+.technical-grid {
+  background-color: var(--me-graphite);
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.045) 1px, transparent 1px);
+  background-size: 2rem 2rem;
 }
 
 @media (prefers-reduced-motion: reduce) {
