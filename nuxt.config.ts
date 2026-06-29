@@ -1,6 +1,8 @@
 export default defineNuxtConfig({
   compatibilityDate: '2026-06-28',
-  devtools: { enabled: true },
+  devtools: {
+    enabled: process.env.NODE_ENV === 'development' && !process.env.CI
+  },
   experimental: { typedPages: true },
   ssr: true,
 
