@@ -16,7 +16,8 @@
     "viewProducts": "View products",
     "viewProduct": "View product",
     "compare": "Compare systems",
-    "consultation": "Request consultation"
+    "consultation": "Request consultation",
+    "exploreTechnology": "Explore technology"
   },
   "a11y": {
     "skipToContent": "Skip to main content",
@@ -25,7 +26,8 @@
     "mobileNavigation": "Mobile navigation",
     "openMenu": "Open menu",
     "productFamilyVisual": "Concept visualization of the three MAXIBUD ENERGY formats at relative scale",
-    "useCaseTabs": "Use cases and recommended concepts"
+    "useCaseTabs": "Use cases and recommended concepts",
+    "technologyDiagram": "Schematic view of the shared concept platform with a battery core, form factor, and monitoring layer"
   },
   "disclosure": {
     "full": "MAXIBUD ENERGY is a conceptual product line created for an educational software demonstration. Product specifications are illustrative and do not represent certified commercial hardware.",
@@ -121,6 +123,43 @@
         "metricsLabel": "Metric",
         "detailsLabel": "Product page",
         "footerNote": "The full comparison page will expand this structure with additional specification groups without rankings or decorative scoring."
+      },
+      "sharedTechnology": {
+        "eyebrow": "Shared platform",
+        "title": "Shared principles, different architecture",
+        "description": "All three products are organized around a consistent energy-storage concept, while enclosure, connection approach, and interfaces change with the working context.",
+        "disclaimer": "This section describes portfolio concepts only. It is not installation, wiring, repair, or electrical-design guidance.",
+        "principles": {
+          "chemistry": {
+            "title": "A LiFePO4 concept across the portfolio",
+            "description": "Each format uses the same educational lithium iron phosphate platform concept without certification or guaranteed cycle-life claims."
+          },
+          "architecture": {
+            "title": "Architecture matched to the form factor",
+            "description": "Portable, stationary, and wheeled systems use different enclosures, input approaches, and placement scenarios."
+          },
+          "monitoring": {
+            "title": "Status matched to the working context",
+            "description": "Local displays and web monitoring are presented as different status-interface concepts, not one verified control system."
+          }
+        },
+        "diagram": {
+          "eyebrow": "Portfolio diagram",
+          "title": "One core, three implementations",
+          "labels": {
+            "chemistry": "Chemistry",
+            "form": "Form factor",
+            "status": "Status"
+          },
+          "note": "The diagram illustrates portfolio logic and does not describe electrical connections between components."
+        }
+      },
+      "finalCta": {
+        "eyebrow": "Next step",
+        "title": "Which format fits your use case?",
+        "description": "Open the demonstration inquiry to record the working context, or return to the product portfolio for an independent review.",
+        "disclosure": "The consultation is part of the educational website flow. It does not replace engineering calculations, electrical-system design, or compatibility verification.",
+        "processNote": "Demonstration flow · no price, delivery schedule, or availability guarantee"
       },
       "seoTitle": "MAXIBUD ENERGY — concept backup-power systems",
       "seoDescription": "Educational presentation of three MAXIBUD ENERGY concept systems for home, mobile work, and construction."
