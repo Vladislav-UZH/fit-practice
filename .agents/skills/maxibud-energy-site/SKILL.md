@@ -145,6 +145,7 @@ Choose the smallest relevant category:
 | exact fictional specifications | `references/fictional-product-data.md` |
 | approved interface and marketing copy | `references/copy-and-localization.md` |
 | full comparison matrix | `references/full-comparison-matrix.md` |
+| full product-detail pages | `references/full-product-details.md` |
 
 ### 4. Resolve truth level
 

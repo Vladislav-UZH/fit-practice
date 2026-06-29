@@ -172,7 +172,24 @@
       "seoDescription": "Overview of the PowerBox 2400, HomeCore 5, and SiteHub 10 concept products."
     },
     "product": {
-      "visualPlaceholder": "Reserved for an original product render."
+      "overviewEyebrow": "Product context",
+      "overviewTitle": "Detailed overview",
+      "featuresTitle": "Key product features",
+      "applicationsTitle": "Conceptual applications",
+      "applicationsDisclosure": "Applications describe intended concept contexts. They do not guarantee runtime, load compatibility, or installation suitability.",
+      "specificationsEyebrow": "Technical profile",
+      "specificationsTitle": "Grouped specifications",
+      "specificationDisclosure": "Illustrative concept values, not certified commercial parameters.",
+      "documentsTitle": "Conceptual documents",
+      "relatedEyebrow": "Portfolio navigation",
+      "relatedTitle": "Related formats",
+      "consultationEyebrow": "Demonstration consultation",
+      "consultationTitle": "Discuss the {product} concept",
+      "consultationDisclosure": "The demonstration flow records product context. It does not provide engineering sizing, compatibility verification, pricing, availability, or delivery information.",
+      "status": {
+        "configurationDependent": "Configuration-dependent",
+        "unavailable": "Not available"
+      }
     },
     "compare": {
       "eyebrow": "Comparison",

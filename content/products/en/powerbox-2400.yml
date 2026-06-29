@@ -1,9 +1,35 @@
 locale: en
 order: 1
 slug: powerbox-2400
+conceptProduct: true
 name: MAXIBUD PowerBox 2400
 category: Portable system
+tagline: Power where work happens.
 summary: A concept portable format for mobile work, temporary sites, and short-duration backup use.
+overview:
+  lead: PowerBox 2400 is the most compact energy-storage format in the MAXIBUD ENERGY concept portfolio.
+  paragraphs:
+    - Its portable enclosure is intended for contractors, field teams, temporary work areas, and short-duration household backup contexts where fixed installation is not the goal.
+    - The concept combines 2.4 kWh of usable energy with 2.4 kW rated output, multiple charging paths, and a front status interface in one transport-oriented body.
+features:
+  - title: High-output portable format
+    description: The matching 2.4 kWh energy and 2.4 kW rated-output figures create a direct, compact format for mobile work and temporary backup concepts.
+  - title: Multiple charging paths
+    description: Grid, vehicle, and solar inputs are represented as concept options for changing working locations.
+  - title: Clear energy status
+    description: A front display concept presents energy flow, state of charge, and active connections without requiring a remote interface.
+  - title: Protected working form
+    description: Recessed handles, raised feet, and covered connections establish a practical mobile-work form without claiming all-weather operation.
+applications:
+  - title: Mobile tools and service work
+    description: Intended for temporary work areas where portable access to AC and USB-C output concepts is useful.
+  - title: Field installation
+    description: A transportable source concept for lighting, service equipment, and selected workstations away from a fixed outlet.
+  - title: Network and workstation backup
+    description: A short-duration backup context for selected communication and computing equipment after load requirements are assessed.
+  - title: Temporary household support
+    description: An illustrative format for selected essential loads, without a guaranteed runtime or whole-home claim.
+detailVisualDescription: Original project-owned concept illustration of the compact PowerBox 2400 with a recessed handle, front status display, protected outputs, and raised feet.
 conceptNotice: PowerBox 2400 specifications are illustrative and do not describe certified commercial hardware.
 highlights:
   - label: Capacity
@@ -12,6 +38,97 @@ highlights:
     value: 2.4 kW
   - label: Weight
     value: 28 kg
+specifications:
+  - id: energy
+    title: Energy
+    items:
+      - key: usableEnergy
+        label: Usable energy
+        value:
+          value: 2.4 kWh
+      - key: chemistry
+        label: Battery chemistry
+        value:
+          value: LiFePO4 concept
+      - key: cycleLife
+        label: Indicative cycle life
+        value:
+          value: 3,000+ cycles to 80% capacity
+        note: Illustrative cycle-life positioning, not a warranty.
+      - key: expansion
+        label: Expansion
+        value:
+          value: Not available in the current concept
+          status: unavailable
+  - id: output-input
+    title: Input and output
+    items:
+      - key: ratedOutput
+        label: Rated AC output
+        value:
+          value: 2,400 W
+      - key: peakOutput
+        label: Peak AC output
+        value:
+          value: 4,800 W
+      - key: acOutput
+        label: AC output
+        value:
+          value: 230 V, 50 Hz
+      - key: usbC
+        label: USB-C output
+        value:
+          value: Up to 100 W
+      - key: solarInput
+        label: Solar input
+        value:
+          value: Up to 800 W
+      - key: acCharging
+        label: AC charging
+        value:
+          value: 0–80% in approximately 75 minutes
+      - key: vehicleInput
+        label: Vehicle charging
+        value:
+          value: 12/24 V concept input
+  - id: physical
+    title: Physical characteristics
+    items:
+      - key: weight
+        label: Approximate weight
+        value:
+          value: 28 kg
+      - key: dimensions
+        label: Concept dimensions
+        value:
+          value: 520 × 310 × 365 mm
+      - key: mobility
+        label: Mobility
+        value:
+          value: Carryable enclosure with recessed handles
+  - id: environment
+    title: Environment
+    items:
+      - key: protection
+        label: Enclosure concept
+        value:
+          value: IP44 concept
+      - key: temperature
+        label: Operating temperature
+        value:
+          value: "-10°C to +40°C"
+  - id: controls
+    title: Controls and monitoring
+    items:
+      - key: display
+        label: Status interface
+        value:
+          value: Front energy-flow display
+      - key: monitoring
+        label: Monitoring
+        value:
+          value: Local status with optional web connection concept
+documents: []
 lineup:
   context: Mobile work and short-duration backup
   distinction: The most compact format in the portfolio

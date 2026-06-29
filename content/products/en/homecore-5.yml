@@ -1,9 +1,37 @@
 locale: en
 order: 2
 slug: homecore-5
+conceptProduct: true
 name: MAXIBUD HomeCore 5
 category: Modular home system
+tagline: Keep essential systems running.
 summary: A concept stationary format for homes, small offices, and essential-system backup.
+overview:
+  lead: HomeCore 5 is the modular stationary concept at the center of the MAXIBUD ENERGY portfolio.
+  paragraphs:
+    - One 5.12 kWh module establishes the base format, while a conceptual four-module arrangement extends the portfolio capacity to 20.48 kWh for home and small-business contexts.
+    - HomeCore 5 is an energy-storage module concept. It requires compatible external power-conversion, protection, and installation design rather than connecting directly to household wiring.
+features:
+  - title: Modular capacity
+    description: The concept develops from one 5.12 kWh module to a four-module portfolio arrangement with up to 20.48 kWh.
+  - title: Architectural stationary form
+    description: A slim wall-mounted or floor-stand enclosure separates the home format from the portfolio’s portable systems.
+  - title: Passive cooling concept
+    description: The product concept uses passive cooling in its normal presentation without promising silent operation in a complete installed system.
+  - title: Compatible-system approach
+    description: Power conversion and peak output depend on compatible external equipment and a defined system configuration.
+  - title: Local monitoring concept
+    description: A local web dashboard concept presents state of charge, energy flow, and module status.
+applications:
+  - title: Essential home systems
+    description: Intended as an energy-storage concept for selected lighting, network, heating-control, and security loads after system design.
+  - title: Small office continuity
+    description: A stationary concept for selected network equipment and workstations without a guaranteed backup duration.
+  - title: Small retail support
+    description: A modular context for selected refrigeration, point-of-service, or communications loads after compatibility assessment.
+  - title: Capacity planning
+    description: A portfolio format for discussing one-to-four-module configurations before qualified electrical design.
+detailVisualDescription: Original project-owned concept illustration of the slim HomeCore 5 module with modular sections, a narrow status strip, wall-mount details, and a floor stand.
 conceptNotice: HomeCore 5 specifications are illustrative and do not describe certified commercial hardware.
 highlights:
   - label: Module capacity
@@ -12,6 +40,97 @@ highlights:
     value: up to 20.48 kWh
   - label: System output
     value: 5 kW
+specifications:
+  - id: energy
+    title: Energy
+    items:
+      - key: nominalEnergy
+        label: Nominal energy
+        value:
+          value: 5.12 kWh per module
+      - key: expandableEnergy
+        label: Expandable capacity
+        value:
+          value: Up to 20.48 kWh
+      - key: nominalVoltage
+        label: Nominal voltage
+        value:
+          value: 51.2 V
+      - key: nominalCapacity
+        label: Nominal capacity
+        value:
+          value: 100 Ah
+      - key: chemistry
+        label: Battery chemistry
+        value:
+          value: LiFePO4 concept
+      - key: cycleLife
+        label: Indicative cycle life
+        value:
+          value: 6,000+ cycles to 80% capacity
+        note: Illustrative cycle-life positioning, not a warranty.
+      - key: expansion
+        label: Expansion
+        value:
+          value: Up to four modules
+  - id: output-input
+    title: Input and output
+    items:
+      - key: continuousOutput
+        label: System output concept
+        value:
+          value: 5 kW per compatible system configuration
+      - key: peakOutput
+        label: Peak output
+        value:
+          value: Depends on the compatible system configuration
+          status: configuration-dependent
+      - key: charging
+        label: Charging path
+        value:
+          value: Compatible inverter system
+  - id: physical
+    title: Physical characteristics
+    items:
+      - key: installation
+        label: Installation format
+        value:
+          value: Wall-mounted or floor stand
+      - key: weight
+        label: Approximate weight
+        value:
+          value: 54 kg per module
+      - key: dimensions
+        label: Concept dimensions
+        value:
+          value: 680 × 480 × 180 mm
+      - key: cooling
+        label: Cooling
+        value:
+          value: Passive
+  - id: environment
+    title: Environment
+    items:
+      - key: protection
+        label: Enclosure concept
+        value:
+          value: IP54 concept
+      - key: temperature
+        label: Operating temperature
+        value:
+          value: "-10°C to +45°C"
+  - id: controls
+    title: Controls and monitoring
+    items:
+      - key: communication
+        label: Communication
+        value:
+          value: CAN / RS485 concept interfaces
+      - key: monitoring
+        label: Monitoring
+        value:
+          value: Local web dashboard concept
+documents: []
 lineup:
   context: Home, small office, and essential systems
   distinction: A modular stationary format

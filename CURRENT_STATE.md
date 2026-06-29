@@ -4,9 +4,9 @@
 
 - Last reviewed: 2026-06-29
 - Repository: `Vladislav-UZH/fit-practice`
-- Reviewed branch: `feat/full-comparison-matrix`
-- Current phase: complete full portfolio comparison flow
-- Application readiness: initialized, buildable, localized, visually structured, product-differentiated, use-case guided, fully comparable, and conversion-complete through the comparison route
+- Reviewed branch: `feat/full-product-details`
+- Current phase: complete localized product-detail flow
+- Application readiness: initialized, buildable, localized, visually structured, product-differentiated, fully comparable, and complete through all product-detail routes
 - Release readiness: `NOT READY`
 
 ## Completed
@@ -15,7 +15,7 @@
 
 - Root instructions and durable project context exist.
 - Project, landing-design, Nuxt engineering, and release-check skills exist under `.agents/skills/`.
-- Dedicated contracts exist for the product lineup, use-case recommendation, comparison preview, shared technology, final CTA, and full comparison matrix.
+- Dedicated contracts exist for the product lineup, use-case recommendation, comparison preview, shared technology, final CTA, full comparison matrix, and full product-detail pages.
 - The MAXIBUD skill prompt routes matching work to all dedicated references.
 
 ### Nuxt foundation
@@ -28,9 +28,9 @@
 ### Content and server layer
 
 - Typed Ukrainian and English records exist for PowerBox 2400, HomeCore 5, and SiteHub 10.
-- Shared Zod schemas validate locales, slugs, highlights, lineup data, complete comparison data, value status, and product records.
+- Shared Zod schemas validate locales, slugs, concept status, highlights, lineup data, complete comparison data, complete detail content, grouped specifications, documents, value status, and product records.
 - Nitro endpoints provide localized product lists and detail records with intentional validation and 404 behavior.
-- Product context, distinction, reasons, comparison values, and visual descriptions remain stored in localized product content.
+- Product facts, context, distinction, detail content, comparison values, and visual descriptions remain stored in localized product content.
 
 ### Homepage product orientation
 
@@ -46,7 +46,6 @@
 - Home maps to HomeCore 5, mobile work maps to PowerBox 2400, and construction use maps to SiteHub 10.
 - Product distinctions and exactly two reasons are reused from product records.
 - Desktop tabs support synchronized ARIA state, roving tabindex, Arrow keys, Home, End, and focus movement.
-- SSR-rendered tabs remain disabled until hydration completes.
 - Mobile exposes all three recommendations as stacked articles.
 - A visible statement identifies the guidance as concept navigation rather than engineering sizing.
 - `docs/design-reviews/homepage-use-case-recommendation.md` records an 18/20 approval score.
@@ -55,52 +54,44 @@
 
 - A graphite technical section compares capacity, rated output, and format.
 - Values come from `product.lineup.comparison` without duplication in locale files.
-- Portfolio order is normalized as PowerBox 2400, HomeCore 5, SiteHub 10.
-- Desktop uses a semantic table with an accessible caption and scoped headers.
-- Mobile uses stacked `dl` articles without horizontal table scrolling.
-- Localized product and full-comparison actions exist.
+- Desktop uses a semantic table and mobile uses stacked `dl` articles.
 - `docs/design-reviews/homepage-comparison-preview.md` records an 18/20 approval score.
 
-### Homepage shared technology
+### Homepage shared technology and final CTA
 
-- Added exactly three approved principles: shared LiFePO4 concept, form-factor-specific architecture, and context-specific status or monitoring.
-- Avoided claims about one verified controller, inverter, protocol, certification, or electrical architecture.
-- Added an original inline SVG portfolio diagram with one localized accessible image label.
-- Decorative SVG content is hidden from assistive technology.
-- Diagram copy states that it represents portfolio logic rather than electrical connections.
-- Added a localized route to `/technology` and `/en/technology`.
-- Added visible copy rejecting installation, wiring, repair, and electrical-design guidance.
-- Corrected mobile intrinsic-width behavior by enabling the 4:3 diagram ratio only from `sm` upward.
-
-### Homepage final CTA
-
-- Added one direct use-case question.
-- Added one primary localized consultation action to `/contact` and `/en/contact`.
-- Added one secondary localized product action to `/products` and `/en/products`.
-- Repeated concept-product status at the conversion point.
-- Identified the consultation as an educational demonstration flow.
-- Rejected implications about engineering calculation, compatibility verification, price, delivery, and availability.
-- `docs/design-reviews/homepage-technology-cta.md` records an 18/20 approval score and no blockers.
+- Exactly three approved shared principles explain chemistry, form-factor-specific architecture, and context-specific status or monitoring.
+- An original inline SVG diagram is labeled as portfolio logic rather than electrical guidance.
+- Localized technology, products, and demonstration consultation routes exist.
+- Visible copy rejects installation, wiring, repair, compatibility, price, delivery, availability, and engineering-sizing implications.
+- `docs/design-reviews/homepage-technology-cta.md` records an 18/20 approval score.
 
 ### Full comparison matrix
 
-- Added localized routes at `/products/compare` and `/en/products/compare`.
-- Added twelve equivalent comparison values to every localized product record.
-- Added explicit ordinary, configuration-dependent, and unavailable value states.
-- HomeCore peak output is identified as configuration-dependent.
-- PowerBox and SiteHub expansion are identified as unavailable in the current concepts.
-- Portfolio order is normalized as PowerBox 2400, HomeCore 5, SiteHub 10.
-- Desktop uses one semantic table with a caption, scoped headers, aligned rows, and sticky product context.
-- Mobile uses product-by-product articles with four groups and twelve values each.
-- Every group includes an illustrative-specification disclosure.
-- Localized product-detail, products-index, and demonstration consultation actions exist.
-- `docs/design-reviews/full-comparison-matrix.md` records an 18/20 approval score and no blockers.
+- Localized routes exist at `/products/compare` and `/en/products/compare`.
+- Every localized product record owns twelve equivalent comparison values.
+- Ordinary, configuration-dependent, and unavailable states are explicit.
+- Desktop uses one semantic grouped table; mobile uses three complete product-by-product articles.
+- Localized product-detail, products-index, and consultation actions exist.
+- `docs/design-reviews/full-comparison-matrix.md` records an 18/20 approval score.
+
+### Full product details
+
+- One dynamic route and one reusable `ProductDetail` component serve all three products in Ukrainian and English.
+- Every localized record contains a tagline, detailed overview, four or five features, four conceptual applications, a product-detail visual description, five specification groups, optional document metadata, and localized SEO copy.
+- The schema enforces `conceptProduct: true`, the five-group order, structured values, and repository document paths.
+- Detail values reuse ordinary, configuration-dependent, and unavailable states and remain consistent with the comparison matrix.
+- The hero reuses original project-owned SVG silhouettes with localized accessible descriptions.
+- Technical values use semantic `dl`, `dt`, and `dd` structures; no wide mobile table or collapsed core content exists.
+- Every product currently declares `documents: []` because no repository-owned conceptual document exists; no inactive or fake download action is rendered.
+- Localized comparison, products-index, product-aware consultation, and related-product paths exist.
+- Unknown slugs and missing records retain intentional 404 behavior.
+- The global 20 rem body minimum was removed after browser inspection exposed horizontal scrolling with classic scrollbars at 320 px.
+- `docs/design-reviews/full-product-details.md` records an 18/20 approval score.
 
 ### Quality and automation
 
 - GitHub Actions runs frozen installation, ESLint, type checking, unit tests, Nuxt-runtime tests, production build, Chromium, and Playwright E2E.
-- Component tests cover the comparison table, portfolio order, grouped mobile content, explicit value states, shared principles, diagram semantics, localized paths, and concept disclosure.
-- Browser tests cover bilingual comparison content, grouped values, localized routes, truthful exception states, homepage behavior, and 320 px width stability.
+- Tests cover homepage behavior, comparison behavior, all product-detail routes, group order, structured states, value consistency, absent documents, localized paths and metadata, 404 behavior, keyboard focus, and strict 320 px width stability.
 - CI preserves Playwright reports after browser failures.
 
 ## Validation Results
@@ -109,92 +100,87 @@ Executed locally on Windows x64 with Node.js `22.20.0` and pnpm `11.9.0`.
 
 Passed on the application head:
 
-- frozen dependency installation;
-- ESLint;
-- Nuxt and Vue type checking;
-- 15 unit and Nuxt-runtime tests;
-- Nuxt client, SSR server, and Nitro node-server build;
-- Chromium installation;
-- 10 Playwright E2E tests.
+- `corepack pnpm install --frozen-lockfile`;
+- `corepack pnpm lint`;
+- `corepack pnpm typecheck`;
+- `corepack pnpm test`: 22 tests in 4 files;
+- `NUXT_PUBLIC_SITE_URL=http://localhost:3000 corepack pnpm build`: Nuxt client, SSR server, and Nitro node-server build;
+- `corepack pnpm exec playwright install chromium`;
+- `CI=1 node node_modules/@playwright/test/cli.js test`: 19 Playwright tests.
 
-The browser suite verifies:
+Browser inspection additionally verified:
 
-- `/products/compare` and `/en/products/compare`;
-- fixed PowerBox, HomeCore, SiteHub order;
-- four comparison groups and twelve aligned criteria;
-- explicit configuration-dependent and unavailable states;
-- localized product, products-index, and consultation paths;
-- three mobile products, twelve mobile groups, and 36 mobile values;
-- Ukrainian and English technology and CTA headings;
-- exactly three technology principles;
-- one accessible technology diagram;
-- visible non-installation and non-engineering disclosures;
-- `/technology` and `/en/technology`;
-- `/contact` and `/en/contact`;
-- `/products` and `/en/products`;
-- visible mobile technology and CTA content;
-- no horizontal overflow at 320 × 800;
-- all previously completed homepage, navigation, product-route, API, and intentional 404 behavior.
+- desktop at 1280 × 900;
+- mobile at 320 × 800;
+- one `h1`;
+- five specification groups in fixed order;
+- no document section when no file exists;
+- English document language and localized routes;
+- no browser console errors;
+- `innerWidth = 320`, `clientWidth = 305`, and `scrollWidth = 305` after the overflow correction.
 
 ### Defects Found and Corrected in This Milestone
 
-1. Nuxt runtime setup exceeded Vitest's default 10-second hook timeout on the local Windows host. The project now uses a 30-second hook timeout; all 15 tests pass.
-2. The hydration-safe homepage tabs could remain disabled beyond Playwright's default 5-second assertion timeout under six parallel local workers. The existing hydration gate remains intact and the assertion now allows 15 seconds; all 10 E2E tests pass.
-3. A stale manually started development server served outdated Content state during an initial parallel E2E run. The full suite passed on a clean Playwright-managed server.
+1. Nuxt Content generated incompatible TypeScript unions for a strict Zod tuple. The schema now uses a fixed-length array with explicit ordered-group validation.
+2. The global `body` minimum width created horizontal scrolling when classic scrollbars reduced a 320 px viewport to a 305 px document client width. The minimum was removed and E2E now compares scroll width with client width.
+3. PowerBox monitoring differed between detail and comparison records by one conjunction. The detail value now exactly matches the comparison value.
+4. A stale manually started development server served the previous product page during browser inspection. Validation was repeated on a clean current-worktree server.
 
 ## Known Warnings
 
-- Nuxt Content and MDC report unresolved Vite `optimizeDeps.include` entries during development with pnpm's isolated dependency layout. Development routes and production build still complete successfully.
 - Rollup reports third-party sourcemap and `PURE` annotation warnings during production build.
 - Nuxt Image includes platform-specific `sharp` binaries; deployment dependencies must be rebuilt for the target architecture.
+- The release-audit orchestrator does not quote the Windows Node path and fails before its child checks; individual audit scripts were run directly.
+- The heuristic content audit cannot detect the legal disclosure because `app/pages/legal.vue` resolves it through locale messages.
+- The route audit reports the missing contact endpoint, which remains an intentional blocker for the next milestone.
 
 ## Current Application Scope
 
-The technical foundation and complete homepage sequence are implemented:
+Implemented:
 
-1. hero and portfolio visual;
+1. homepage hero and portfolio visual;
 2. factual evidence strip;
 3. product lineup;
 4. use-case recommendation;
 5. compact comparison preview;
 6. shared technology chapter;
 7. final CTA;
-8. full localized comparison matrix.
+8. full localized comparison matrix;
+9. full localized product-detail pages and grouped specifications.
 
 Still incomplete:
 
 - final product renders and responsive image assets;
-- full product-detail content and grouped specifications;
 - complete technology, about, legal, and contact pages;
 - completed contact submission flow;
-- manual full-page screen-reader, contrast, LCP, and CLS review;
+- manual full-page screen-reader, 200% zoom, contrast, LCP, and CLS review;
 - deployment configuration.
 
 ## Immediate Next Milestone
 
-Implement full product-detail content and grouped specifications:
+Implement the complete localized demonstration consultation flow:
 
-1. extend localized product records with approved overview, feature, application, and specification groups;
-2. keep one dynamic product template for all three products;
-3. preserve the approved energy, output/input, physical, environment, and controls group order;
-4. render complete semantic specifications on desktop and mobile;
-5. keep illustrative-specification disclosure beside technical content;
-6. add context and distinction content without guaranteed runtime or unsupported suitability claims;
-7. expose only real available conceptual documents, otherwise render no download link;
-8. preserve localized comparison and consultation paths;
-9. add component and E2E coverage for all products, both locales, invalid slugs, and 320 px stability;
-10. update the product-detail skill contract, design review, and this state file.
+1. replace the contact placeholder with the full localized form and transparent demo-service explanation;
+2. preselect and validate the `product` query value used by product-detail CTAs;
+3. add the shared Zod contact schema with trimming, normalization, enums, consent, length limits, and honeypot;
+4. add the Nitro contact endpoint with authoritative validation, basic rate limiting, safe structured errors, and no personal-data logging;
+5. implement initial, validating, submitting, success, field-error, server-error, and rate-limit states;
+6. preserve truthful messaging that no real sales delivery or permanent storage is configured;
+7. verify labels, error associations, focus management, status announcements, keyboard use, and 320 px layout;
+8. add unit, Nuxt-runtime, endpoint, and Playwright coverage in both locales;
+9. add the contact-flow skill contract and design review;
+10. update this state file with exact validation results.
 
 ## Exit Criteria for the Next Milestone
 
-- all three product routes use one content-driven template;
-- approved grouped specifications are complete in both locales;
-- product values remain consistent with the comparison matrix;
-- no missing document is exposed as a live download;
-- invalid product slugs retain intentional 404 behavior;
-- mobile users can inspect all product content without horizontal scrolling;
-- no certification, price, stock, warranty, guaranteed runtime, or unsupported suitability claim appears;
-- localized routes, metadata, and units are correct;
+- product-aware links preselect only approved product values;
+- client and server use the same shared contact contract;
+- valid demonstration requests return truthful structured success;
+- invalid, malformed, honeypot, and rate-limited requests return safe structured errors;
+- no personal contact data is logged or falsely described as delivered or stored;
+- labels, errors, status, and focus behavior are accessible;
+- Ukrainian and English content and validation remain semantically equivalent;
+- the form and every state remain usable without horizontal overflow at 320 px;
 - lint, typecheck, tests, E2E, and build pass;
 - `CURRENT_STATE.md` records exact results.
 
@@ -202,4 +188,4 @@ Implement full product-detail content and grouped specifications:
 
 `NOT READY`
 
-Reason: the homepage and full comparison flow are complete, but final visual assets, detailed product pages, complete informational pages, contact submission, manual accessibility and performance review, and deployment configuration remain incomplete.
+Reason: the homepage, full comparison, and all product-detail flows are complete, but final visual assets, complete informational pages, contact submission, manual accessibility and performance review, and deployment configuration remain incomplete.

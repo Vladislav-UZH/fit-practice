@@ -1,9 +1,37 @@
 locale: en
 order: 3
 slug: sitehub-10
+conceptProduct: true
 name: MAXIBUD SiteHub 10
 category: Professional mobile system
+tagline: Professional power without a fixed grid connection.
 summary: A rugged concept format for construction sites, temporary facilities, and mobile workshops.
+overview:
+  lead: SiteHub 10 is the highest-output transportable concept in the MAXIBUD ENERGY portfolio.
+  paragraphs:
+    - Its 10.24 kWh usable-energy and 6 kW rated-output figures frame professional discussions for construction sites, temporary facilities, mobile workshops, and field teams.
+    - The wheeled cabinet, reinforced frame, lifting points, protected connection panel, and physical emergency stop establish a professional site-oriented form without claiming support for every load or weather condition.
+features:
+  - title: Professional output class
+    description: The 6 kW rated and 12 kW peak figures position SiteHub 10 as the portfolio’s highest-output concept.
+  - title: Rugged mobile frame
+    description: Integrated wheels, reinforced edges, lifting points, and protected panels support repeated conceptual relocation.
+  - title: Physical emergency control
+    description: A visible emergency stop communicates a professional operating context without representing certified machinery control.
+  - title: Larger charging paths
+    description: Grid and up-to-2,400 W solar input concepts support the larger energy format.
+  - title: Local and remote status
+    description: The monitoring concept includes energy state, event history, and connection status for professional coordination.
+applications:
+  - title: Construction sites
+    description: Intended for temporary professional infrastructure and selected site loads after startup and compatibility assessment.
+  - title: Mobile workshops
+    description: A wheeled energy-storage concept for selected tools, lighting, and service equipment.
+  - title: Temporary facilities
+    description: A concept format for selected event, retail, warehouse, or maintenance infrastructure without a generator-replacement guarantee.
+  - title: Professional field bases
+    description: Intended for coordinated temporary operations where local and remote status concepts support planning.
+detailVisualDescription: Original project-owned concept illustration of the tall SiteHub 10 cabinet with a reinforced frame, integrated wheels, lifting points, protected panel, and red emergency stop.
 conceptNotice: SiteHub 10 specifications are illustrative and do not describe certified commercial hardware.
 highlights:
   - label: Capacity
@@ -12,6 +40,93 @@ highlights:
     value: 6 kW
   - label: Weight
     value: 118 kg
+specifications:
+  - id: energy
+    title: Energy
+    items:
+      - key: usableEnergy
+        label: Usable energy
+        value:
+          value: 10.24 kWh
+      - key: chemistry
+        label: Battery chemistry
+        value:
+          value: LiFePO4 concept
+      - key: expansion
+        label: Expansion
+        value:
+          value: Not available in the current concept
+          status: unavailable
+  - id: output-input
+    title: Input and output
+    items:
+      - key: ratedOutput
+        label: Rated AC output
+        value:
+          value: 6,000 W
+      - key: peakOutput
+        label: Peak AC output
+        value:
+          value: 12,000 W
+      - key: acOutput
+        label: AC output
+        value:
+          value: 230 V, 50 Hz
+      - key: optionalVariant
+        label: Optional configuration
+        value:
+          value: Three-phase concept variant
+          status: configuration-dependent
+      - key: solarInput
+        label: Solar input
+        value:
+          value: Up to 2,400 W
+      - key: gridInput
+        label: Grid charging
+        value:
+          value: High-power concept input
+  - id: physical
+    title: Physical characteristics
+    items:
+      - key: mobility
+        label: Mobility
+        value:
+          value: Integrated wheels and lifting points
+      - key: weight
+        label: Approximate weight
+        value:
+          value: 118 kg
+      - key: dimensions
+        label: Concept dimensions
+        value:
+          value: 870 × 610 × 980 mm
+  - id: environment
+    title: Environment
+    items:
+      - key: protection
+        label: Enclosure concept
+        value:
+          value: IP55 concept
+      - key: temperature
+        label: Operating temperature
+        value:
+          value: "-15°C to +45°C"
+  - id: controls
+    title: Controls and monitoring
+    items:
+      - key: monitoring
+        label: Monitoring
+        value:
+          value: Local and remote status concept
+      - key: emergencyControl
+        label: Emergency control
+        value:
+          value: Physical emergency stop
+      - key: logging
+        label: Energy-use log
+        value:
+          value: Concept event and energy log
+documents: []
 lineup:
   context: Construction sites and mobile workshops
   distinction: The highest-output transportable format
