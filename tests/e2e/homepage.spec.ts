@@ -42,6 +42,7 @@ test('use-case tabs support keyboard navigation without panel layout shift', asy
   const panel = section.getByRole('tabpanel')
 
   await expect(tabs).toHaveCount(3)
+  await expect(tabs.nth(0)).toBeEnabled()
   await expect(tabs.nth(0)).toHaveAttribute('aria-selected', 'true')
   await expect(panel).toContainText('MAXIBUD HomeCore 5')
 
