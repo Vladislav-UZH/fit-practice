@@ -24,7 +24,8 @@
     "switchLanguage": "Switch language to {language}",
     "mobileNavigation": "Mobile navigation",
     "openMenu": "Open menu",
-    "productFamilyVisual": "Concept visualization of the three MAXIBUD ENERGY formats at relative scale"
+    "productFamilyVisual": "Concept visualization of the three MAXIBUD ENERGY formats at relative scale",
+    "useCaseTabs": "Use cases and recommended concepts"
   },
   "disclosure": {
     "full": "MAXIBUD ENERGY is a conceptual product line created for an educational software demonstration. Product specifications are illustrative and do not represent certified commercial hardware.",
@@ -85,6 +86,31 @@
         "capacity": "Capacity",
         "output": "Output",
         "format": "Format"
+      },
+      "recommendation": {
+        "eyebrow": "Guidance by use case",
+        "title": "Start with the working context",
+        "description": "Choose the closest scenario and review the concept that provides the clearest starting point in the portfolio.",
+        "disclaimer": "This is navigation between educational concepts, not an engineering calculation for a real installation.",
+        "recommendedLabel": "Recommended concept",
+        "reasonsTitle": "Why this format",
+        "contexts": {
+          "home": {
+            "label": "Home and small office",
+            "title": "Backup for stationary systems",
+            "description": "For a scenario where the system remains at one property and supports essential home or small-office loads."
+          },
+          "mobile": {
+            "label": "Mobile work",
+            "title": "Power between working areas",
+            "description": "For short-duration tasks, temporary facilities, and situations where the format needs to be carried regularly."
+          },
+          "site": {
+            "label": "Construction site",
+            "title": "Professional transportable format",
+            "description": "For longer site or mobile-workshop scenarios where greater capacity and a wheeled frame are relevant."
+          }
+        }
       },
       "seoTitle": "MAXIBUD ENERGY — concept backup-power systems",
       "seoDescription": "Educational presentation of three MAXIBUD ENERGY concept systems for home, mobile work, and construction."
