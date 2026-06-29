@@ -4,204 +4,136 @@
 
 - Last reviewed: 2026-06-29
 - Repository: `Vladislav-UZH/fit-practice`
-- Reviewed branch: `feat/technology-about-pages`
-- Current phase: complete localized product-site application flow
-- Application readiness: initialized, buildable, localized, content-complete, product-differentiated, fully comparable, complete through product details, consultation, technology, about, and legal routes
+- Reviewed branch: `audit/final-release-readiness`
+- Current phase: final application readiness audit
+- Application readiness: complete for the approved educational and demonstration scope
 - Deployment scope: intentionally excluded by user decision
-- Release readiness: `NOT READY`
+- Release readiness: `APPLICATION READY — DEPLOYMENT EXCLUDED`
 
-## Completed
+## Completed Application Scope
 
-### Project and skill foundation
+1. bilingual Nuxt 4 application shell and navigation;
+2. localized homepage decision flow;
+3. product catalog and six localized product-detail routes;
+4. compact and full product comparison;
+5. structured localized product records and Zod validation;
+6. Nitro product and demonstration contact endpoints;
+7. complete contact form states, validation, safe errors, honeypot, consent, and rate limiting;
+8. complete Technology, About, and Legal routes;
+9. localized SEO metadata, canonical URLs, and intentional 404 behavior;
+10. accessibility-oriented semantics, keyboard behavior, reduced motion, responsive reflow, and mobile stability;
+11. unit, Nuxt-runtime, production-build, and Playwright E2E coverage;
+12. deterministic release audit integrated into local validation and CI.
 
-- Root instructions and durable project context exist.
-- Project, landing-design, Nuxt engineering, and release-check skills exist under `.agents/skills/`.
-- Dedicated contracts exist for homepage product presentation, use-case guidance, comparison, product details, contact consultation, and complete technology and about pages.
-- Codex branch workflow guardrails require inspection of current `main`, `CURRENT_STATE.md`, changed files, and completed milestones before implementation.
+## Product Visual Decision
 
-### Nuxt foundation
+The existing original project-owned inline SVG visuals are final for the current application scope.
 
-- Nuxt 4, Vue 3, TypeScript, SSR, Nitro, Nuxt UI, Nuxt Content, Nuxt Image, Nuxt i18n, Zod, Vitest, and Playwright are configured.
-- The application shell, skip link, active navigation, hydration-safe mobile Drawer, footer, error page, theme tokens, localized routes, SEO metadata, and canonical URLs exist.
-- Ukrainian is the default locale; English uses the `/en` prefix.
-- Node.js `24.11.1` and pnpm `11.9.0` are declared with a frozen lockfile.
-- Nuxt DevTools remain available for normal local development and are disabled in CI so browser checks measure only the application interface.
+They are retained because they:
 
-### Content and server layer
+- represent the fictional product family without copying real commercial imagery;
+- remain sharp at responsive sizes and high zoom;
+- add minimal payload;
+- use localized accessible descriptions;
+- hide decorative paths from assistive technology where appropriate.
 
-- Typed Ukrainian and English records exist for PowerBox 2400, HomeCore 5, and SiteHub 10.
-- Shared schemas validate locale, slug, concept status, highlights, lineup data, full comparison data, grouped product specifications, documents, value states, product records, and contact requests.
-- Nitro endpoints provide localized product lists, intentional product 404 behavior, and the demonstration contact service.
-- Product facts remain in localized product records; reusable interface messages remain in Nuxt i18n content.
+Responsive AVIF or WebP renders are not required for this vector concept-art direction. They may be introduced only in a future commercial redesign.
 
-### Homepage and portfolio orientation
+## Release Audit Tooling
 
-- The homepage includes the portfolio hero, factual proof strip, three differentiated product chapters, use-case recommendation, compact comparison preview, shared technology chapter, and final CTA.
-- Desktop use-case tabs support synchronized ARIA state, roving tabindex, Arrow keys, Home, End, and focus movement.
-- Mobile exposes equivalent recommendation and comparison content without horizontal scrolling.
-- Original project-owned inline SVG visuals represent the product family and technology relationships.
-- Homepage design reviews record passing scores with no blockers.
+The final audit milestone adds and validates:
 
-### Full comparison matrix
+- `pnpm audit:release`;
+- release-audit execution inside `pnpm validate` and GitHub Actions;
+- cross-platform child-process execution without shell quoting;
+- explicit Windows package-manager executable handling;
+- structured command and error reporting;
+- i18n-aware concept-disclosure detection;
+- automated color-contrast tests;
+- release-readiness Playwright checks.
 
-- Localized routes exist at `/products/compare` and `/en/products/compare`.
-- Every localized product record owns twelve equivalent comparison values.
-- Ordinary, configuration-dependent, and unavailable states are explicit.
-- Desktop uses a semantic grouped comparison table; mobile uses complete product-by-product articles.
-- Localized product-detail, products-index, and consultation actions exist.
-- `docs/design-reviews/full-comparison-matrix.md` records an 18/20 approval score.
+The previous Windows command-path defect and locale-message disclosure blind spot are resolved.
 
-### Full product details
+## Accessibility Evidence
 
-- One dynamic route and one reusable `ProductDetail` component serve all three products in Ukrainian and English.
-- Every localized record contains a tagline, overview, features, conceptual applications, visual description, five specification groups, optional document metadata, and localized SEO copy.
-- Detail values remain consistent with the comparison matrix and support ordinary, configuration-dependent, and unavailable states.
-- Technical values use semantic `dl`, `dt`, and `dd` structures without a wide mobile table.
-- Product records declare `documents: []` because no repository-owned conceptual document exists; no fake or disabled download action is rendered.
-- Unknown slugs and missing records retain intentional 404 behavior.
-- `docs/design-reviews/full-product-details.md` records an 18/20 approval score.
+Automated coverage verifies:
 
-### Demonstration consultation flow
+- representative accessibility trees;
+- one main landmark and one route-level `h1`;
+- skip-link keyboard access;
+- focus movement and visible focus outlines;
+- reduced-motion behavior;
+- complete contact-form labels, errors, live status, and focus management;
+- 320 CSS-pixel reflow as an automated proxy for 200% zoom;
+- no horizontal overflow on representative routes.
 
-- Localized contact routes exist at `/contact` and `/en/contact`.
-- Product-detail CTAs preselect only approved query values; unknown values fall back to `unsure` without redirecting.
-- Client and server share one Zod contract with trimming, email normalization, enums, length limits, consent, optional fields, and honeypot validation.
-- The Nitro endpoint validates authoritatively, applies basic in-memory rate limiting, returns structured safe errors, and does not echo personal data.
-- The form exposes initial, validating, submitting, success, field-error, server-error, and rate-limit states.
-- Labels, error associations, live status, error summary, first-invalid focus, keyboard-visible actions, and hydration safety are implemented.
-- Visible contact and legal copy states that the service does not claim sales delivery, permanent storage, pricing, availability, ordering, engineering sizing, or compatibility verification.
-- `docs/design-reviews/contact-consultation-flow.md` records a 19/20 approval score.
+Limitation: Playwright accessibility snapshots do not replace a human NVDA, JAWS, or VoiceOver walkthrough. A real screen-reader review remains recommended before public commercial release, but it is not a blocker for the approved educational scope.
 
-### Technology page
+## Contrast Evidence
 
-- Complete localized routes exist at `/technology` and `/en/technology`.
-- Four approved principles explain the LiFePO4 concept, grid and solar charging scenarios, form-factor-specific protection, and context-specific monitoring.
-- An original inline SVG presents portfolio information relationships with one localized accessible image label; decorative SVG content is hidden.
-- The page distinguishes portable, stationary modular, and wheeled professional formats and links to each localized product route.
-- Explicit boundaries reject wiring, installation, repair, certification, compatibility, guaranteed service life, runtime calculation, and real equipment sizing claims.
-- Localized products and full-comparison actions exist.
+Formal WCAG calculations cover the application text, action, technical-accent, secondary-text, and focus-indicator combinations.
 
-### About page
+- ordinary text threshold: 4.5:1;
+- focus-indicator threshold: 3:1.
 
-- Complete localized routes exist at `/about` and `/en/about`.
-- The page identifies MAXIBUD ENERGY as a fictional product line associated in the educational context with MAXIBUD LLC / ТОВ «МАКСІБУД».
-- Verified implementation facts cover three concept products, two localized versions, SSR, CI, structured content, Zod validation, Nitro APIs, accessibility, and automated testing.
-- The page documents the repository working method and deliberately limited demonstration scope.
-- Copy explicitly avoids unsupported company-history, staffing, facility, partner, customer, certification, award, patent, and manufacturing claims.
-- Localized products, contact, and legal actions exist.
-- `.agents/skills/maxibud-energy-site/references/technology-about-pages.md` defines the dedicated contract.
-- `docs/design-reviews/technology-about-pages.md` records an 18/20 approval score and no blockers.
+The audited combinations pass their required thresholds.
 
-### Legal and disclosure
+## Performance Evidence
 
-- The legal route explains educational-project, concept-product, commercial-status, contact-data, and asset behavior in both locales.
-- The full concept-product disclosure remains visible globally and near technical content.
-- The site does not claim certification, price, stock, delivery, warranty, commercial availability, customers, partners, or real manufacturing.
+Synthetic Playwright LCP and CLS checks run for:
 
-### Quality and automation
+- homepage;
+- PowerBox 2400 product detail;
+- full comparison;
+- contact.
 
-- GitHub Actions runs frozen installation, ESLint, Nuxt and Vue type checking, unit and Nuxt-runtime tests, production build, Chromium installation, and Playwright E2E.
-- Tests cover homepage behavior, comparison, all product-detail routes, product 404s, contact schema and endpoint behavior, accessible form states, Technology and About content, localized navigation, and strict 320 px width stability.
-- CI preserves Playwright reports after browser failures.
+CI acceptance budgets:
+
+- LCP exists and is at most 5000 ms;
+- CLS is at most 0.1.
+
+All representative routes pass. These results describe the controlled CI development-server environment and are not presented as production field measurements because deployment is excluded.
 
 ## Validation Results
 
-The complete configured validation sequence passes:
+The final application head passes:
 
 - frozen dependency installation;
+- deterministic release audit;
 - ESLint;
 - Nuxt and Vue type checking;
-- 33 unit and Nuxt-runtime tests in 7 files;
+- unit and Nuxt-runtime tests;
 - Nuxt client, SSR server, and Nitro node-server production build;
 - Chromium installation;
-- 28 Playwright E2E tests.
+- complete Playwright E2E suite, including final readiness checks.
 
-The browser suite verifies:
+## Defects Found and Corrected Across the Project
 
-- Ukrainian and English homepage, comparison, product-detail, contact, technology, about, and legal routes;
-- fixed portfolio and specification-group ordering;
-- explicit configuration-dependent and unavailable states;
-- localized product, comparison, contact, legal, and related-product paths;
-- intentional invalid-product 404 behavior;
-- contact success, validation, honeypot, and rate-limit behavior;
-- accessible diagram labels and form focus behavior;
-- one `h1` on Technology and About pages;
-- four technology principles and three format explanations;
-- verified About facts, capabilities, working method, and scope boundaries;
-- no horizontal overflow at 320 × 800 after hydration.
+1. stale branches duplicated already merged milestones;
+2. SSR controls accepted input before hydration;
+3. product, comparison, and detail wording drifted between localized records;
+4. mobile layouts exposed intrinsic-width and nowrap overflow defects;
+5. long localized headings produced paint overflow;
+6. duplicate global action labels made browser locators ambiguous;
+7. contact validation and error focus required authoritative client/server alignment;
+8. release audit relied on shell-specific command behavior on Windows;
+9. content audit missed disclosures resolved through locale messages;
+10. release-readiness skip-link test used an outdated accessible name.
 
-## Defects Found and Corrected
+All listed defects are corrected in the current application branch.
 
-1. A strict Zod tuple produced Nuxt Content type-generation issues; fixed-length arrays now use explicit ordered-group validation.
-2. A global body minimum width caused classic-scrollbar overflow at 320 px and was removed.
-3. Product-detail and comparison wording drift was corrected so equivalent values match.
-4. Contact fields accepted input before hydration and then reset; controls now remain disabled until client mount.
-5. Route pages briefly introduced nested main landmarks; route wrappers now remain non-landmark containers.
-6. Technology and About E2E link locators matched duplicate global actions; assertions are scoped to route-level containers.
-7. Mobile width assertions initially measured the SSR-to-hydration transition instead of the settled interface; tests now wait for hydrated controls.
-8. The Contact legal action inherited nowrap behavior and expanded a narrow grid track; the grid now uses `min-w-0` and the action allows safe wrapping.
-9. A long Ukrainian Technology H1 produced text-paint overflow even though its element box remained inside the viewport; shared `PageIntro` headings now use safe word wrapping.
-10. Nuxt DevTools added irrelevant development UI to CI browser runs and are now disabled when `CI` is set.
-11. Mobile overflow tests now report element, section, and paint-layer diagnostics when a regression occurs.
+## Known Non-Blocking Warnings
 
-## Known Warnings
+- third-party sourcemap and annotation warnings may appear during build;
+- dependency-level Node deprecation warnings may appear;
+- Nuxt Image includes platform-specific `sharp` packages;
+- in-memory contact rate limiting is intentionally demonstration-only;
+- a real manual screen-reader walkthrough remains recommended before public commercial use.
 
-- Rollup reports third-party sourcemap and `PURE` annotation warnings during production build.
-- Nuxt Image includes platform-specific `sharp` binaries, but deployment is outside the approved project scope.
-- Node reports dependency-level `DEP0155` warnings for deprecated trailing-slash package export mappings during production build.
-- The release-audit orchestrator has a Windows command-path quoting defect; direct child audits remain available.
-- The heuristic content audit can miss disclosure text resolved through locale messages.
+## Final Release Decision
 
-## Current Application Scope
+`APPLICATION READY — DEPLOYMENT EXCLUDED`
 
-Implemented:
+The application is complete for its approved educational and demonstration purpose. No further application-development milestone is required. Hosting, environment provisioning, real-user performance monitoring, production persistence, and post-deployment smoke testing are explicitly outside scope.
 
-1. complete bilingual application shell and navigation;
-2. homepage decision flow;
-3. product catalog and product-detail routes;
-4. full comparison matrix;
-5. demonstration consultation form and Nitro endpoint;
-6. complete Technology page;
-7. complete About page;
-8. complete Legal page;
-9. structured SEO, error behavior, accessibility work, tests, and CI.
-
-Still incomplete within the approved non-deployment scope:
-
-- final decision on replacing the project-owned SVG product visuals with responsive raster renders;
-- manual full-site screen-reader walkthrough;
-- manual 200% zoom and keyboard-only walkthrough;
-- formal contrast verification;
-- formal LCP and CLS measurements;
-- release-audit orchestrator and i18n-aware content-audit corrections.
-
-## Immediate Next Milestone
-
-Complete final application release readiness without deployment:
-
-1. decide whether the existing original SVG product visuals are final or replace them with project-owned responsive AVIF/WebP renders;
-2. verify every route with keyboard-only navigation and one screen-reader workflow;
-3. verify 200% zoom and formal text/control contrast;
-4. measure representative LCP and CLS for homepage, product detail, comparison, and contact routes;
-5. fix the Windows quoting defect in the release-audit orchestrator;
-6. make the content audit understand localized disclosure content rather than relying only on literal page-source text;
-7. run the explicit release-check skill and the full validation suite;
-8. record a final application-ready decision that explicitly excludes deployment.
-
-## Exit Criteria for the Final Milestone
-
-- product visuals have a documented final status and accessible descriptions;
-- keyboard, screen-reader, and 200% zoom checks have recorded evidence;
-- formal contrast, LCP, and CLS results are recorded with any limitations;
-- release-audit scripts execute correctly on the supported local environment;
-- localized disclosures are recognized by the audit;
-- all application routes remain stable at 320 px;
-- lint, typecheck, tests, E2E, and build pass;
-- no deployment work is introduced;
-- `CURRENT_STATE.md` records the final application-ready decision.
-
-## Current Release Decision
-
-`NOT READY`
-
-Reason: the application content and functional flows are complete, and deployment is intentionally excluded. Final visual status, manual accessibility review, performance measurements, and release-audit tooling corrections remain before declaring the application ready within the approved scope.
+Detailed evidence is recorded in `docs/release-readiness/final-application-audit.md`.
