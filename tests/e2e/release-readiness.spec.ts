@@ -94,21 +94,19 @@ test('reduced-motion preference disables smooth scrolling and long transitions',
   expect(styles.transitionDuration.split(',').every(value => Number.parseFloat(value) <= 0.01)).toBe(true)
 })
 
-test('representative routes remain usable at a synthetic 200 percent zoom', async ({ page }) => {
-  await page.setViewportSize({ width: 640, height: 900 })
+test('representative routes reflow at the 320 CSS-pixel proxy for 200 percent zoom', async ({ page }) => {
+  await page.setViewportSize({ width: 320, height: 900 })
 
   for (const path of ['/', '/products/powerbox-2400', '/products/compare', '/contact']) {
     await page.goto(path)
-    await page.evaluate(() => {
-      document.documentElement.style.zoom = '2'
-    })
+    await expect(page.getByRole('button', { name: /Відкрити меню|Open menu/ })).toBeEnabled()
 
     const dimensions = await page.evaluate(() => ({
       clientWidth: document.documentElement.clientWidth,
       scrollWidth: document.documentElement.scrollWidth
     }))
 
-    expect(dimensions.scrollWidth, `${path} at synthetic 200% zoom`).toBeLessThanOrEqual(dimensions.clientWidth + 1)
+    expect(dimensions.scrollWidth, `${path} at the 200% reflow proxy`).toBeLessThanOrEqual(dimensions.clientWidth + 1)
     await expect(page.getByRole('main').getByRole('heading', { level: 1 })).toBeVisible()
   }
 })
