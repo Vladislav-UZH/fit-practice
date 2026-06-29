@@ -12,6 +12,17 @@ highlights:
     value: 6 kW
   - label: Weight
     value: 118 kg
+lineup:
+  context: Construction sites and mobile workshops
+  distinction: The highest-output transportable format
+  reasons:
+    - The 10.24 kWh capacity is intended for longer professional scenarios.
+    - A wheeled frame and reinforced enclosure support frequent conceptual relocation.
+  comparison:
+    capacity: 10.24 kWh
+    output: 6 kW
+    format: Wheeled · 118 kg
+  visualDescription: Stylized concept diagram of the wheeled SiteHub 10 with a reinforced frame and large front panel.
 seo:
   title: MAXIBUD SiteHub 10 — professional concept system
   description: Illustrative overview of the MAXIBUD SiteHub 10 mobile professional concept system.
