@@ -75,4 +75,17 @@ jobs:
         run: pnpm exec playwright install --with-deps chromium
 
       - name: Run end-to-end tests
-        run: pnpm test:e2e
+        run: |
+          set -o pipefail
+          pnpm test:e2e 2>&1 | tee e2e.log
+
+      - name: Upload E2E diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: e2e-diagnostics
+          path: |
+            e2e.log
+            playwright-report
+            test-results
+          if-no-files-found: warn
