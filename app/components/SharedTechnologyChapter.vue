@@ -84,7 +84,7 @@ const principles = computed<TechnologyPrinciple[]>(() => [
             >
               {{ $t('actions.exploreTechnology') }}
             </UButton>
-            <p class="max-w-sm text-sm leading-6 text-black/45">
+            <p class="max-w-sm text-sm leading-6 text-black/60">
               {{ $t('pages.home.sharedTechnology.disclaimer') }}
             </p>
           </div>
@@ -101,7 +101,7 @@ const principles = computed<TechnologyPrinciple[]>(() => [
                   {{ $t('pages.home.sharedTechnology.diagram.title') }}
                 </p>
               </div>
-              <span class="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-white/35">
+              <span class="font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-white/55" aria-hidden="true">
                 03 / 01
               </span>
             </div>
@@ -148,24 +148,24 @@ const principles = computed<TechnologyPrinciple[]>(() => [
 
               <div class="absolute inset-x-4 bottom-4 grid grid-cols-3 gap-2 sm:inset-x-6 sm:bottom-6 sm:gap-3">
                 <div class="border border-white/15 bg-[#171b19]/90 px-2 py-2 text-center sm:px-3">
-                  <span class="font-mono text-[0.625rem] uppercase tracking-[0.1em] text-white/50">
+                  <span class="font-mono text-[0.625rem] uppercase tracking-[0.1em] text-white/60">
                     {{ $t('pages.home.sharedTechnology.diagram.labels.chemistry') }}
                   </span>
                 </div>
                 <div class="border border-white/15 bg-[#171b19]/90 px-2 py-2 text-center sm:px-3">
-                  <span class="font-mono text-[0.625rem] uppercase tracking-[0.1em] text-white/50">
+                  <span class="font-mono text-[0.625rem] uppercase tracking-[0.1em] text-white/60">
                     {{ $t('pages.home.sharedTechnology.diagram.labels.form') }}
                   </span>
                 </div>
                 <div class="border border-white/15 bg-[#171b19]/90 px-2 py-2 text-center sm:px-3">
-                  <span class="font-mono text-[0.625rem] uppercase tracking-[0.1em] text-white/50">
+                  <span class="font-mono text-[0.625rem] uppercase tracking-[0.1em] text-white/60">
                     {{ $t('pages.home.sharedTechnology.diagram.labels.status') }}
                   </span>
                 </div>
               </div>
             </div>
 
-            <p class="mt-4 text-xs leading-5 text-white/40">
+            <p class="mt-4 text-xs leading-5 text-white/60">
               {{ $t('pages.home.sharedTechnology.diagram.note') }}
             </p>
           </div>
