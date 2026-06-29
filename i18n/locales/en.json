@@ -244,8 +244,25 @@
     },
     "contact": {
       "eyebrow": "Contact",
-      "title": "Demonstration consultation request",
-      "description": "The form will be delivered as a complete flow with server validation and truthful data-processing messages.",
+      "title": "Describe your use case",
+      "description": "Select a product, inquiry type, and core requirements. The form operates as a demonstration consultation channel.",
+      "serviceEyebrow": "Demonstration service",
+      "serviceTitle": "Structured request, not a sales handoff",
+      "serviceDescription": "The form validates submitted information and returns a technical acceptance status for the educational website flow.",
+      "demoDisclosure": "No real sales delivery, permanent storage, pricing, availability, or engineering sizing is configured in this demonstration.",
+      "boundariesTitle": "What this flow does not do",
+      "boundaries": {
+        "noSalesDelivery": "It does not claim that a real sales team received the message.",
+        "noPermanentStorage": "It does not claim persistent storage of submitted personal data.",
+        "noEngineeringSizing": "It does not replace engineering calculations, installation design, or compatibility checks."
+      },
+      "legalLink": "Review data behavior",
+      "formEyebrow": "Request details",
+      "formTitle": "Product and inquiry context",
+      "formDescription": "The selected product can be prefilled from a product page. Unknown query values are ignored and replaced with Not sure yet.",
+      "nextTitle": "Review the portfolio before submitting",
+      "nextDescription": "If the use case is not clear, compare the three formats or return to the products index.",
+      "relatedNavigation": "Related contact navigation",
       "seoTitle": "Contact MAXIBUD ENERGY",
       "seoDescription": "Demonstration inquiry page for MAXIBUD ENERGY concept products."
     },
@@ -253,8 +270,88 @@
       "eyebrow": "Legal",
       "title": "Educational-project and concept-product status",
       "description": "The products, specifications, and materials on this site are illustrative and are not a commercial offer.",
+      "sectionsEyebrow": "Disclosures",
+      "sectionsTitle": "Project and data status",
+      "sections": {
+        "educationalStatus": {
+          "title": "Educational project",
+          "description": "This website was created as an educational software project. It demonstrates product-catalog architecture, localization, technical specification presentation, and an inquiry form."
+        },
+        "productStatus": {
+          "title": "Concept products",
+          "description": "MAXIBUD ENERGY is a conceptual product line created for an educational software demonstration. Product specifications are illustrative and do not represent certified commercial hardware."
+        },
+        "commercialStatus": {
+          "title": "No commercial offer",
+          "description": "Website materials are not a commercial offer, confirmation of availability, performance warranty, certification statement, or installation instruction."
+        },
+        "contactData": {
+          "title": "Contact-form data behavior",
+          "description": "In demonstration mode, the form validates submitted data and returns a technical status. Persistent storage or actual message delivery must be described separately when configured."
+        },
+        "assets": {
+          "title": "Assets and trademarks",
+          "description": "Product visuals and page compositions are project-owned educational assets. Third-party product names or trademarks are not used as endorsements."
+        }
+      },
       "seoTitle": "MAXIBUD ENERGY legal information",
       "seoDescription": "Disclosure of the conceptual and educational status of the MAXIBUD ENERGY website."
+    }
+  },
+  "contact": {
+    "form": {
+      "eyebrow": "Demonstration inquiry",
+      "title": "Submit request details",
+      "description": "Required fields are validated in the browser and again by the Nitro endpoint.",
+      "messageHint": "Describe the working context, intended environment, and question. Do not include sensitive credentials or electrical installation instructions.",
+      "consentHint": "The demonstration service validates the request and returns a status. It does not claim real delivery or permanent storage.",
+      "submit": "Submit request",
+      "submitting": "Submitting request",
+      "noCommerce": "This is not an order, purchase request, quote, availability check, or delivery request."
+    },
+    "fields": {
+      "name": "Name",
+      "email": "Email",
+      "phone": "Phone",
+      "company": "Company",
+      "product": "Product",
+      "inquiryType": "Inquiry type",
+      "message": "Message",
+      "consent": "I agree to the described data handling",
+      "optional": "optional"
+    },
+    "options": {
+      "products": {
+        "powerbox-2400": "PowerBox 2400",
+        "homecore-5": "HomeCore 5",
+        "sitehub-10": "SiteHub 10",
+        "unsure": "Not sure yet"
+      },
+      "inquiryTypes": {
+        "consultation": "Product consultation",
+        "technical": "Technical information",
+        "distribution": "Distribution inquiry",
+        "cooperation": "Project cooperation",
+        "other": "Other"
+      }
+    },
+    "status": {
+      "initial": "Complete the fields and submit the request for demonstration validation.",
+      "validating": "Checking the request fields.",
+      "submitting": "Submitting the request to the demonstration service.",
+      "success": "Your request has been validated and accepted by the demonstration service. The data is not considered delivered to a real sales team unless a separate delivery channel is configured.",
+      "fieldError": "Review the highlighted fields before submitting.",
+      "serverError": "The request could not be processed. Review the fields and try again.",
+      "rateLimit": "Too many requests were submitted. Try again later."
+    },
+    "validation": {
+      "summary": "The request contains validation errors.",
+      "required": "Complete this field",
+      "invalidEmail": "Enter a valid email address",
+      "shortName": "Name must contain at least 2 characters",
+      "shortMessage": "Describe the request in at least 20 characters",
+      "longMessage": "Message cannot exceed 3000 characters",
+      "consent": "Agreement to the described data handling is required"
     }
   },
   "error": {
