@@ -144,6 +144,7 @@ Choose the smallest relevant category:
 | content collections and domain fields | `references/content-model.md` |
 | exact fictional specifications | `references/fictional-product-data.md` |
 | approved interface and marketing copy | `references/copy-and-localization.md` |
+| full comparison matrix | `references/full-comparison-matrix.md` |
 
 ### 4. Resolve truth level
 

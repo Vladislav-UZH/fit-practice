@@ -23,6 +23,34 @@ lineup:
     output: 2,4 кВт
     format: Переносний · 28 кг
   visualDescription: Стилізована концептуальна схема переносного PowerBox 2400 з верхньою ручкою та фронтальною панеллю.
+comparison:
+  context: Переносний концепт для мобільної роботи й тимчасового резерву
+  values:
+    primaryUse:
+      value: Мобільна робота й короткочасний резерв
+    recommendedUser:
+      value: Підрядник або власник житла
+    energy:
+      value: 2,4 кВт·год корисної енергії
+    ratedOutput:
+      value: 2,4 кВт
+    peakOutput:
+      value: 4,8 кВт
+    mobility:
+      value: Переносний формат
+    installation:
+      value: Без стаціонарного монтажу або тимчасове розміщення
+    charging:
+      value: Концептуальні входи від мережі, автомобіля й сонячних панелей
+    protection:
+      value: Концептуальний корпус IP44
+    weight:
+      value: 28 кг
+    expansion:
+      value: Не передбачено в поточному концепті
+      status: unavailable
+    monitoring:
+      value: Локальний статус та опційне вебпідключення
 seo:
   title: MAXIBUD PowerBox 2400 — концептуальна переносна система
   description: Ілюстративний опис концептуальної переносної системи MAXIBUD PowerBox 2400.

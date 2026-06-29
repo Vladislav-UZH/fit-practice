@@ -1,5 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { productSlugSchema } from '../../shared/schemas/product'
+import {
+  comparisonValueSchema,
+  productComparisonSchema,
+  productSlugSchema
+} from '../../shared/schemas/product'
 
 describe('productSlugSchema', () => {
   it('accepts every approved product slug', () => {
@@ -10,5 +14,28 @@ describe('productSlugSchema', () => {
 
   it('rejects unknown product slugs', () => {
     expect(() => productSlugSchema.parse('unknown-product')).toThrow()
+  })
+})
+
+describe('productComparisonSchema', () => {
+  it('defaults ordinary values and preserves truthful exception states', () => {
+    expect(comparisonValueSchema.parse({ value: '2.4 kW' }).status).toBe('value')
+    expect(comparisonValueSchema.parse({
+      value: 'Depends on configuration',
+      status: 'configuration-dependent'
+    }).status).toBe('configuration-dependent')
+    expect(comparisonValueSchema.parse({
+      value: 'Not available',
+      status: 'unavailable'
+    }).status).toBe('unavailable')
+  })
+
+  it('rejects an incomplete comparison matrix', () => {
+    expect(() => productComparisonSchema.parse({
+      context: 'Portable concept',
+      values: {
+        primaryUse: { value: 'Mobile work' }
+      }
+    })).toThrow()
   })
 })

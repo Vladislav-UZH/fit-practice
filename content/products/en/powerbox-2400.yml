@@ -23,6 +23,34 @@ lineup:
     output: 2.4 kW
     format: Portable · 28 kg
   visualDescription: Stylized concept diagram of the portable PowerBox 2400 with a top handle and front control panel.
+comparison:
+  context: Portable concept for mobile work and temporary backup
+  values:
+    primaryUse:
+      value: Mobile work and short-duration backup
+    recommendedUser:
+      value: Contractor or homeowner
+    energy:
+      value: 2.4 kWh usable energy
+    ratedOutput:
+      value: 2.4 kW
+    peakOutput:
+      value: 4.8 kW
+    mobility:
+      value: Carryable
+    installation:
+      value: No fixed installation or temporary placement
+    charging:
+      value: Grid, vehicle, and solar concept inputs
+    protection:
+      value: IP44 concept enclosure
+    weight:
+      value: 28 kg
+    expansion:
+      value: Not available in the current concept
+      status: unavailable
+    monitoring:
+      value: Local status with optional web connection concept
 seo:
   title: MAXIBUD PowerBox 2400 — portable concept system
   description: Illustrative overview of the MAXIBUD PowerBox 2400 portable concept system.

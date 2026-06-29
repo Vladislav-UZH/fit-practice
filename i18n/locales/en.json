@@ -177,9 +177,39 @@
     "compare": {
       "eyebrow": "Comparison",
       "title": "Compare formats by intended context",
-      "description": "The comparison matrix will be implemented after the component system and full product content are approved.",
+      "description": "Review the same intended-use, energy, output, physical, charging, and monitoring criteria across all three concept formats.",
+      "caption": "Full comparison matrix for the three MAXIBUD ENERGY concept products",
+      "metricLabel": "Criterion",
+      "groupDisclosure": "Illustrative concept specifications; not certified commercial parameters.",
+      "groups": {
+        "context": "Use context",
+        "energyOutput": "Energy and output",
+        "format": "Format and placement",
+        "system": "Charging, expansion, and status"
+      },
+      "rows": {
+        "primaryUse": "Primary use",
+        "recommendedUser": "Intended user",
+        "energy": "Energy",
+        "ratedOutput": "Rated output",
+        "peakOutput": "Peak output",
+        "mobility": "Mobility",
+        "installation": "Placement format",
+        "charging": "Charging sources",
+        "protection": "Enclosure concept",
+        "weight": "Approximate weight",
+        "expansion": "Expansion",
+        "monitoring": "Monitoring"
+      },
+      "status": {
+        "configurationDependent": "Configuration-dependent",
+        "unavailable": "Not available"
+      },
+      "nextStepEyebrow": "Project context",
+      "nextStep": "Need to discuss which concept format matches the working context?",
+      "consultationDisclosure": "The demonstration consultation does not provide engineering sizing, installation design, compatibility verification, pricing, or availability.",
       "seoTitle": "Compare MAXIBUD ENERGY products",
-      "seoDescription": "Comparison of MAXIBUD ENERGY concept formats by capacity, output, mobility, and intended use."
+      "seoDescription": "Full comparison of MAXIBUD ENERGY concept formats by intended use, energy, output, mobility, charging, expansion, and monitoring."
     },
     "technology": {
       "eyebrow": "Technology",

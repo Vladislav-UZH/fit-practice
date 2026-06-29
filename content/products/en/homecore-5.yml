@@ -23,6 +23,34 @@ lineup:
     output: 5 kW
     format: Stationary · modular
   visualDescription: Stylized concept diagram of the wall-mounted HomeCore 5 with modular sections and a status indicator.
+comparison:
+  context: Modular stationary concept for home and small-business backup
+  values:
+    primaryUse:
+      value: Home and small-business backup
+    recommendedUser:
+      value: Homeowner or small business
+    energy:
+      value: 5.12 kWh nominal energy per module
+    ratedOutput:
+      value: 5 kW per compatible system configuration
+    peakOutput:
+      value: Depends on the compatible system configuration
+      status: configuration-dependent
+    mobility:
+      value: Stationary
+    installation:
+      value: Wall-mounted or floor stand
+    charging:
+      value: Compatible inverter system
+    protection:
+      value: IP54 concept enclosure
+    weight:
+      value: 54 kg per module
+    expansion:
+      value: Up to four modules / 20.48 kWh
+    monitoring:
+      value: Local web dashboard concept
 seo:
   title: MAXIBUD HomeCore 5 — modular home concept system
   description: Illustrative overview of the MAXIBUD HomeCore 5 modular concept system.

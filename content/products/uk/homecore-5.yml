@@ -23,6 +23,34 @@ lineup:
     output: 5 кВт
     format: Стаціонарний · модульний
   visualDescription: Стилізована концептуальна схема настінного HomeCore 5 з модульними секціями та індикатором стану.
+comparison:
+  context: Модульний стаціонарний концепт для резерву дому й малого бізнесу
+  values:
+    primaryUse:
+      value: Резервне живлення дому й малого бізнесу
+    recommendedUser:
+      value: Власник житла або малий бізнес
+    energy:
+      value: 5,12 кВт·год номінальної енергії на модуль
+    ratedOutput:
+      value: 5 кВт на сумісну конфігурацію системи
+    peakOutput:
+      value: Залежить від конфігурації сумісної системи
+      status: configuration-dependent
+    mobility:
+      value: Стаціонарний формат
+    installation:
+      value: Настінне кріплення або підлогова стійка
+    charging:
+      value: Сумісна інверторна система
+    protection:
+      value: Концептуальний корпус IP54
+    weight:
+      value: 54 кг на модуль
+    expansion:
+      value: До чотирьох модулів / 20,48 кВт·год
+    monitoring:
+      value: Концептуальна локальна вебпанель
 seo:
   title: MAXIBUD HomeCore 5 — концептуальна домашня система
   description: Ілюстративний опис концептуальної модульної системи MAXIBUD HomeCore 5.
