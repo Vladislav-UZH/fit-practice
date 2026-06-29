@@ -1,0 +1,61 @@
+flowchart TB
+    USER[Користувач]
+
+    subgraph PRESENTATION[Шар представлення: app]
+        ROUTES[Nuxt pages і layouts]
+        COMPONENTS[Vue-компоненти]
+        COMPOSABLES[Composables і локалізовані утиліти]
+        SEO[SEO-метадані та локалізовані маршрути]
+    end
+
+    subgraph SERVER[Серверний шар: Nitro]
+        API_LIST[API списку продуктів]
+        API_DETAIL[API продукту за slug]
+        ERRORS[Перевірка параметрів і контрольовані помилки]
+    end
+
+    subgraph DATA[Контентний і схемний шари]
+        COLLECTION[Колекція Nuxt Content]
+        YAML[Українські й англійські YAML-записи]
+        SCHEMA[Спільні Zod-схеми та TypeScript-типи]
+    end
+
+    subgraph QUALITY[Перевірка якості]
+        UNIT[Vitest і Nuxt runtime tests]
+        E2E[Playwright E2E]
+        CI[GitHub Actions]
+    end
+
+    USER --> ROUTES
+    ROUTES --> COMPONENTS
+    ROUTES --> COMPOSABLES
+    SEO --> ROUTES
+    COMPOSABLES --> API_LIST
+    COMPOSABLES --> API_DETAIL
+    API_LIST --> ERRORS
+    API_DETAIL --> ERRORS
+    ERRORS --> COLLECTION
+    COLLECTION --> YAML
+    SCHEMA --> COLLECTION
+    SCHEMA --> ERRORS
+    SCHEMA --> COMPONENTS
+
+    UNIT --> COMPONENTS
+    UNIT --> SERVER
+    E2E --> PRESENTATION
+    E2E --> SERVER
+    CI --> UNIT
+    CI --> E2E
+    CI --> BUILD[Lint, typecheck і production build]
+
+    classDef presentation fill:#eff6ff,stroke:#1d4ed8,stroke-width:1.5px,color:#172554;
+    classDef server fill:#f5f3ff,stroke:#6d28d9,stroke-width:1.5px,color:#2e1065;
+    classDef data fill:#ecfdf5,stroke:#047857,stroke-width:1.5px,color:#022c22;
+    classDef quality fill:#fff7ed,stroke:#c2410c,stroke-width:1.5px,color:#431407;
+    classDef user fill:#f8fafc,stroke:#334155,stroke-width:2px,color:#0f172a;
+
+    class USER user;
+    class ROUTES,COMPONENTS,COMPOSABLES,SEO presentation;
+    class API_LIST,API_DETAIL,ERRORS server;
+    class COLLECTION,YAML,SCHEMA data;
+    class UNIT,E2E,CI,BUILD quality;
