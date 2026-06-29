@@ -23,6 +23,34 @@ lineup:
     output: 6 кВт
     format: Колісний · 118 кг
   visualDescription: Стилізована концептуальна схема колісного SiteHub 10 з посиленою рамою та великою фронтальною панеллю.
+comparison:
+  context: Посилений мобільний концепт для будівельних і професійних майданчиків
+  values:
+    primaryUse:
+      value: Будівельні та професійні майданчики
+    recommendedUser:
+      value: Керівник майданчика або професійна команда
+    energy:
+      value: 10,24 кВт·год корисної енергії
+    ratedOutput:
+      value: 6 кВт
+    peakOutput:
+      value: 12 кВт
+    mobility:
+      value: Інтегровані колеса й точки підйому
+    installation:
+      value: Тимчасове розміщення на майданчику
+    charging:
+      value: Концептуальні входи від мережі й сонячних панелей
+    protection:
+      value: Концептуальний корпус IP55
+    weight:
+      value: 118 кг
+    expansion:
+      value: Не передбачено в поточному концепті
+      status: unavailable
+    monitoring:
+      value: Концептуальний локальний і віддалений статус
 seo:
   title: MAXIBUD SiteHub 10 — концептуальна професійна система
   description: Ілюстративний опис концептуальної мобільної системи MAXIBUD SiteHub 10.

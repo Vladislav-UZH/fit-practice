@@ -23,6 +23,34 @@ lineup:
     output: 6 kW
     format: Wheeled · 118 kg
   visualDescription: Stylized concept diagram of the wheeled SiteHub 10 with a reinforced frame and large front panel.
+comparison:
+  context: Rugged mobile concept for construction and professional sites
+  values:
+    primaryUse:
+      value: Construction and professional sites
+    recommendedUser:
+      value: Site manager or professional team
+    energy:
+      value: 10.24 kWh usable energy
+    ratedOutput:
+      value: 6 kW
+    peakOutput:
+      value: 12 kW
+    mobility:
+      value: Integrated wheels and lifting points
+    installation:
+      value: Temporary site placement
+    charging:
+      value: Grid and solar concept inputs
+    protection:
+      value: IP55 concept enclosure
+    weight:
+      value: 118 kg
+    expansion:
+      value: Not available in the current concept
+      status: unavailable
+    monitoring:
+      value: Local and remote status concept
 seo:
   title: MAXIBUD SiteHub 10 — professional concept system
   description: Illustrative overview of the MAXIBUD SiteHub 10 mobile professional concept system.
