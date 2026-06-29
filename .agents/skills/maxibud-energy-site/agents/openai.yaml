@@ -1,7 +1,7 @@
 interface:
   display_name: "MAXIBUD ENERGY Site"
   short_description: "Design and build the MAXIBUD ENERGY product website"
-  default_prompt: "Use the repository instructions and this project skill to implement the requested MAXIBUD ENERGY website change. Apply the MAXIBUD landing design skill for visual, page-composition, responsive, and design-review work. Apply the reusable Nuxt 4 production skill for framework implementation, preserve concept-product disclosures, and report exact validation results."
+  default_prompt: "Use the repository instructions and this project skill to implement the requested MAXIBUD ENERGY website change. Apply the MAXIBUD landing design skill for visual, page-composition, responsive, and design-review work. For homepage product-lineup work, read references/homepage-product-lineup.md. Apply the reusable Nuxt 4 production skill for framework implementation, preserve concept-product disclosures, and report exact validation results."
 
 policy:
   allow_implicit_invocation: true
