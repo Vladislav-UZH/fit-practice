@@ -28,6 +28,7 @@
   --me-muted: #5d655f;
   --me-border: #cfd4ce;
   --me-accent: #c8f43d;
+  --me-technical-accent: #566a10;
 }
 
 html {
@@ -51,6 +52,11 @@ body {
 :focus-visible {
   outline: 3px solid #6f8b10;
   outline-offset: 3px;
+}
+
+/* Compatibility alias for technical labels created before the audited token existed. */
+.text-\[\#637b13\] {
+  color: var(--me-technical-accent);
 }
 
 .technical-grid {
