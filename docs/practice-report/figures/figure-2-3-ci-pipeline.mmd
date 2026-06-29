@@ -1,0 +1,31 @@
+flowchart LR
+    EVENT[Push або pull request до main]
+    CHECKOUT[Checkout репозиторію]
+    SETUP[Node.js і pnpm]
+    INSTALL[pnpm install --frozen-lockfile]
+    LINT[ESLint]
+    TYPECHECK[Nuxt typecheck]
+    TESTS[Vitest і Nuxt runtime tests]
+    BUILD[Nuxt production build]
+    CHROMIUM[Встановлення Chromium]
+    E2E[Playwright E2E]
+    REPORT[Збереження звіту при помилці]
+    PASS[Успішна перевірка]
+
+    EVENT --> CHECKOUT --> SETUP --> INSTALL
+    INSTALL --> LINT --> TYPECHECK --> TESTS --> BUILD
+    BUILD --> CHROMIUM --> E2E
+    E2E -->|успіх| PASS
+    E2E -->|помилка| REPORT
+
+    classDef trigger fill:#f8fafc,stroke:#334155,stroke-width:2px,color:#0f172a;
+    classDef validate fill:#eff6ff,stroke:#1d4ed8,stroke-width:2px,color:#172554;
+    classDef browser fill:#f5f3ff,stroke:#6d28d9,stroke-width:2px,color:#2e1065;
+    classDef success fill:#ecfdf5,stroke:#047857,stroke-width:2px,color:#022c22;
+    classDef failure fill:#fef2f2,stroke:#b91c1c,stroke-width:2px,color:#450a0a;
+
+    class EVENT,CHECKOUT,SETUP,INSTALL trigger;
+    class LINT,TYPECHECK,TESTS,BUILD validate;
+    class CHROMIUM,E2E browser;
+    class PASS success;
+    class REPORT failure;
