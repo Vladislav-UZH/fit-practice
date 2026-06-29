@@ -44,6 +44,7 @@ const definitions = [
 ] as const
 
 const activeId = ref<UseCaseId>('home')
+const interactiveReady = ref(false)
 
 const recommendations = computed<RecommendationItem[]>(() =>
   definitions.flatMap((definition) => {
@@ -68,12 +69,12 @@ const activeRecommendation = computed(() =>
   recommendations.value.find(item => item.id === activeId.value) ?? recommendations.value[0]
 )
 
+onMounted(() => {
+  interactiveReady.value = true
+})
+
 function tabId(id: UseCaseId) {
   return `use-case-tab-${id}`
-}
-
-function panelId(id: UseCaseId) {
-  return `use-case-panel-${id}`
 }
 
 async function activateAt(index: number) {
@@ -144,6 +145,7 @@ function handleTabKeydown(event: KeyboardEvent, index: number) {
           <div
             role="tablist"
             :aria-label="$t('a11y.useCaseTabs')"
+            :aria-busy="!interactiveReady"
             class="grid grid-cols-3 border border-black/15 bg-[#ebeae4] p-1"
           >
             <button
@@ -152,10 +154,11 @@ function handleTabKeydown(event: KeyboardEvent, index: number) {
               :key="item.id"
               type="button"
               role="tab"
+              aria-controls="use-case-panel"
               :aria-selected="activeId === item.id"
-              :aria-controls="panelId(item.id)"
               :tabindex="activeId === item.id ? 0 : -1"
-              class="flex min-h-16 items-center gap-3 px-5 py-3 text-left text-sm font-semibold transition-colors focus-visible:z-10"
+              :disabled="!interactiveReady"
+              class="flex min-h-16 items-center gap-3 px-5 py-3 text-left text-sm font-semibold transition-colors focus-visible:z-10 disabled:cursor-wait disabled:opacity-55"
               :class="activeId === item.id ? 'bg-[#171b19] text-white' : 'text-black/60 hover:bg-white/70 hover:text-black'"
               @click="activeId = item.id"
               @keydown="handleTabKeydown($event, index)"
@@ -173,7 +176,7 @@ function handleTabKeydown(event: KeyboardEvent, index: number) {
 
           <div
             v-if="activeRecommendation"
-            :id="panelId(activeRecommendation.id)"
+            id="use-case-panel"
             data-testid="use-case-panel"
             role="tabpanel"
             :aria-labelledby="tabId(activeRecommendation.id)"
