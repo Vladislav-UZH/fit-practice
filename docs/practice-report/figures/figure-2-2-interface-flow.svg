@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Послідовність основних маршрутів інформаційної вебсистеми</title>
+  <desc id="desc">Схема показує переходи від головної сторінки до каталогу, деталей, порівняння, інформаційних сторінок, контактної форми, правових пояснень та контрольованої помилки.</desc>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+    <style>
+      text{font-family:Arial,'DejaVu Sans',sans-serif;fill:#0f172a}.h{font-size:22px;font-weight:700}.t{font-size:16px;font-weight:600}.s{font-size:14px}.box{stroke-width:2;rx:16}.home{fill:#eef5e5;stroke:#365314}.product{fill:#eff6ff;stroke:#1d4ed8}.info{fill:#f5f3ff;stroke:#6d28d9}.action{fill:#fff7ed;stroke:#c2410c}.error{fill:#fef2f2;stroke:#b91c1c}.line{stroke:#64748b;stroke-width:2.2;fill:none;marker-end:url(#a)}.dash{stroke:#b91c1c;stroke-width:2;stroke-dasharray:8 7;fill:none;marker-end:url(#a)}
+    </style>
+  </defs>
+  <text x="600" y="40" text-anchor="middle" class="h">Послідовність основних маршрутів інформаційної вебсистеми</text>
+
+  <rect x="490" y="75" width="220" height="68" class="box home"/>
+  <text x="600" y="116" text-anchor="middle" class="t">Головна сторінка</text>
+
+  <text x="235" y="188" text-anchor="middle" class="t">Продуктовий шлях</text>
+  <rect x="120" y="215" width="230" height="62" class="box product"/>
+  <text x="235" y="253" text-anchor="middle" class="t">Каталог продуктів</text>
+  <rect x="120" y="330" width="230" height="72" class="box product"/>
+  <text x="235" y="359" text-anchor="middle" class="s"><tspan x="235">Детальні сторінки</tspan><tspan x="235" dy="20">трьох продуктів</tspan></text>
+  <rect x="120" y="455" width="230" height="62" class="box product"/>
+  <text x="235" y="493" text-anchor="middle" class="t">Повне порівняння</text>
+
+  <text x="600" y="188" text-anchor="middle" class="t">Інформаційний шлях</text>
+  <rect x="470" y="215" width="260" height="62" class="box info"/>
+  <text x="600" y="253" text-anchor="middle" class="t">Technology</text>
+  <rect x="470" y="330" width="260" height="62" class="box info"/>
+  <text x="600" y="368" text-anchor="middle" class="t">About</text>
+  <rect x="470" y="455" width="260" height="62" class="box info"/>
+  <text x="600" y="493" text-anchor="middle" class="t">Legal</text>
+
+  <text x="965" y="188" text-anchor="middle" class="t">Демонстраційна взаємодія</text>
+  <rect x="835" y="270" width="260" height="82" class="box action"/>
+  <text x="965" y="303" text-anchor="middle" class="s"><tspan x="965">Контактна форма</tspan><tspan x="965" dy="20">з серверною валідацією</tspan></text>
+  <rect x="835" y="455" width="260" height="72" class="box error"/>
+  <text x="965" y="484" text-anchor="middle" class="s"><tspan x="965">Контрольована помилка</tspan><tspan x="965" dy="20">для невідомого slug</tspan></text>
+
+  <path d="M540 143 C430 170 320 190 235 215" class="line"/>
+  <path d="M600 143 V215" class="line"/>
+  <path d="M660 143 C790 170 900 205 965 270" class="line"/>
+
+  <path d="M235 277 V330" class="line"/>
+  <path d="M235 402 V455" class="line"/>
+  <path d="M600 277 V330" class="line"/>
+  <path d="M600 392 V455" class="line"/>
+
+  <path d="M350 366 C470 310 710 300 835 311" class="line"/>
+  <path d="M350 486 C540 585 760 505 835 331" class="line"/>
+  <path d="M730 361 C785 350 815 330 835 317" class="line"/>
+  <path d="M730 486 H835" class="line"/>
+  <path d="M835 496 C780 560 720 590 600 517" class="line"/>
+  <path d="M350 365 C620 660 850 610 965 527" class="dash"/>
+
+  <rect x="95" y="615" width="1010" height="70" rx="18" fill="#f8fafc" stroke="#94a3b8" stroke-width="2"/>
+  <text x="600" y="644" text-anchor="middle" class="s"><tspan x="600">Усі основні маршрути існують українською та англійською мовами.</tspan><tspan x="600" dy="22">Перехід до контакту не означає продаж, оплату або інженерне підтвердження сумісності.</tspan></text>
+</svg>
