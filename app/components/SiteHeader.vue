@@ -5,6 +5,7 @@ const switchLocalePath = useSwitchLocalePath()
 const route = useRoute()
 
 const mobileOpen = ref(false)
+const mobileReady = ref(false)
 const mobileTrigger = ref<HTMLButtonElement | null>(null)
 
 const navigation = computed(() => [
@@ -17,6 +18,10 @@ const navigation = computed(() => [
 const alternateLocale = computed(() =>
   locales.value.find(item => item.code !== locale.value)
 )
+
+onMounted(() => {
+  mobileReady.value = true
+})
 
 watch(
   () => route.fullPath,
@@ -81,10 +86,11 @@ watch(mobileOpen, async (open, wasOpen) => {
         <button
           ref="mobileTrigger"
           type="button"
-          class="grid size-11 place-items-center rounded-md text-black/70 transition-colors hover:bg-black/5 hover:text-black lg:hidden"
+          class="grid size-11 place-items-center rounded-md text-black/70 transition-colors hover:bg-black/5 hover:text-black disabled:cursor-wait disabled:opacity-50 lg:hidden"
           :aria-label="$t('a11y.openMenu')"
           aria-haspopup="dialog"
           :aria-expanded="mobileOpen"
+          :disabled="!mobileReady"
           @click="mobileOpen = true"
         >
           <UIcon name="i-lucide-menu" class="size-5" aria-hidden="true" />
