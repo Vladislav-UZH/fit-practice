@@ -4,19 +4,19 @@
 
 - Last reviewed: 2026-06-29
 - Repository: `Vladislav-UZH/fit-practice`
-- Reviewed branch: `feat/homepage-product-lineup`
-- Current phase: homepage product decision layer
-- Application readiness: initialized, buildable, visually structured, and product-differentiated
+- Reviewed branch: `feat/homepage-use-case-recommendation`
+- Current phase: homepage scenario-guidance layer
+- Application readiness: initialized, buildable, visually structured, product-differentiated, and use-case guided
 - Release readiness: `NOT READY`
 
 ## Completed
 
-### Project foundation
+### Project and skill foundation
 
 - Root instructions and durable project context exist.
 - Project, landing-design, Nuxt engineering, and release-check skills exist under `.agents/skills/`.
-- Added `references/homepage-product-lineup.md` with the lineup data contract, layout rules, claim limits, and acceptance checks.
-- Updated the MAXIBUD skill prompt to load the lineup reference for relevant work.
+- Homepage lineup and use-case recommendation contracts exist under the MAXIBUD project skill.
+- The MAXIBUD skill prompt routes relevant work to both dedicated references.
 
 ### Nuxt foundation
 
@@ -29,32 +29,38 @@
 
 - Typed Ukrainian and English product records exist for PowerBox 2400, HomeCore 5, and SiteHub 10.
 - Shared Zod schemas validate locales, slugs, highlights, lineup data, and product records.
-- Nitro endpoints provide localized product lists and product details with intentional validation and 404 behavior.
-- Lineup content is separately modeled as context, distinction, two reasons, comparison values, and an accessible visual description.
+- Nitro endpoints provide localized product lists and detail records with intentional validation and 404 behavior.
+- Product context, distinction, two reasons, comparison values, and visual descriptions remain stored in product content.
 
-### Homepage visual foundation
+### Homepage visual and product layers
 
-- The production header includes desktop active states and a hydration-safe mobile Drawer.
-- Escape closes the Drawer and focus returns to its trigger.
-- The hero presents concept status, product-family positioning, calls to action, and an original portfolio SVG.
+- The production header includes active desktop navigation and a hydration-safe mobile Drawer.
+- The hero presents concept status, calls to action, and an original product-family SVG.
 - The factual portfolio strip avoids fabricated commercial metrics.
+- Three asymmetric product chapters explain context, distinction, reasons, capacity, output, format, and detail paths.
+- Original inline SVG silhouettes represent portable, stationary modular, and wheeled professional concepts.
+- `docs/design-reviews/homepage-product-lineup.md` records an 18/20 approval score.
 
-### Homepage product lineup
+### Homepage use-case recommendation
 
-- Replaced the generic homepage card grid with three substantial asymmetric product chapters.
-- Preserved text-first DOM order on mobile and alternated visual position only at desktop widths.
-- Added a consistent hierarchy: category, concept label, name, distinction, context, summary, two reasons, comparison values, and one detail action.
-- Added original inline SVG silhouettes for portable, stationary modular, and wheeled professional formats.
-- Kept localized names and copy outside artwork.
-- Added meaningful accessible descriptions for all product visuals.
-- Added complete Ukrainian and English content.
-- Added `docs/design-reviews/homepage-product-lineup.md` with an 18/20 approval score and no blockers.
+- Added three localized contexts in the order home, mobile work, and construction site.
+- Mapped home to HomeCore 5, mobile work to PowerBox 2400, and construction use to SiteHub 10.
+- Reused product distinctions, exactly two reasons, slugs, and accessible visual descriptions from existing product records.
+- Added a desktop tab interface with synchronized ARIA state, roving tabindex, Arrow Left and Right, Home, End, and focus movement.
+- Disabled SSR-rendered tabs until Vue mounts and exposed a busy state during hydration.
+- Added one persistent tabpanel relationship for all tab controls.
+- Added a stacked mobile fallback where all three recommendations remain visible without interaction.
+- Added product-detail and comparison actions for every context.
+- Added a visible disclaimer that the guidance is not engineering sizing for a real installation.
+- Added complete Ukrainian and English copy.
+- Added `docs/design-reviews/homepage-use-case-recommendation.md` with an 18/20 approval score and no blockers.
 
 ### Quality and automation
 
-- GitHub Actions runs dependency installation, ESLint, type checking, unit tests, Nuxt-runtime tests, production build, and Playwright E2E.
-- Component coverage includes the product decision hierarchy and accessible visual.
-- Browser coverage includes bilingual rendering, portfolio order, API lineup data, 320 px overflow, mobile navigation, localized product routes, and intentional API 404 behavior.
+- GitHub Actions runs frozen installation, ESLint, type checking, unit tests, Nuxt-runtime tests, production build, Chromium, and Playwright E2E.
+- Component tests cover context mapping, mobile fallback presence, default recommendation, and keyboard state changes.
+- Browser tests cover bilingual rendering, keyboard focus, ARIA selection, all three panel states, panel-height spread, mobile visibility, 320 px width stability, navigation, product routes, and API behavior.
+- CI preserves Playwright reports after browser failures.
 
 ## Validation Results
 
@@ -72,14 +78,23 @@ Passed:
 
 The browser suite verifies:
 
-- Ukrainian and English homepage rendering;
-- three visible product chapters in portfolio order;
-- product distinctions and aligned comparison values;
-- localized lineup data returned by the API;
-- no horizontal overflow at 320 × 800;
-- mobile menu opening, Escape close, and focus restoration;
-- localized product detail rendering;
-- intentional API 404 behavior.
+- Ukrainian and English recommendation content;
+- HomeCore 5 as the default home recommendation;
+- ArrowRight and End keyboard navigation;
+- focus movement to the selected tab;
+- synchronized `aria-selected`, `tabindex`, and tabpanel labeling;
+- all three desktop recommendation states;
+- maximum desktop panel-height spread below 16 px at 1280 × 900;
+- all three mobile recommendations visible at 320 × 800;
+- no horizontal overflow at 320 px;
+- existing mobile Drawer, localized product routes, API data, and intentional 404 behavior.
+
+### Defects Found and Corrected
+
+1. SSR tab controls initially accepted keyboard input before hydration. They are now disabled until `onMounted`.
+2. Inactive tabs initially referenced panel IDs that were not present. All tabs now control one persistent panel.
+3. The first component test relied on implicit `nextTick`. It now imports Vue explicitly.
+4. The first panel-stability test used an unrealistic 2 px limit. The final test measures every state and rejects material spread of 16 px or more.
 
 ## Known Warnings
 
@@ -89,13 +104,12 @@ The browser suite verifies:
 
 ## Current Application Scope
 
-The technical foundation, homepage hero, portfolio evidence strip, and homepage product lineup are complete.
+The technical foundation, homepage hero, portfolio evidence, product lineup, and use-case recommendation are complete.
 
 Still incomplete:
 
 - final product renders and responsive image assets;
-- use-case recommendation section;
-- comparison preview and full comparison matrix;
+- homepage comparison preview and full comparison matrix;
 - shared technology section and final homepage CTA;
 - full product-detail content and grouped specifications;
 - complete technology, about, legal, and contact content;
@@ -105,26 +119,26 @@ Still incomplete:
 
 ## Immediate Next Milestone
 
-Implement the homepage use-case recommendation slice:
+Implement the homepage comparison-preview slice:
 
-1. define three localized contexts: home, mobile work, and construction site;
-2. map each context to one recommended product using existing product records;
-3. show exactly two reasons and one product-detail action per context;
-4. add a small comparison action without duplicating the full comparison matrix;
-5. use an accessible tab or segmented-control pattern with stable panel dimensions;
-6. provide a stacked mobile fallback;
-7. add component and E2E coverage for keyboard interaction and localized content;
+1. use existing structured capacity, output, and format values for all three products;
+2. show one compact desktop comparison surface without duplicating the full matrix;
+3. provide a stacked mobile representation without horizontal table scrolling;
+4. preserve product order and consistent localized units;
+5. add one product-detail path per product and one primary action to the full comparison route;
+6. keep concept disclosure visible near the technical values;
+7. add component and E2E coverage for bilingual values, mobile order, and 320 px stability;
 8. update the design review, skill reference, and this state file.
 
 ## Exit Criteria for the Next Milestone
 
-- each use case maps to a clearly named product;
-- recommendation reasons remain consistent with product records;
-- keyboard users can change the active context;
-- mobile users can access all contexts without a carousel;
-- the panel avoids large layout shifts;
-- Ukrainian and English versions remain semantically equivalent;
-- concept status and truthful claims remain intact;
+- capacity, output, and format align across all products;
+- desktop comparison is scannable without decorative scoring;
+- mobile users see every product and metric without horizontal scrolling;
+- values come from product records rather than duplicated locale content;
+- Ukrainian and English units remain internally consistent;
+- product and full-comparison actions use localized routes;
+- concept status remains explicit;
 - lint, typecheck, tests, E2E, and build pass;
 - `CURRENT_STATE.md` records exact results.
 
@@ -132,4 +146,4 @@ Implement the homepage use-case recommendation slice:
 
 `NOT READY`
 
-Reason: the homepage now explains and differentiates the product family, but use-case guidance, comparison, final product visuals, detailed content, contact flow, manual accessibility and performance review, and deployment configuration remain incomplete.
+Reason: the homepage now explains, differentiates, and guides visitors through the product family, but comparison, final product visuals, detailed product content, contact flow, manual accessibility and performance review, and deployment configuration remain incomplete.
