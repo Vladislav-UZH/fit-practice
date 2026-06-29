@@ -1,3 +1,4 @@
+import { nextTick } from 'vue'
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import PageIntro from '~/components/PageIntro.vue'
@@ -112,7 +113,7 @@ describe('ProductLineupChapter', () => {
           name: 'MAXIBUD PowerBox 2400',
           category: 'Portable system',
           summary: 'A portable concept for mobile work.',
-          lineup: recommendationProducts[0].lineup
+          lineup: recommendationProducts[0]!.lineup
         }
       }
     })
@@ -138,7 +139,7 @@ describe('UseCaseRecommendation', () => {
 
     expect(tabs).toHaveLength(3)
     expect(mobileCards).toHaveLength(3)
-    expect(tabs[0].attributes('aria-selected')).toBe('true')
+    expect(tabs[0]!.attributes('aria-selected')).toBe('true')
     expect(wrapper.get('[role="tabpanel"]').text()).toContain('MAXIBUD HomeCore 5')
   })
 
@@ -151,19 +152,19 @@ describe('UseCaseRecommendation', () => {
 
     const tabs = wrapper.findAll('[role="tab"]')
 
-    await tabs[0].trigger('keydown', { key: 'ArrowRight' })
+    await tabs[0]!.trigger('keydown', { key: 'ArrowRight' })
     await nextTick()
-    expect(tabs[1].attributes('aria-selected')).toBe('true')
+    expect(tabs[1]!.attributes('aria-selected')).toBe('true')
     expect(wrapper.get('[role="tabpanel"]').text()).toContain('MAXIBUD PowerBox 2400')
 
-    await tabs[1].trigger('keydown', { key: 'End' })
+    await tabs[1]!.trigger('keydown', { key: 'End' })
     await nextTick()
-    expect(tabs[2].attributes('aria-selected')).toBe('true')
+    expect(tabs[2]!.attributes('aria-selected')).toBe('true')
     expect(wrapper.get('[role="tabpanel"]').text()).toContain('MAXIBUD SiteHub 10')
 
-    await tabs[2].trigger('keydown', { key: 'Home' })
+    await tabs[2]!.trigger('keydown', { key: 'Home' })
     await nextTick()
-    expect(tabs[0].attributes('aria-selected')).toBe('true')
+    expect(tabs[0]!.attributes('aria-selected')).toBe('true')
     expect(wrapper.get('[role="tabpanel"]').text()).toContain('MAXIBUD HomeCore 5')
   })
 })
