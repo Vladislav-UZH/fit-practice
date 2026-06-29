@@ -1,0 +1,51 @@
+flowchart TB
+    USER[Користувачі вебсистеми]
+
+    subgraph SYSTEM[Навчальна інформаційна вебсистема MAXIBUD ENERGY]
+        HOME[Головна сторінка]
+        PRODUCTS[Сторінки продуктів]
+        COMPARE[Порівняння продуктів]
+        I18N[Українська та англійська локалізації]
+        API[Серверні API-маршрути]
+        CONTENT[Структурований продуктовий контент]
+
+        HOME --> PRODUCTS
+        HOME --> COMPARE
+        PRODUCTS --> API
+        COMPARE --> API
+        API --> CONTENT
+        I18N --> HOME
+        I18N --> PRODUCTS
+        I18N --> COMPARE
+    end
+
+    USER --> HOME
+
+    subgraph PRODUCTS_SCOPE[Концептуальна продуктова лінійка]
+        P1[MAXIBUD PowerBox 2400]
+        P2[MAXIBUD HomeCore 5]
+        P3[MAXIBUD SiteHub 10]
+    end
+
+    CONTENT --> P1
+    CONTENT --> P2
+    CONTENT --> P3
+
+    subgraph OUTSIDE[Поза межами системи]
+        SALES[Продаж, ціни та оплата]
+        ENGINEERING[Інженерні розрахунки й монтаж]
+        HARDWARE[Керування фізичним обладнанням]
+        CERT[Сертифікація та підтвердження відповідності]
+    end
+
+    SYSTEM -. не реалізує .-> SALES
+    SYSTEM -. не виконує .-> ENGINEERING
+    SYSTEM -. не підтримує .-> HARDWARE
+    SYSTEM -. не підтверджує .-> CERT
+
+    classDef primary fill:#eef5e5,stroke:#365314,stroke-width:2px,color:#17220b;
+    classDef system fill:#f8fafc,stroke:#334155,stroke-width:1.5px,color:#0f172a;
+    classDef outside fill:#fff7ed,stroke:#9a3412,stroke-width:1.5px,color:#431407;
+    class USER primary;
+    class HOME,PRODUCTS,COMPARE,I18N,API,CONTENT,P1,P2,P3 system;
+    class SALES,ENGINEERING,HARDWARE,CERT outside;
