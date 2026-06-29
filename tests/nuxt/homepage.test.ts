@@ -1,10 +1,12 @@
 import { nextTick } from 'vue'
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
+import HomepageFinalCta from '~/components/HomepageFinalCta.vue'
 import PageIntro from '~/components/PageIntro.vue'
 import ProductComparisonPreview from '~/components/ProductComparisonPreview.vue'
 import ProductFamilyStage from '~/components/ProductFamilyStage.vue'
 import ProductLineupChapter from '~/components/ProductLineupChapter.vue'
+import SharedTechnologyChapter from '~/components/SharedTechnologyChapter.vue'
 import UseCaseRecommendation from '~/components/UseCaseRecommendation.vue'
 
 const recommendationProducts = [
@@ -204,5 +206,29 @@ describe('ProductComparisonPreview', () => {
     expect(cards[1]!.text()).toContain('MAXIBUD HomeCore 5')
     expect(cards[2]!.text()).toContain('MAXIBUD SiteHub 10')
     expect(cards.every(card => card.findAll('dt').length === 3)).toBe(true)
+  })
+})
+
+describe('SharedTechnologyChapter', () => {
+  it('renders three shared principles and an accessible original diagram', async () => {
+    const wrapper = await mountSuspended(SharedTechnologyChapter)
+    const principles = wrapper.findAll('[data-testid="technology-principle"]')
+    const diagram = wrapper.get('[data-testid="technology-diagram"]')
+
+    expect(principles).toHaveLength(3)
+    expect(diagram.attributes('role')).toBe('img')
+    expect(diagram.attributes('aria-label')).toBeTruthy()
+    expect(wrapper.find('a[href="/technology"]').exists()).toBe(true)
+  })
+})
+
+describe('HomepageFinalCta', () => {
+  it('keeps one primary consultation path and one secondary product path', async () => {
+    const wrapper = await mountSuspended(HomepageFinalCta)
+
+    expect(wrapper.findAll('a')).toHaveLength(2)
+    expect(wrapper.find('a[href="/contact"]').exists()).toBe(true)
+    expect(wrapper.find('a[href="/products"]').exists()).toBe(true)
+    expect(wrapper.text()).toMatch(/Concept product|Концептуальний продукт/)
   })
 })

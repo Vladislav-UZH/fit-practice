@@ -139,5 +139,8 @@ usePageSeo(
       v-if="productList.length"
       :products="productList"
     />
+
+    <SharedTechnologyChapter />
+    <HomepageFinalCta />
   </div>
 </template>
