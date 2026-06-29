@@ -25,7 +25,7 @@
 - The application shell, skip link, active navigation, hydration-safe mobile Drawer, footer, error page, theme tokens, localized routes, SEO metadata, and canonical URLs exist.
 - Ukrainian is the default locale; English uses the `/en` prefix.
 - Node.js `24.11.1` and pnpm `11.9.0` are declared with a frozen lockfile.
-- Nuxt DevTools remain available for normal local development and are disabled in CI to prevent test-only toolbar layout interference.
+- Nuxt DevTools remain available for normal local development and are disabled in CI so browser checks measure only the application interface.
 
 ### Content and server layer
 
@@ -87,7 +87,7 @@
 - The page identifies MAXIBUD ENERGY as a fictional product line associated in the educational context with MAXIBUD LLC / ТОВ «МАКСІБУД».
 - Verified implementation facts cover three concept products, two localized versions, SSR, CI, structured content, Zod validation, Nitro APIs, accessibility, and automated testing.
 - The page documents the repository working method and deliberately limited demonstration scope.
-- Copy explicitly avoids fabricated company history, staff, founders, factories, partners, markets, customers, testimonials, certifications, awards, patents, and manufacturing claims.
+- Copy explicitly avoids unsupported company-history, staffing, facility, partner, customer, certification, award, patent, and manufacturing claims.
 - Localized products, contact, and legal actions exist.
 - `.agents/skills/maxibud-energy-site/references/technology-about-pages.md` defines the dedicated contract.
 - `docs/design-reviews/technology-about-pages.md` records an 18/20 approval score and no blockers.
@@ -106,7 +106,7 @@
 
 ## Validation Results
 
-The complete configured validation sequence covers:
+The complete configured validation sequence passes:
 
 - frozen dependency installation;
 - ESLint;
@@ -139,7 +139,10 @@ The browser suite verifies:
 5. Route pages briefly introduced nested main landmarks; route wrappers now remain non-landmark containers.
 6. Technology and About E2E link locators matched duplicate global actions; assertions are scoped to route-level containers.
 7. Mobile width assertions initially measured the SSR-to-hydration transition instead of the settled interface; tests now wait for hydrated controls.
-8. Nuxt DevTools added a development-only floating toolbar that expanded CI page scroll width by 10–13 px; DevTools are now disabled when `CI` is set.
+8. The Contact legal action inherited nowrap behavior and expanded a narrow grid track; the grid now uses `min-w-0` and the action allows safe wrapping.
+9. A long Ukrainian Technology H1 produced text-paint overflow even though its element box remained inside the viewport; shared `PageIntro` headings now use safe word wrapping.
+10. Nuxt DevTools added irrelevant development UI to CI browser runs and are now disabled when `CI` is set.
+11. Mobile overflow tests now report element, section, and paint-layer diagnostics when a regression occurs.
 
 ## Known Warnings
 
