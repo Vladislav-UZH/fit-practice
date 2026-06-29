@@ -129,6 +129,8 @@ test('representative routes stay within synthetic LCP and CLS budgets', async ({
     expect(metrics.cls, `${path} synthetic CLS`).toBeLessThanOrEqual(0.1)
   }
 
+  console.info(`Synthetic performance results: ${JSON.stringify(results)}`)
+
   await testInfo.attach('synthetic-performance-results', {
     body: JSON.stringify(results, null, 2),
     contentType: 'application/json'
