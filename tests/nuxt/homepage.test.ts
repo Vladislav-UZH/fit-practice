@@ -22,7 +22,7 @@ describe('ProductFamilyStage', () => {
   it('exposes an accessible portfolio visual and all product labels', async () => {
     const wrapper = await mountSuspended(ProductFamilyStage, {
       props: {
-        ariaLabel: 'Three product formats at relative scale',
+        accessibleLabel: 'Three product formats at relative scale',
         caption: 'One product family',
         products: [
           { name: 'PowerBox 2400', context: 'Mobile work' },

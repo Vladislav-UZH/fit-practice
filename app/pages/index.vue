@@ -80,7 +80,7 @@ usePageSeo(
 
           <div class="lg:col-span-7">
             <ProductFamilyStage
-              :aria-label="$t('a11y.productFamilyVisual')"
+              :accessible-label="$t('a11y.productFamilyVisual')"
               :caption="$t('pages.home.stageCaption')"
               :products="stageProducts"
             />

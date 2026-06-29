@@ -5,7 +5,7 @@ interface StageProduct {
 }
 
 defineProps<{
-  ariaLabel: string
+  accessibleLabel: string
   caption: string
   products: StageProduct[]
 }>()
@@ -28,7 +28,7 @@ defineProps<{
         height="520"
         viewBox="0 0 760 520"
         role="img"
-        :aria-label="ariaLabel"
+        :aria-label="accessibleLabel"
         preserveAspectRatio="xMidYMax meet"
       >
         <defs>
