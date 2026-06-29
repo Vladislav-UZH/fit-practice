@@ -1,0 +1,33 @@
+flowchart LR
+    AUTHOR[Редагування локалізованого YAML-запису]
+    CONTENT[Колекція Nuxt Content]
+    SCHEMA[Zod-схема продукту]
+    API_LIST[API списку продуктів]
+    API_DETAIL[API продукту за slug]
+    PAGE[Nuxt-сторінка]
+    COMPONENT[Vue-компоненти]
+    OUTPUT[Локалізований SSR-інтерфейс]
+    TESTS[Vitest і Playwright]
+
+    AUTHOR --> CONTENT
+    SCHEMA --> CONTENT
+    CONTENT --> API_LIST
+    CONTENT --> API_DETAIL
+    API_LIST --> PAGE
+    API_DETAIL --> PAGE
+    PAGE --> COMPONENT
+    COMPONENT --> OUTPUT
+    TESTS -. перевіряють .-> SCHEMA
+    TESTS -. перевіряють .-> API_LIST
+    TESTS -. перевіряють .-> API_DETAIL
+    TESTS -. перевіряють .-> OUTPUT
+
+    classDef source fill:#ecfdf5,stroke:#047857,stroke-width:2px,color:#022c22;
+    classDef server fill:#f5f3ff,stroke:#6d28d9,stroke-width:2px,color:#2e1065;
+    classDef ui fill:#eff6ff,stroke:#1d4ed8,stroke-width:2px,color:#172554;
+    classDef quality fill:#fff7ed,stroke:#c2410c,stroke-width:2px,color:#431407;
+
+    class AUTHOR,CONTENT,SCHEMA source;
+    class API_LIST,API_DETAIL server;
+    class PAGE,COMPONENT,OUTPUT ui;
+    class TESTS quality;
