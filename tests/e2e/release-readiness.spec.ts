@@ -68,7 +68,7 @@ test('keyboard navigation reaches the skip link and primary content actions', as
   await page.goto('/')
 
   await page.keyboard.press('Tab')
-  await expect(page.getByRole('link', { name: /Перейти до вмісту|Skip to content/ })).toBeFocused()
+  await expect(page.getByRole('link', { name: /Перейти до основного вмісту|Skip to (?:the )?(?:main )?content/ })).toBeFocused()
   await page.keyboard.press('Enter')
   await expect(page).toHaveURL(/#main-content$/)
 
