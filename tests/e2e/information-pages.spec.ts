@@ -4,6 +4,8 @@ async function mobileLayoutDiagnostics(page: Page) {
   return page.evaluate(() => {
     const clientWidth = document.documentElement.clientWidth
     const scrollWidth = document.documentElement.scrollWidth
+    const root = document.querySelector<HTMLElement>('[data-testid="technology-page"], [data-testid="about-page"]')
+
     const offenders = Array.from(document.querySelectorAll<HTMLElement>('body *'))
       .map((element) => {
         const rect = element.getBoundingClientRect()
@@ -21,7 +23,48 @@ async function mobileLayoutDiagnostics(page: Page) {
       .sort((a, b) => b.right - a.right)
       .slice(0, 12)
 
-    return { clientWidth, scrollWidth, offenders }
+    const sectionImpact = root
+      ? Array.from(root.children).map((child, index) => {
+          const element = child as HTMLElement
+          const previousDisplay = element.style.display
+          element.style.display = 'none'
+          const widthWithoutSection = document.documentElement.scrollWidth
+          element.style.display = previousDisplay
+
+          return {
+            index,
+            tag: element.tagName.toLowerCase(),
+            className: element.className,
+            heading: element.querySelector('h1, h2')?.textContent?.trim().slice(0, 80) ?? '',
+            widthWithoutSection
+          }
+        })
+      : []
+
+    const activeElement = document.activeElement as HTMLElement | null
+    const active = activeElement
+      ? {
+          tag: activeElement.tagName.toLowerCase(),
+          className: activeElement.className,
+          text: (activeElement.textContent ?? '').trim().replace(/\s+/g, ' ').slice(0, 80)
+        }
+      : null
+
+    const initialScrollX = window.scrollX
+    window.scrollTo({ left: Math.max(0, scrollWidth - clientWidth), behavior: 'instant' })
+    const rightEdgeHits = Array.from({ length: 16 }, (_, index) => 24 + index * 44)
+      .map(y => document.elementFromPoint(clientWidth - 1, Math.min(y, window.innerHeight - 1)) as HTMLElement | null)
+      .filter((element): element is HTMLElement => Boolean(element))
+      .map(element => ({
+        tag: element.tagName.toLowerCase(),
+        className: element.className,
+        testId: element.dataset.testid ?? '',
+        text: (element.textContent ?? '').trim().replace(/\s+/g, ' ').slice(0, 80)
+      }))
+      .filter((item, index, items) => items.findIndex(candidate => JSON.stringify(candidate) === JSON.stringify(item)) === index)
+    window.scrollTo({ left: initialScrollX, behavior: 'instant' })
+
+    return { clientWidth, scrollWidth, offenders, sectionImpact, active, rightEdgeHits }
   })
 }
 
@@ -81,7 +124,7 @@ test('information pages remain stable at 320 pixels after hydration', async ({ p
     const diagnostics = await mobileLayoutDiagnostics(page)
     expect(
       diagnostics.scrollWidth,
-      `${path} overflow offenders: ${JSON.stringify(diagnostics.offenders, null, 2)}`
+      `${path} layout diagnostics: ${JSON.stringify(diagnostics, null, 2)}`
     ).toBeLessThanOrEqual(diagnostics.clientWidth + 1)
   }
 })
