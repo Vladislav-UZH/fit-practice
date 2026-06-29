@@ -172,7 +172,24 @@
       "seoDescription": "Огляд концептуальних продуктів PowerBox 2400, HomeCore 5 і SiteHub 10."
     },
     "product": {
-      "visualPlaceholder": "Місце для оригінального продуктового рендера."
+      "overviewEyebrow": "Контекст продукту",
+      "overviewTitle": "Детальний огляд",
+      "featuresTitle": "Ключові особливості",
+      "applicationsTitle": "Концептуальні сценарії",
+      "applicationsDisclosure": "Сценарії описують цільові контексти концепту. Вони не гарантують час роботи, сумісність із навантаженням або придатність до монтажу.",
+      "specificationsEyebrow": "Технічний профіль",
+      "specificationsTitle": "Згруповані характеристики",
+      "specificationDisclosure": "Ілюстративні значення концепту, а не сертифіковані комерційні параметри.",
+      "documentsTitle": "Концептуальні документи",
+      "relatedEyebrow": "Навігація портфелем",
+      "relatedTitle": "Пов’язані формати",
+      "consultationEyebrow": "Демонстраційна консультація",
+      "consultationTitle": "Обговорити концепт {product}",
+      "consultationDisclosure": "Демонстраційний потік фіксує контекст продукту. Він не виконує інженерний підбір, перевірку сумісності та не надає цін, даних про наявність чи постачання.",
+      "status": {
+        "configurationDependent": "Залежить від конфігурації",
+        "unavailable": "Не передбачено"
+      }
     },
     "compare": {
       "eyebrow": "Порівняння",

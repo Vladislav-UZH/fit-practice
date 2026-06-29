@@ -2,8 +2,11 @@ import { describe, expect, it } from 'vitest'
 import {
   comparisonValueSchema,
   productComparisonSchema,
+  productDocumentSchema,
+  productSpecificationsSchema,
   productSlugSchema
 } from '../../shared/schemas/product'
+import type { ComparisonValueStatus } from '../../shared/schemas/product'
 
 describe('productSlugSchema', () => {
   it('accepts every approved product slug', () => {
@@ -36,6 +39,78 @@ describe('productComparisonSchema', () => {
       values: {
         primaryUse: { value: 'Mobile work' }
       }
+    })).toThrow()
+  })
+})
+
+describe('productSpecificationsSchema', () => {
+  const group = (id: string, status: ComparisonValueStatus = 'value') => ({
+    id,
+    title: id,
+    items: [{
+      key: `${id}-value`,
+      label: id,
+      value: { value: 'Illustrative value', status }
+    }]
+  })
+
+  it('requires the documented five-group order', () => {
+    const specifications = [
+      group('energy'),
+      group('output-input'),
+      group('physical'),
+      group('environment'),
+      group('controls')
+    ]
+
+    expect(productSpecificationsSchema.parse(specifications).map(item => item.id)).toEqual([
+      'energy',
+      'output-input',
+      'physical',
+      'environment',
+      'controls'
+    ])
+
+    expect(() => productSpecificationsSchema.parse([
+      specifications[1],
+      specifications[0],
+      ...specifications.slice(2)
+    ])).toThrow()
+  })
+
+  it('preserves ordinary, configuration-dependent, and unavailable values', () => {
+    const specifications = [
+      group('energy', 'unavailable'),
+      group('output-input', 'configuration-dependent'),
+      group('physical'),
+      group('environment'),
+      group('controls')
+    ]
+
+    const parsed = productSpecificationsSchema.parse(specifications)
+
+    expect(parsed[0].items[0]!.value.status).toBe('unavailable')
+    expect(parsed[1].items[0]!.value.status).toBe('configuration-dependent')
+    expect(parsed[2].items[0]!.value.status).toBe('value')
+  })
+})
+
+describe('productDocumentSchema', () => {
+  it('accepts only explicitly conceptual repository document paths', () => {
+    expect(productDocumentSchema.parse({
+      title: 'Concept overview',
+      type: 'overview',
+      url: '/documents/en/powerbox-2400-overview.pdf',
+      language: 'en',
+      conceptual: true
+    }).conceptual).toBe(true)
+
+    expect(() => productDocumentSchema.parse({
+      title: 'External file',
+      type: 'datasheet',
+      url: 'https://example.com/file.pdf',
+      language: 'en',
+      conceptual: true
     })).toThrow()
   })
 })

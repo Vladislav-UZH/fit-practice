@@ -37,7 +37,6 @@ html {
 }
 
 body {
-  min-width: 20rem;
   min-height: 100vh;
   background: var(--me-background);
   font-family: var(--font-sans);
