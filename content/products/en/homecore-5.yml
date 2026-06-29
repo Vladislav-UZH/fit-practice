@@ -12,6 +12,17 @@ highlights:
     value: up to 20.48 kWh
   - label: System output
     value: 5 kW
+lineup:
+  context: Home, small office, and essential systems
+  distinction: A modular stationary format
+  reasons:
+    - The 5.12 kWh base module supports a conceptual expansion path.
+    - The wall-mounted format clearly separates home use from mobile products.
+  comparison:
+    capacity: 5.12–20.48 kWh
+    output: 5 kW
+    format: Stationary · modular
+  visualDescription: Stylized concept diagram of the wall-mounted HomeCore 5 with modular sections and a status indicator.
 seo:
   title: MAXIBUD HomeCore 5 — modular home concept system
   description: Illustrative overview of the MAXIBUD HomeCore 5 modular concept system.
