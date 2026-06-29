@@ -134,5 +134,10 @@ usePageSeo(
       v-if="productList.length"
       :products="productList"
     />
+
+    <ProductComparisonPreview
+      v-if="productList.length"
+      :products="productList"
+    />
   </div>
 </template>
