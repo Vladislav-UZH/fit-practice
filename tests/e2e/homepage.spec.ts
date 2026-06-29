@@ -7,12 +7,14 @@ test('renders Ukrainian and English home routes', async ({ page }) => {
   await expect(page.getByTestId('portfolio-proof-strip')).toContainText('3 цільові формати')
   await expect(page.getByTestId('product-lineup-chapter')).toHaveCount(3)
   await expect(page.getByTestId('use-case-recommendation')).toContainText('Почніть із робочого контексту')
+  await expect(page.getByTestId('comparison-preview')).toContainText('Три формати в одній технічній рамці')
 
   await page.goto('/en')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Independent power')
   await expect(page.getByTestId('portfolio-proof-strip')).toContainText('3 use-focused formats')
   await expect(page.getByTestId('product-lineup-chapter')).toHaveCount(3)
   await expect(page.getByTestId('use-case-recommendation')).toContainText('Start with the working context')
+  await expect(page.getByTestId('comparison-preview')).toContainText('Three formats in one technical frame')
 })
 
 test('renders a difference-first product lineup in portfolio order', async ({ page }) => {
@@ -63,18 +65,51 @@ test('use-case tabs support keyboard navigation without material panel shift', a
   expect(Math.max(...panelHeights) - Math.min(...panelHeights)).toBeLessThan(16)
 })
 
-test('mobile recommendation exposes every use case without horizontal overflow', async ({ page }) => {
+test('desktop comparison preview aligns products and localized metrics', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 })
+  await page.goto('/')
+
+  const section = page.getByTestId('comparison-preview')
+  const columns = section.getByTestId('comparison-preview-column')
+  const table = section.getByTestId('comparison-preview-table')
+
+  await expect(columns).toHaveCount(3)
+  await expect(columns.nth(0)).toContainText('MAXIBUD PowerBox 2400')
+  await expect(columns.nth(1)).toContainText('MAXIBUD HomeCore 5')
+  await expect(columns.nth(2)).toContainText('MAXIBUD SiteHub 10')
+  await expect(table).toContainText('2,4 кВт·год')
+  await expect(table).toContainText('5,12–20,48 кВт·год')
+  await expect(table).toContainText('Колісний · 118 кг')
+  await expect(section.getByRole('link', { name: 'Порівняти системи' })).toHaveAttribute('href', '/products/compare')
+
+  await page.goto('/en')
+  const englishTable = page.getByTestId('comparison-preview-table')
+  await expect(englishTable).toContainText('2.4 kWh')
+  await expect(englishTable).toContainText('5.12–20.48 kWh')
+  await expect(englishTable).toContainText('Wheeled · 118 kg')
+  await expect(page.getByTestId('comparison-preview').getByRole('link', { name: 'Compare systems' })).toHaveAttribute('href', '/en/products/compare')
+})
+
+test('mobile recommendation and comparison expose all products without overflow', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto('/')
 
-  const section = page.getByTestId('use-case-recommendation')
-  const cards = section.getByTestId('use-case-mobile-card')
+  const recommendation = page.getByTestId('use-case-recommendation')
+  const recommendationCards = recommendation.getByTestId('use-case-mobile-card')
+  const comparison = page.getByTestId('comparison-preview')
+  const comparisonCards = comparison.getByTestId('comparison-preview-mobile-card')
 
-  await expect(cards).toHaveCount(3)
-  await expect(cards.nth(0)).toContainText('MAXIBUD HomeCore 5')
-  await expect(cards.nth(1)).toContainText('MAXIBUD PowerBox 2400')
-  await expect(cards.nth(2)).toContainText('MAXIBUD SiteHub 10')
-  await expect(section.getByRole('tablist')).not.toBeVisible()
+  await expect(recommendationCards).toHaveCount(3)
+  await expect(recommendationCards.nth(0)).toContainText('MAXIBUD HomeCore 5')
+  await expect(recommendationCards.nth(1)).toContainText('MAXIBUD PowerBox 2400')
+  await expect(recommendationCards.nth(2)).toContainText('MAXIBUD SiteHub 10')
+  await expect(recommendation.getByRole('tablist')).not.toBeVisible()
+
+  await expect(comparisonCards).toHaveCount(3)
+  await expect(comparisonCards.nth(0)).toContainText('MAXIBUD PowerBox 2400')
+  await expect(comparisonCards.nth(1)).toContainText('MAXIBUD HomeCore 5')
+  await expect(comparisonCards.nth(2)).toContainText('MAXIBUD SiteHub 10')
+  await expect(comparison.getByTestId('comparison-preview-table')).not.toBeVisible()
 
   const hasHorizontalOverflow = await page.evaluate(() =>
     document.documentElement.scrollWidth > window.innerWidth + 1
