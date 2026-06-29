@@ -5,6 +5,7 @@ const switchLocalePath = useSwitchLocalePath()
 const route = useRoute()
 
 const mobileOpen = ref(false)
+const mobileTrigger = ref<HTMLButtonElement | null>(null)
 
 const navigation = computed(() => [
   { label: t('nav.products'), to: localePath('products') },
@@ -23,6 +24,13 @@ watch(
     mobileOpen.value = false
   }
 )
+
+watch(mobileOpen, async (open, wasOpen) => {
+  if (!open && wasOpen) {
+    await nextTick()
+    mobileTrigger.value?.focus()
+  }
+})
 </script>
 
 <template>
@@ -70,6 +78,18 @@ watch(
           {{ $t('actions.consultation') }}
         </UButton>
 
+        <button
+          ref="mobileTrigger"
+          type="button"
+          class="grid size-11 place-items-center rounded-md text-black/70 transition-colors hover:bg-black/5 hover:text-black lg:hidden"
+          :aria-label="$t('a11y.openMenu')"
+          aria-haspopup="dialog"
+          :aria-expanded="mobileOpen"
+          @click="mobileOpen = true"
+        >
+          <UIcon name="i-lucide-menu" class="size-5" aria-hidden="true" />
+        </button>
+
         <UDrawer
           v-model:open="mobileOpen"
           direction="right"
@@ -77,14 +97,6 @@ watch(
           :title="$t('nav.menu')"
           :description="$t('nav.menuDescription')"
         >
-          <UButton
-            color="neutral"
-            variant="ghost"
-            icon="i-lucide-menu"
-            class="lg:hidden"
-            :aria-label="$t('a11y.openMenu')"
-          />
-
           <template #body>
             <nav :aria-label="$t('a11y.mobileNavigation')">
               <ul class="space-y-1">
