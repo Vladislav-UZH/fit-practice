@@ -8,6 +8,8 @@ test('renders Ukrainian and English home routes', async ({ page }) => {
   await expect(page.getByTestId('product-lineup-chapter')).toHaveCount(3)
   await expect(page.getByTestId('use-case-recommendation')).toContainText('Почніть із робочого контексту')
   await expect(page.getByTestId('comparison-preview')).toContainText('Три формати в одній технічній рамці')
+  await expect(page.getByTestId('shared-technology')).toContainText('Спільні принципи, різна архітектура')
+  await expect(page.getByTestId('homepage-final-cta')).toContainText('Який формат відповідає вашому сценарію?')
 
   await page.goto('/en')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Independent power')
@@ -15,6 +17,8 @@ test('renders Ukrainian and English home routes', async ({ page }) => {
   await expect(page.getByTestId('product-lineup-chapter')).toHaveCount(3)
   await expect(page.getByTestId('use-case-recommendation')).toContainText('Start with the working context')
   await expect(page.getByTestId('comparison-preview')).toContainText('Three formats in one technical frame')
+  await expect(page.getByTestId('shared-technology')).toContainText('Shared principles, different architecture')
+  await expect(page.getByTestId('homepage-final-cta')).toContainText('Which format fits your use case?')
 })
 
 test('renders a difference-first product lineup in portfolio order', async ({ page }) => {
@@ -90,7 +94,32 @@ test('desktop comparison preview aligns products and localized metrics', async (
   await expect(page.getByTestId('comparison-preview').getByRole('link', { name: 'Compare systems' })).toHaveAttribute('href', '/en/products/compare')
 })
 
-test('mobile recommendation and comparison expose all products without overflow', async ({ page }) => {
+test('shared technology and final CTA use localized routes and truthful copy', async ({ page }) => {
+  await page.goto('/')
+
+  const technology = page.getByTestId('shared-technology')
+  const finalCta = page.getByTestId('homepage-final-cta')
+
+  await expect(technology.getByTestId('technology-principle')).toHaveCount(3)
+  await expect(technology.getByTestId('technology-diagram')).toHaveAttribute('role', 'img')
+  await expect(technology).toContainText('не є інструкцією з монтажу')
+  await expect(technology.getByRole('link', { name: 'Дослідити технологію' })).toHaveAttribute('href', '/technology')
+  await expect(finalCta.getByRole('link', { name: 'Отримати консультацію' })).toHaveAttribute('href', '/contact')
+  await expect(finalCta.getByRole('link', { name: 'Переглянути продукти' })).toHaveAttribute('href', '/products')
+  await expect(finalCta).toContainText('не замінює інженерний розрахунок')
+
+  await page.goto('/en')
+
+  const englishTechnology = page.getByTestId('shared-technology')
+  const englishFinalCta = page.getByTestId('homepage-final-cta')
+
+  await expect(englishTechnology.getByRole('link', { name: 'Explore technology' })).toHaveAttribute('href', '/en/technology')
+  await expect(englishFinalCta.getByRole('link', { name: 'Request consultation' })).toHaveAttribute('href', '/en/contact')
+  await expect(englishFinalCta.getByRole('link', { name: 'View products' })).toHaveAttribute('href', '/en/products')
+  await expect(englishFinalCta).toContainText('does not replace engineering calculations')
+})
+
+test('mobile homepage exposes decision content without horizontal overflow', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto('/')
 
@@ -98,6 +127,8 @@ test('mobile recommendation and comparison expose all products without overflow'
   const recommendationCards = recommendation.getByTestId('use-case-mobile-card')
   const comparison = page.getByTestId('comparison-preview')
   const comparisonCards = comparison.getByTestId('comparison-preview-mobile-card')
+  const technology = page.getByTestId('shared-technology')
+  const finalCta = page.getByTestId('homepage-final-cta')
 
   await expect(recommendationCards).toHaveCount(3)
   await expect(recommendationCards.nth(0)).toContainText('MAXIBUD HomeCore 5')
@@ -110,6 +141,11 @@ test('mobile recommendation and comparison expose all products without overflow'
   await expect(comparisonCards.nth(1)).toContainText('MAXIBUD HomeCore 5')
   await expect(comparisonCards.nth(2)).toContainText('MAXIBUD SiteHub 10')
   await expect(comparison.getByTestId('comparison-preview-table')).not.toBeVisible()
+
+  await expect(technology.getByTestId('technology-principle')).toHaveCount(3)
+  await expect(technology.getByTestId('technology-diagram')).toBeVisible()
+  await expect(finalCta.getByRole('link', { name: 'Отримати консультацію' })).toBeVisible()
+  await expect(finalCta.getByRole('link', { name: 'Переглянути продукти' })).toBeVisible()
 
   const hasHorizontalOverflow = await page.evaluate(() =>
     document.documentElement.scrollWidth > window.innerWidth + 1
