@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 
 import { access, readFile } from 'node:fs/promises'
-import { spawn } from 'node:child_process'
 import path from 'node:path'
 import process from 'node:process'
 import { fileURLToPath } from 'node:url'
+import { runProcess } from './process-runner.mjs'
 
 const args = process.argv.slice(2)
 const rootArg = args.find(arg => !arg.startsWith('--')) ?? '.'
@@ -46,7 +46,6 @@ async function detectPackageManager() {
     ['bun', 'bun.lock'],
     ['bun', 'bun.lockb']
   ]
-
   const found = []
 
   for (const [manager, file] of candidates) {
@@ -58,49 +57,11 @@ async function detectPackageManager() {
   return found
 }
 
-function run(command, commandArgs, options = {}) {
-  return new Promise(resolve => {
-    const startedAt = Date.now()
-    const child = spawn(command, commandArgs, {
-      cwd: root,
-      env: process.env,
-      shell: process.platform === 'win32',
-      stdio: options.capture ? ['ignore', 'pipe', 'pipe'] : 'inherit'
-    })
-
-    let stdout = ''
-    let stderr = ''
-
-    if (options.capture) {
-      child.stdout.on('data', chunk => {
-        stdout += chunk.toString()
-      })
-
-      child.stderr.on('data', chunk => {
-        stderr += chunk.toString()
-      })
-    }
-
-    child.on('error', error => {
-      resolve({
-        command: [command, ...commandArgs].join(' '),
-        exitCode: null,
-        error: error.message,
-        stdout,
-        stderr,
-        durationMs: Date.now() - startedAt
-      })
-    })
-
-    child.on('close', code => {
-      resolve({
-        command: [command, ...commandArgs].join(' '),
-        exitCode: code,
-        stdout,
-        stderr,
-        durationMs: Date.now() - startedAt
-      })
-    })
+async function run(command, commandArgs, options = {}) {
+  return runProcess(command, commandArgs, {
+    ...options,
+    cwd: root,
+    env: process.env
   })
 }
 
@@ -131,20 +92,14 @@ if (managers.length > 1) {
   report.status = 'FAIL'
 }
 
-const staticScripts = [
-  'check-content.mjs',
-  'check-routes.mjs',
-  'check-i18n.mjs'
-]
-
-for (const script of staticScripts) {
+for (const script of ['check-content.mjs', 'check-routes.mjs', 'check-i18n.mjs']) {
   const result = await run(
     process.execPath,
     [path.join(scriptsDirectory, script), root, '--json'],
     { capture: true }
   )
 
-  let parsed = null
+  let parsed
   try {
     parsed = JSON.parse(result.stdout)
   } catch {
@@ -154,13 +109,14 @@ for (const script of staticScripts) {
       findings: [{
         severity: 'BLOCKER',
         code: 'SCRIPT_OUTPUT_INVALID',
-        message: result.stderr || 'The script did not return valid JSON.'
+        message: result.error || result.stderr || 'The script did not return valid JSON.'
       }]
     }
   }
 
   report.staticChecks.push({
     script,
+    command: result.command,
     exitCode: result.exitCode,
     durationMs: result.durationMs,
     result: parsed
@@ -176,15 +132,10 @@ for (const script of staticScripts) {
 if (runProjectChecks && packageJson && managers.length === 1) {
   const manager = managers[0].manager
   const availableScripts = packageJson.scripts ?? {}
-  const desired = ['lint', 'typecheck', 'test', 'test:e2e', 'build']
 
-  for (const script of desired) {
+  for (const script of ['lint', 'typecheck', 'test', 'test:e2e', 'build']) {
     if (skipE2E && script === 'test:e2e') {
-      report.projectChecks.push({
-        script,
-        status: 'SKIPPED',
-        reason: '--skip-e2e'
-      })
+      report.projectChecks.push({ script, status: 'SKIPPED', reason: '--skip-e2e' })
       continue
     }
 
@@ -197,12 +148,7 @@ if (runProjectChecks && packageJson && managers.length === 1) {
       continue
     }
 
-    const commandArgs = manager === 'npm'
-      ? ['run', script]
-      : ['run', script]
-
-    const result = await run(manager, commandArgs)
-
+    const result = await run(manager, ['run', script])
     report.projectChecks.push({
       script,
       command: result.command,
