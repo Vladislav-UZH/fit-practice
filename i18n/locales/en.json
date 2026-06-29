@@ -112,6 +112,16 @@
           }
         }
       },
+      "comparisonPreview": {
+        "eyebrow": "Quick comparison",
+        "title": "Three formats in one technical frame",
+        "description": "Compare capacity, rated output, and transport format before moving to the full matrix.",
+        "disclosure": "The values shown are illustrative specifications for educational concepts, not certified parameters for commercial hardware.",
+        "caption": "Quick comparison of the three MAXIBUD ENERGY concept products",
+        "metricsLabel": "Metric",
+        "detailsLabel": "Product page",
+        "footerNote": "The full comparison page will expand this structure with additional specification groups without rankings or decorative scoring."
+      },
       "seoTitle": "MAXIBUD ENERGY — concept backup-power systems",
       "seoDescription": "Educational presentation of three MAXIBUD ENERGY concept systems for home, mobile work, and construction."
     },
