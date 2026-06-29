@@ -2,6 +2,7 @@ import { nextTick } from 'vue'
 import { describe, expect, it } from 'vitest'
 import { mountSuspended } from '@nuxt/test-utils/runtime'
 import PageIntro from '~/components/PageIntro.vue'
+import ProductComparisonPreview from '~/components/ProductComparisonPreview.vue'
 import ProductFamilyStage from '~/components/ProductFamilyStage.vue'
 import ProductLineupChapter from '~/components/ProductLineupChapter.vue'
 import UseCaseRecommendation from '~/components/UseCaseRecommendation.vue'
@@ -166,5 +167,42 @@ describe('UseCaseRecommendation', () => {
     await nextTick()
     expect(tabs[0]!.attributes('aria-selected')).toBe('true')
     expect(wrapper.get('[role="tabpanel"]').text()).toContain('MAXIBUD HomeCore 5')
+  })
+})
+
+describe('ProductComparisonPreview', () => {
+  it('restores portfolio order and renders aligned desktop values', async () => {
+    const wrapper = await mountSuspended(ProductComparisonPreview, {
+      props: {
+        products: [...recommendationProducts].reverse()
+      }
+    })
+
+    const columns = wrapper.findAll('[data-testid="comparison-preview-column"]')
+    const table = wrapper.get('[data-testid="comparison-preview-table"]')
+
+    expect(columns).toHaveLength(3)
+    expect(columns[0]!.text()).toContain('MAXIBUD PowerBox 2400')
+    expect(columns[1]!.text()).toContain('MAXIBUD HomeCore 5')
+    expect(columns[2]!.text()).toContain('MAXIBUD SiteHub 10')
+    expect(table.text()).toContain('2.4 kWh')
+    expect(table.text()).toContain('5.12–20.48 kWh')
+    expect(table.text()).toContain('Wheeled · 118 kg')
+  })
+
+  it('exposes every product as a stacked mobile comparison card', async () => {
+    const wrapper = await mountSuspended(ProductComparisonPreview, {
+      props: {
+        products: recommendationProducts
+      }
+    })
+
+    const cards = wrapper.findAll('[data-testid="comparison-preview-mobile-card"]')
+
+    expect(cards).toHaveLength(3)
+    expect(cards[0]!.text()).toContain('MAXIBUD PowerBox 2400')
+    expect(cards[1]!.text()).toContain('MAXIBUD HomeCore 5')
+    expect(cards[2]!.text()).toContain('MAXIBUD SiteHub 10')
+    expect(cards.every(card => card.findAll('dt').length === 3)).toBe(true)
   })
 })
