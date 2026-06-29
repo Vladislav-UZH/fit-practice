@@ -146,17 +146,19 @@ test('returns structured API errors for invalid, honeypot, and rate-limited requ
   }))
 })
 
-test('keeps the contact flow usable without horizontal overflow at 320 by 800', async ({ page }) => {
+test('keeps the hydrated contact flow usable without horizontal overflow at 320 by 800', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto('/contact?product=powerbox-2400')
 
-  await expect(page.getByTestId('contact-form').getByLabel('Продукт')).toHaveValue('powerbox-2400')
-  await expect(page.getByTestId('contact-form').getByRole('button', { name: 'Надіслати запит' })).toBeVisible()
-  await expect(page.getByTestId('contact-form')).toBeVisible()
+  const form = page.getByTestId('contact-form')
+  await expect(form.getByLabel('Продукт')).toHaveValue('powerbox-2400')
+  await expect(form.getByRole('button', { name: 'Надіслати запит' })).toBeEnabled()
+  await expect(page.getByRole('button', { name: 'Відкрити меню' })).toBeEnabled()
 
-  const hasHorizontalOverflow = await page.evaluate(() =>
-    document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
-  )
+  const dimensions = await page.evaluate(() => ({
+    clientWidth: document.documentElement.clientWidth,
+    scrollWidth: document.documentElement.scrollWidth
+  }))
 
-  expect(hasHorizontalOverflow).toBe(false)
+  expect(dimensions.scrollWidth).toBeLessThanOrEqual(dimensions.clientWidth + 1)
 })
