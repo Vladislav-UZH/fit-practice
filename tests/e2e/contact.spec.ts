@@ -150,9 +150,12 @@ test('keeps the contact flow usable without horizontal overflow at 320 by 800', 
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto('/contact?product=powerbox-2400')
 
-  await expect(page.getByTestId('contact-form').getByLabel('Продукт')).toHaveValue('powerbox-2400')
-  await expect(page.getByTestId('contact-form').getByRole('button', { name: 'Надіслати запит' })).toBeVisible()
-  await expect(page.getByTestId('contact-form')).toBeVisible()
+  const form = page.getByTestId('contact-form')
+  const submit = form.getByRole('button', { name: 'Надіслати запит' })
+
+  await expect(form.getByLabel('Продукт')).toHaveValue('powerbox-2400')
+  await expect(submit).toBeVisible()
+  await expect(submit).toBeEnabled()
 
   const hasHorizontalOverflow = await page.evaluate(() =>
     document.documentElement.scrollWidth > document.documentElement.clientWidth + 1
