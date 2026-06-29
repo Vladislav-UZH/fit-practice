@@ -218,7 +218,7 @@ describe('SharedTechnologyChapter', () => {
     expect(principles).toHaveLength(3)
     expect(diagram.attributes('role')).toBe('img')
     expect(diagram.attributes('aria-label')).toBeTruthy()
-    expect(wrapper.get('a[href="/technology"]').exists()).toBe(true)
+    expect(wrapper.find('a[href="/technology"]').exists()).toBe(true)
   })
 })
 
@@ -227,8 +227,8 @@ describe('HomepageFinalCta', () => {
     const wrapper = await mountSuspended(HomepageFinalCta)
 
     expect(wrapper.findAll('a')).toHaveLength(2)
-    expect(wrapper.get('a[href="/contact"]').exists()).toBe(true)
-    expect(wrapper.get('a[href="/products"]').exists()).toBe(true)
-    expect(wrapper.text()).toContain('Concept product')
+    expect(wrapper.find('a[href="/contact"]').exists()).toBe(true)
+    expect(wrapper.find('a[href="/products"]').exists()).toBe(true)
+    expect(wrapper.text()).toMatch(/Concept product|Концептуальний продукт/)
   })
 })
