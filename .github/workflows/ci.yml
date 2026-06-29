@@ -39,7 +39,17 @@ jobs:
         run: pnpm lint
 
       - name: Type-check
-        run: pnpm typecheck
+        run: |
+          set -o pipefail
+          pnpm typecheck 2>&1 | tee typecheck.log
+
+      - name: Upload type-check diagnostics
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: typecheck-diagnostics
+          path: typecheck.log
+          if-no-files-found: error
 
       - name: Run unit and Nuxt tests
         run: pnpm test
