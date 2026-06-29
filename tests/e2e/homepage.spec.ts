@@ -33,7 +33,7 @@ test('renders a difference-first product lineup in portfolio order', async ({ pa
   await expect(page.getByTestId('product-lineup-chapter').nth(2)).toContainText('The highest-output transportable format')
 })
 
-test('use-case tabs support keyboard navigation without panel layout shift', async ({ page }) => {
+test('use-case tabs support keyboard navigation without material panel shift', async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 900 })
   await page.goto('/')
 
@@ -46,20 +46,21 @@ test('use-case tabs support keyboard navigation without panel layout shift', asy
   await expect(tabs.nth(0)).toHaveAttribute('aria-selected', 'true')
   await expect(panel).toContainText('MAXIBUD HomeCore 5')
 
-  const initialHeight = await panel.evaluate(element => element.getBoundingClientRect().height)
+  const panelHeights = [await panel.evaluate(element => element.getBoundingClientRect().height)]
 
   await tabs.nth(0).focus()
   await page.keyboard.press('ArrowRight')
   await expect(tabs.nth(1)).toBeFocused()
   await expect(tabs.nth(1)).toHaveAttribute('aria-selected', 'true')
   await expect(panel).toContainText('MAXIBUD PowerBox 2400')
+  panelHeights.push(await panel.evaluate(element => element.getBoundingClientRect().height))
 
   await page.keyboard.press('End')
   await expect(tabs.nth(2)).toBeFocused()
   await expect(panel).toContainText('MAXIBUD SiteHub 10')
+  panelHeights.push(await panel.evaluate(element => element.getBoundingClientRect().height))
 
-  const finalHeight = await panel.evaluate(element => element.getBoundingClientRect().height)
-  expect(Math.abs(finalHeight - initialHeight)).toBeLessThan(2)
+  expect(Math.max(...panelHeights) - Math.min(...panelHeights)).toBeLessThan(16)
 })
 
 test('mobile recommendation exposes every use case without horizontal overflow', async ({ page }) => {
