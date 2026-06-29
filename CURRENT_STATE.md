@@ -2,11 +2,11 @@
 
 ## Status Metadata
 
-- Last reviewed: 2026-06-28
+- Last reviewed: 2026-06-29
 - Repository: `Vladislav-UZH/fit-practice`
-- Reviewed branch: `feat/nuxt-foundation`
-- Current phase: Nuxt application foundation
-- Application readiness: initialized and buildable
+- Reviewed branch: `feat/homepage-visual-slice`
+- Current phase: first homepage visual slice
+- Application readiness: initialized, buildable, and visually structured
 - Release readiness: `NOT READY`
 
 This file records current progress and must be updated after material milestones.
@@ -29,7 +29,7 @@ This file records current progress and must be updated after material milestones
 
 - Initialized Nuxt 4 with Vue 3, TypeScript, SSR, and Nitro.
 - Added Nuxt UI, Nuxt Content, Nuxt Image, Nuxt i18n, Zod, ESLint, Vitest, Nuxt Test Utils, and Playwright.
-- Added the application shell, skip link, global header, global footer, error page, and centralized theme tokens.
+- Added the application shell, skip link, global footer, error page, and centralized theme tokens.
 - Added Ukrainian as the default locale and English with the `/en` prefix.
 - Added all required route files.
 - Added localized SEO metadata and canonical URL generation.
@@ -44,69 +44,57 @@ This file records current progress and must be updated after material milestones
 - Configured Nuxt Content to use Node's built-in SQLite connector.
 - Disabled unnecessary prerendering of the internal Content SQL dump while preserving SSR and server-side Content queries.
 
+### Homepage visual slice
+
+- Reworked the global header into a sticky production-oriented shell with clear desktop active states.
+- Added an accessible mobile Drawer with explicit open state, Escape close behavior, and trigger-focus restoration.
+- Prevented lost pre-hydration clicks by disabling the mobile trigger until Vue mounts.
+- Added a light-dominant hero with one graphite technical stage and restrained lime accents.
+- Added an original inline SVG concept visualization for all three product formats at relative scale.
+- Kept product names and contexts outside the SVG for localization and accessibility.
+- Added a factual four-item portfolio proof strip without fabricated commercial metrics.
+- Added complete Ukrainian and English copy for the new interface.
+- Added permanent Playwright failure-report artifacts to CI.
+- Added `docs/design-reviews/homepage-visual-slice.md` with a 16/20 approval score and no blockers.
+
 ### Quality and automation
 
 - Added ESLint configuration.
 - Added unit and Nuxt-runtime tests.
-- Added Playwright route and product-flow tests.
+- Added Playwright route, product-flow, bilingual homepage, and mobile-navigation tests.
 - Added GitHub Actions validation and E2E jobs.
 - Added VS Code extension and workspace settings.
 
 ## Validation Results
 
-Executed with Node.js `24.11.1` and pnpm `11.9.0`.
+Executed through GitHub Actions on Ubuntu 24.04 with Node.js `24.11.1` and pnpm `11.9.0`.
 
 ### Passed
 
-```text
-pnpm install --frozen-lockfile
-PASS
-```
+- frozen dependency installation;
+- ESLint;
+- Nuxt and Vue type checking;
+- unit and Nuxt-runtime tests;
+- Nuxt client, SSR server, and Nitro node-server build;
+- Chromium installation;
+- Playwright E2E tests.
 
-```text
-pnpm lint
-PASS
-```
+The browser suite verifies:
 
-```text
-pnpm typecheck
-PASS
-```
+- Ukrainian and English homepage rendering;
+- product-family stage and factual proof-strip visibility;
+- mobile menu opening at 390 × 844;
+- Escape closing the Drawer;
+- focus restoration to the mobile trigger;
+- localized product detail rendering;
+- intentional API 404 behavior.
 
-```text
-pnpm test
-PASS: 2 test files, 3 tests
-```
+### Defects Found and Corrected During Validation
 
-```text
-pnpm build
-PASS: Nuxt client, SSR server, and Nitro node-server output completed
-```
-
-Manual runtime checks passed for:
-
-- `/`;
-- `/en`;
-- `/products`;
-- `/en/products`;
-- `/api/products?locale=uk`;
-- `/api/products?locale=en`;
-- `/api/products/powerbox-2400?locale=uk`;
-- intentional 404 handling for an unknown product slug.
-
-### GitHub Actions
-
-The pull-request CI completed successfully on Ubuntu 24.04:
-
-- frozen dependency installation — passed;
-- lint — passed;
-- type checking — passed;
-- unit and Nuxt-runtime tests — passed;
-- production build — passed;
-- Chromium installation — passed;
-- Playwright E2E tests — passed.
-
-The local execution environment could not download Chromium because `cdn.playwright.dev` was not resolvable, but the repository CI executed the complete E2E suite successfully.
+1. A custom accessibility prop was initially treated as an HTML attribute and failed type checking. It was renamed to an unambiguous component prop.
+2. Implicit `DrawerTrigger as-child` activation did not open reliably with the chosen trigger composition. Drawer state is now controlled explicitly.
+3. The visible SSR trigger could receive a click before Vue hydration completed. It is now disabled until `onMounted`.
+4. CI initially discarded browser-test diagnostics. Playwright failure reports are now preserved as artifacts.
 
 ## Known Warnings
 
@@ -116,39 +104,42 @@ The local execution environment could not download Chromium because `cdn.playwri
 
 ## Current Application Scope
 
-The foundation intentionally includes only enough interface to verify architecture, localization, content, SSR, and navigation.
+The technical foundation and first homepage visual slice are complete.
 
 Still incomplete:
 
-- final homepage section composition;
-- original product renders and responsive image assets;
+- final original product renders and responsive image assets;
+- homepage product chapters or a finished difference-first lineup;
+- use-case selector;
+- comparison preview;
+- shared technology section and final homepage CTA;
 - full product-detail content and specification groups;
 - full comparison matrix;
 - complete technology, about, legal, and contact content;
 - contact form, server validation, honeypot, rate limiting, and truthful demo submission state;
-- final mobile and accessibility review;
+- dedicated 320 px visual regression review;
+- manual screen-reader, contrast, LCP, and CLS review;
 - deployment configuration.
 
 ## Immediate Next Milestone
 
-Implement the first full visual slice:
+Implement the homepage product-lineup slice:
 
-1. finalize design tokens and typography loading strategy;
-2. implement the production global header and mobile navigation;
-3. implement the homepage hero and product-family visual stage;
-4. implement the factual portfolio strip;
-5. refine reusable product-card and specification-highlight components;
-6. add original or project-owned product placeholder assets with explicit dimensions;
-7. validate Ukrainian and English layouts at mobile and desktop widths;
-8. run the design-review checklist.
+1. define the additional localized content fields required for clear product differentiation;
+2. replace the generic three-card presentation with substantial product chapters or a documented difference-first layout;
+3. keep comparable values aligned across all three products;
+4. preserve one clear product-detail action per format;
+5. verify Ukrainian and English reading order on mobile and desktop;
+6. add component and E2E coverage;
+7. update the design review and this state file with exact results.
 
 ## Exit Criteria for the Next Milestone
 
-- homepage hero and portfolio section match the approved landing-design skill;
-- header and mobile navigation pass keyboard checks;
-- Ukrainian and English layouts remain stable at 320 px and desktop widths;
-- product visuals have explicit dimensions and meaningful alternatives;
-- no fabricated commercial proof is introduced;
+- every product has a clear intended context and primary distinction;
+- the three products read as one portfolio rather than unrelated cards;
+- mobile users can discover all products without a carousel;
+- technical values remain comparable and use consistent units;
+- concept status and truthful claims remain intact;
 - lint, typecheck, tests, E2E, and build pass;
 - `CURRENT_STATE.md` records exact results.
 
@@ -156,4 +147,4 @@ Implement the first full visual slice:
 
 `NOT READY`
 
-Reason: the technical foundation is initialized, but final product presentation, content, contact flow, visual assets, full accessibility review, and deployment configuration remain incomplete.
+Reason: the foundation and first visual slice are complete, but the remaining homepage decision flow, final product visuals, detailed content, contact flow, manual accessibility and performance review, and deployment configuration are incomplete.
