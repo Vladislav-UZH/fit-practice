@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="650" viewBox="0 0 1200 650" role="img" aria-labelledby="title desc">
+  <title id="title">Послідовність автоматизованої перевірки якості</title>
+  <desc id="desc">Схема показує запуск GitHub Actions, завдання validate, завдання end-to-end та збереження звіту у випадку помилки.</desc>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0,0 L0,6 L9,3 z" fill="#64748b"/></marker>
+    <style>
+      text{font-family:Arial,'DejaVu Sans',sans-serif;fill:#0f172a}.h{font-size:22px;font-weight:700}.t{font-size:16px;font-weight:600}.s{font-size:14px}.box{stroke-width:2;rx:15}.base{fill:#f8fafc;stroke:#334155}.validate{fill:#eff6ff;stroke:#1d4ed8}.browser{fill:#f5f3ff;stroke:#6d28d9}.ok{fill:#ecfdf5;stroke:#047857}.bad{fill:#fef2f2;stroke:#b91c1c}.line{stroke:#64748b;stroke-width:2.2;fill:none;marker-end:url(#a)}
+    </style>
+  </defs>
+  <text x="600" y="40" text-anchor="middle" class="h">Послідовність автоматизованої перевірки якості</text>
+
+  <rect x="55" y="105" width="220" height="72" class="box base"/>
+  <text x="165" y="134" text-anchor="middle" class="s"><tspan x="165">Push або pull request</tspan><tspan x="165" dy="20">до гілки main</tspan></text>
+
+  <rect x="330" y="78" width="500" height="230" rx="22" fill="#ffffff" stroke="#1d4ed8" stroke-width="2.5"/>
+  <text x="580" y="112" text-anchor="middle" class="t">Завдання validate</text>
+  <rect x="355" y="140" width="130" height="54" class="box base"/>
+  <text x="420" y="173" text-anchor="middle" class="s">Checkout</text>
+  <rect x="515" y="140" width="140" height="54" class="box base"/>
+  <text x="585" y="173" text-anchor="middle" class="s">Node.js і pnpm</text>
+  <rect x="685" y="140" width="120" height="54" class="box base"/>
+  <text x="745" y="173" text-anchor="middle" class="s">Install</text>
+  <rect x="355" y="225" width="95" height="54" class="box validate"/>
+  <text x="402" y="258" text-anchor="middle" class="s">ESLint</text>
+  <rect x="475" y="225" width="125" height="54" class="box validate"/>
+  <text x="537" y="258" text-anchor="middle" class="s">Typecheck</text>
+  <rect x="625" y="225" width="95" height="54" class="box validate"/>
+  <text x="672" y="258" text-anchor="middle" class="s">Vitest</text>
+  <rect x="745" y="225" width="60" height="54" class="box validate"/>
+  <text x="775" y="258" text-anchor="middle" class="s">Build</text>
+
+  <path d="M275 141 H330" class="line"/>
+  <path d="M485 167 H515" class="line"/>
+  <path d="M655 167 H685" class="line"/>
+  <path d="M745 194 C745 210 410 205 402 225" class="line"/>
+  <path d="M450 252 H475" class="line"/>
+  <path d="M600 252 H625" class="line"/>
+  <path d="M720 252 H745" class="line"/>
+
+  <rect x="330" y="360" width="500" height="170" rx="22" fill="#ffffff" stroke="#6d28d9" stroke-width="2.5"/>
+  <text x="580" y="394" text-anchor="middle" class="t">Завдання e2e після успішного validate</text>
+  <rect x="365" y="430" width="150" height="58" class="box base"/>
+  <text x="440" y="454" text-anchor="middle" class="s"><tspan x="440">Підготовка</tspan><tspan x="440" dy="20">середовища</tspan></text>
+  <rect x="550" y="430" width="150" height="58" class="box browser"/>
+  <text x="625" y="454" text-anchor="middle" class="s"><tspan x="625">Встановлення</tspan><tspan x="625" dy="20">Chromium</tspan></text>
+  <rect x="735" y="430" width="70" height="58" class="box browser"/>
+  <text x="770" y="454" text-anchor="middle" class="s"><tspan x="770">E2E</tspan><tspan x="770" dy="20">tests</tspan></text>
+  <path d="M775 279 C775 330 440 330 440 430" class="line"/>
+  <path d="M515 459 H550" class="line"/>
+  <path d="M700 459 H735" class="line"/>
+
+  <rect x="900" y="350" width="235" height="70" class="box ok"/>
+  <text x="1017" y="392" text-anchor="middle" class="t">Успішна перевірка</text>
+  <rect x="900" y="470" width="235" height="82" class="box bad"/>
+  <text x="1017" y="503" text-anchor="middle" class="s"><tspan x="1017">Звіт Playwright</tspan><tspan x="1017" dy="20">зберігається при помилці</tspan></text>
+  <path d="M805 449 C850 430 870 385 900 385" class="line"/>
+  <path d="M805 469 C850 480 870 511 900 511" class="line"/>
+
+  <text x="600" y="604" text-anchor="middle" class="s">Порядок перевірок не дозволяє запускати браузерні сценарії після невдалого lint, typecheck, test або build</text>
+</svg>
