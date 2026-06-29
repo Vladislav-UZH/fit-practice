@@ -14,7 +14,7 @@ const localePath = useLocalePath()
             <p class="font-mono text-xs font-semibold uppercase tracking-[0.16em] text-black/60">
               {{ $t('pages.home.finalCta.eyebrow') }}
             </p>
-            <span class="rounded-full border border-black/15 bg-black/[0.04] px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-black/55">
+            <span class="rounded-full border border-black/15 bg-black/[0.04] px-3 py-1 font-mono text-[0.6875rem] uppercase tracking-[0.12em] text-black/60">
               {{ $t('disclosure.shortTitle') }}
             </span>
           </div>
@@ -52,10 +52,10 @@ const localePath = useLocalePath()
       </div>
 
       <div class="mt-10 grid gap-5 border-t border-black/20 pt-6 sm:grid-cols-2 lg:mt-14 lg:grid-cols-12">
-        <p class="text-sm leading-6 text-black/55 sm:col-span-1 lg:col-span-7">
+        <p class="text-sm leading-6 text-black/60 sm:col-span-1 lg:col-span-7">
           {{ $t('pages.home.finalCta.disclosure') }}
         </p>
-        <p class="font-mono text-[0.6875rem] uppercase leading-5 tracking-[0.12em] text-black/45 sm:text-right lg:col-span-5">
+        <p class="font-mono text-[0.6875rem] uppercase leading-5 tracking-[0.12em] text-black/60 sm:text-right lg:col-span-5">
           {{ $t('pages.home.finalCta.processNote') }}
         </p>
       </div>
