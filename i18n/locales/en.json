@@ -9,7 +9,8 @@
     "about": "About",
     "contact": "Contact",
     "legal": "Legal",
-    "menu": "Menu"
+    "menu": "Menu",
+    "menuDescription": "Primary site sections and the consultation path"
   },
   "actions": {
     "viewProducts": "View products",
@@ -21,7 +22,9 @@
     "skipToContent": "Skip to main content",
     "primaryNavigation": "Primary navigation",
     "switchLanguage": "Switch language to {language}",
-    "mobileNavigation": "Mobile navigation"
+    "mobileNavigation": "Mobile navigation",
+    "openMenu": "Open menu",
+    "productFamilyVisual": "Concept visualization of the three MAXIBUD ENERGY formats at relative scale"
   },
   "disclosure": {
     "full": "MAXIBUD ENERGY is a conceptual product line created for an educational software demonstration. Product specifications are illustrative and do not represent certified commercial hardware.",
@@ -41,13 +44,39 @@
       "eyebrow": "Concept power-system portfolio",
       "title": "Independent power for home, work, and construction",
       "description": "Three product formats for mobile work, home backup, and professional site use.",
-      "visualLabel": "Visual-system foundation",
-      "visualText": "Original product renders will be added during the next design milestone.",
+      "conceptLabel": "Educational concept",
+      "stageCaption": "One product family across three form factors",
+      "stageProducts": {
+        "powerbox": {
+          "name": "PowerBox 2400",
+          "context": "Mobile work"
+        },
+        "homecore": {
+          "name": "HomeCore 5",
+          "context": "Home and small business"
+        },
+        "sitehub": {
+          "name": "SiteHub 10",
+          "context": "Professional sites"
+        }
+      },
       "proof": {
-        "formats": "Three use-focused formats",
-        "platform": "Shared LiFePO4 concept",
-        "mobile": "Mobile and stationary options",
-        "languages": "Ukrainian and English"
+        "formats": {
+          "label": "Portfolio",
+          "value": "3 use-focused formats"
+        },
+        "mobility": {
+          "label": "Form factor",
+          "value": "Mobile and stationary concepts"
+        },
+        "platform": {
+          "label": "Platform",
+          "value": "Shared LiFePO4 concept"
+        },
+        "languages": {
+          "label": "Content",
+          "value": "Ukrainian and English"
+        }
       },
       "productsEyebrow": "Product portfolio",
       "productsTitle": "One portfolio, three working contexts",
