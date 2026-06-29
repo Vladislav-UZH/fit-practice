@@ -7,6 +7,8 @@ const { data: products } = await useFetch('/api/products', {
   watch: [locale]
 })
 
+const productList = computed(() => products.value ?? [])
+
 const stageProducts = computed(() => [
   {
     name: t('pages.home.stageProducts.powerbox.name'),
@@ -107,9 +109,9 @@ usePageSeo(
           </p>
         </div>
 
-        <div v-if="products?.length" data-testid="product-lineup" class="mt-12 sm:mt-16">
+        <div v-if="productList.length" data-testid="product-lineup" class="mt-12 sm:mt-16">
           <ProductLineupChapter
-            v-for="(product, index) in products"
+            v-for="(product, index) in productList"
             :key="product.id"
             :product="product"
             :index="index"
@@ -127,5 +129,10 @@ usePageSeo(
         />
       </UContainer>
     </section>
+
+    <UseCaseRecommendation
+      v-if="productList.length"
+      :products="productList"
+    />
   </div>
 </template>

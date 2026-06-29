@@ -6,11 +6,13 @@ test('renders Ukrainian and English home routes', async ({ page }) => {
   await expect(page.getByTestId('product-family-stage')).toBeVisible()
   await expect(page.getByTestId('portfolio-proof-strip')).toContainText('3 цільові формати')
   await expect(page.getByTestId('product-lineup-chapter')).toHaveCount(3)
+  await expect(page.getByTestId('use-case-recommendation')).toContainText('Почніть із робочого контексту')
 
   await page.goto('/en')
   await expect(page.getByRole('heading', { level: 1 })).toContainText('Independent power')
   await expect(page.getByTestId('portfolio-proof-strip')).toContainText('3 use-focused formats')
   await expect(page.getByTestId('product-lineup-chapter')).toHaveCount(3)
+  await expect(page.getByTestId('use-case-recommendation')).toContainText('Start with the working context')
 })
 
 test('renders a difference-first product lineup in portfolio order', async ({ page }) => {
@@ -31,11 +33,48 @@ test('renders a difference-first product lineup in portfolio order', async ({ pa
   await expect(page.getByTestId('product-lineup-chapter').nth(2)).toContainText('The highest-output transportable format')
 })
 
-test('product lineup fits a 320 pixel viewport without horizontal overflow', async ({ page }) => {
+test('use-case tabs support keyboard navigation without material panel shift', async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 })
+  await page.goto('/')
+
+  const section = page.getByTestId('use-case-recommendation')
+  const tabs = section.getByRole('tab')
+  const panel = section.getByRole('tabpanel')
+
+  await expect(tabs).toHaveCount(3)
+  await expect(tabs.nth(0)).toBeEnabled()
+  await expect(tabs.nth(0)).toHaveAttribute('aria-selected', 'true')
+  await expect(panel).toContainText('MAXIBUD HomeCore 5')
+
+  const panelHeights = [await panel.evaluate(element => element.getBoundingClientRect().height)]
+
+  await tabs.nth(0).focus()
+  await page.keyboard.press('ArrowRight')
+  await expect(tabs.nth(1)).toBeFocused()
+  await expect(tabs.nth(1)).toHaveAttribute('aria-selected', 'true')
+  await expect(panel).toContainText('MAXIBUD PowerBox 2400')
+  panelHeights.push(await panel.evaluate(element => element.getBoundingClientRect().height))
+
+  await page.keyboard.press('End')
+  await expect(tabs.nth(2)).toBeFocused()
+  await expect(panel).toContainText('MAXIBUD SiteHub 10')
+  panelHeights.push(await panel.evaluate(element => element.getBoundingClientRect().height))
+
+  expect(Math.max(...panelHeights) - Math.min(...panelHeights)).toBeLessThan(16)
+})
+
+test('mobile recommendation exposes every use case without horizontal overflow', async ({ page }) => {
   await page.setViewportSize({ width: 320, height: 800 })
   await page.goto('/')
 
-  await expect(page.getByTestId('product-lineup-chapter')).toHaveCount(3)
+  const section = page.getByTestId('use-case-recommendation')
+  const cards = section.getByTestId('use-case-mobile-card')
+
+  await expect(cards).toHaveCount(3)
+  await expect(cards.nth(0)).toContainText('MAXIBUD HomeCore 5')
+  await expect(cards.nth(1)).toContainText('MAXIBUD PowerBox 2400')
+  await expect(cards.nth(2)).toContainText('MAXIBUD SiteHub 10')
+  await expect(section.getByRole('tablist')).not.toBeVisible()
 
   const hasHorizontalOverflow = await page.evaluate(() =>
     document.documentElement.scrollWidth > window.innerWidth + 1
